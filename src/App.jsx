@@ -16,33 +16,15 @@ class App extends React.Component {
             <input name="task" type="text"/>
           </div>
           <div className="add__priority">
-            <label for="priority">Select Priority Level</label>
+            <label htmlFor="priority">Select Priority Level</label>
             <div className="add__priority-radio-wrapper">
-              <input name="priority" type="radio"/>
-              <input name="priority" type="radio"/>
-              <input name="priority" type="radio"/>
-              <input name="priority" type="radio"/>
-              <input name="priority" type="radio"/>
-              <input name="priority" type="radio"/>
-              <input name="priority" type="radio"/>
-              <input name="priority" type="radio"/>
-              <input name="priority" type="radio"/>
-              <input name="priority" type="radio"/>
+              {[...Array(10)].map((e,i) => <input name="priority" type="radio" key={crypto.randomUUID()}/>)}
             </div>
           </div>
           <div className="add__complexity">
-            <label for="complexity">Select Complexity Level</label>
+            <label htmlFor="complexity">Select Complexity Level</label>
             <div className="add__complexity-radio-wrapper">
-              <input name="complexity" type="radio"/>
-              <input name="complexity" type="radio"/>
-              <input name="complexity" type="radio"/>
-              <input name="complexity" type="radio"/>
-              <input name="complexity" type="radio"/>
-              <input name="complexity" type="radio"/>
-              <input name="complexity" type="radio"/>
-              <input name="complexity" type="radio"/>
-              <input name="complexity" type="radio"/>
-              <input name="complexity" type="radio"/>
+              {[...Array(10)].map((e, i) => <input name="complexity" type="radio" key={crypto.randomUUID()} />)}
             </div>
           </div>
           <div className="add__date-time">
