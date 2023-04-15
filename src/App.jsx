@@ -7,8 +7,8 @@ class App extends React.Component {
     return <div className="main__container">
       <div className="add__container">
         <div className="add__header">
-          <div className="add__header--back">arrow</div>
-          <h1 className="add__header--title">Add New Task</h1>
+          <div className="add__header-back">arrow</div>
+          <h1 className="add__header-title">Add New Task</h1>
         </div>
         <div>
           <div className="add__task">
@@ -17,18 +17,40 @@ class App extends React.Component {
           </div>
           <div className="add__priority">
             <label for="priority">Select Priority Level</label>
-            <input name="priority" type="radio"/>
+            <div className="add__priority-radio-wrapper">
+              <input name="priority" type="radio"/>
+              <input name="priority" type="radio"/>
+              <input name="priority" type="radio"/>
+              <input name="priority" type="radio"/>
+              <input name="priority" type="radio"/>
+              <input name="priority" type="radio"/>
+              <input name="priority" type="radio"/>
+              <input name="priority" type="radio"/>
+              <input name="priority" type="radio"/>
+              <input name="priority" type="radio"/>
+            </div>
           </div>
           <div className="add__complexity">
             <label for="complexity">Select Complexity Level</label>
-            <input name="complexity" type="radio"/>
+            <div className="add__complexity-radio-wrapper">
+              <input name="complexity" type="radio"/>
+              <input name="complexity" type="radio"/>
+              <input name="complexity" type="radio"/>
+              <input name="complexity" type="radio"/>
+              <input name="complexity" type="radio"/>
+              <input name="complexity" type="radio"/>
+              <input name="complexity" type="radio"/>
+              <input name="complexity" type="radio"/>
+              <input name="complexity" type="radio"/>
+              <input name="complexity" type="radio"/>
+            </div>
           </div>
           <div className="add__date-time">
-            <div>
+            <div className="add__date-wrapper">
               <label for="date">Select Due Date</label>
               <input name="date" type="date"/>
             </div>
-            <div>
+            <div className="add__time-wrapper">
               <label for="time">Select Time</label>
               <input name="time" type="time"/>
             </div>
@@ -47,8 +69,8 @@ class App extends React.Component {
             <label for="tags">Add Tags</label>
             <input name="tags" type="text"/>
           </div>
-          <div>
-            <button>Save Task</button>
+          <div className="add__button-wrapper">
+            <button className="add__button">Save Task</button>
           </div>
         </div>
       </div>
