@@ -10,6 +10,10 @@ const GlobalStyle = createGlobalStyle`
   body {
     margin: 0;
   }
+
+  h1,h2,h3,h4,h5,h6 {
+    margin: 0;
+  }
 `;
 
 class App extends React.Component {
@@ -22,22 +26,30 @@ class App extends React.Component {
           justifyContent: "center",
           width: "100%",
           backgroundColor: "lightblue",
-          maxWidth: "1280px",
           margin: "0 auto",
         }}
       >
         <GlobalStyle />
-        <div className="add__container" style={{ width: "500px" }}>
+        <div
+          className="add__container"
+          style={{ width: "500px", padding: "50px 0" }}
+        >
           <div
             className="add__header"
             style={{
               display: "flex",
               alignItems: "center",
-              justifyContent: "space-between",
+              justifyContent: "center",
+              position: "relative",
             }}
           >
             <div
-              style={{ display: "flex", alignItems: "center" }}
+              style={{
+                display: "flex",
+                alignItems: "center",
+                position: "absolute",
+                left: "0",
+              }}
               className="add__header-back"
             >
               <ArrowIcon />
@@ -47,50 +59,80 @@ class App extends React.Component {
           <div>
             <div
               className="add__task"
-              style={{ display: "flex", flexDirection: "column" }}
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                padding: "10px 0",
+              }}
             >
-              <label htmlFor="task">Task Name</label>
-              <input name="task" type="text" />
+              <h4>Task Name</h4>
+              <label htmlFor="task">
+                <input
+                  style={{ width: "100%", borderRadius: "10px" }}
+                  name="task"
+                  type="text"
+                />
+              </label>
             </div>
             <div
               className="add__priority"
-              style={{ display: "flex", flexDirection: "column" }}
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                padding: "10px 0",
+              }}
             >
-              <label htmlFor="priority">Select Priority Level</label>
-              <div
-                className="add__priority-radio-wrapper"
-                style={{ display: "flex", justifyContent: "space-between" }}
-              >
-                {[...Array(10)].map((e, i) => (
-                  <input
-                    name="priority"
-                    type="radio"
-                    key={crypto.randomUUID()}
-                  />
-                ))}
-              </div>
+              <h4>Select Priority Level</h4>
+              <label htmlFor="priority">
+                <div
+                  className="add__priority-radio-wrapper"
+                  style={{ display: "flex", justifyContent: "space-between" }}
+                >
+                  {[...Array(10)].map((e, i) => (
+                    <div style={{position:"relative"}}>
+                      <input
+                        name="priority"
+                        type="radio"
+                        key={crypto.randomUUID()}
+                        value={i + 1}
+                      />
+                      <span style={{position: "absolute"}}>{i + 1}</span>
+                    </div>
+                  ))}
+                </div>
+              </label>
             </div>
             <div
               className="add__complexity"
-              style={{ display: "flex", flexDirection: "column" }}
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                padding: "10px 0",
+              }}
             >
-              <label htmlFor="complexity">Select Complexity Level</label>
-              <div
-                className="add__complexity-radio-wrapper"
-                style={{ display: "flex", justifyContent: "space-between" }}
-              >
-                {[...Array(10)].map((e, i) => (
-                  <input
-                    name="complexity"
-                    type="radio"
-                    key={crypto.randomUUID()}
-                  />
-                ))}
-              </div>
+              <h4>Select Complexity Level</h4>
+              <label htmlFor="complexity">
+                <div
+                  className="add__complexity-radio-wrapper"
+                  style={{ display: "flex", justifyContent: "space-between" }}
+                >
+                  {[...Array(10)].map((e, i) => (
+                    <input
+                      name="complexity"
+                      type="radio"
+                      key={crypto.randomUUID()}
+                    />
+                  ))}
+                </div>
+              </label>
             </div>
             <div
               className="add__date-time"
-              style={{ display: "flex", justifyContent: "space-between" }}
+              style={{
+                display: "flex",
+                justifyContent: "space-between",
+                padding: "10px 0",
+              }}
             >
               <div
                 className="add__date-wrapper"
@@ -100,8 +142,14 @@ class App extends React.Component {
                   width: "45%",
                 }}
               >
-                <label htmlFor="date">Select Due Date</label>
-                <input name="date" type="date" />
+                <h4>Select Due Date</h4>
+                <label htmlFor="date">
+                  <input
+                    style={{ width: "100%", borderRadius: "10px" }}
+                    name="date"
+                    type="date"
+                  />
+                </label>
               </div>
               <div
                 className="add__time-wrapper"
@@ -111,16 +159,32 @@ class App extends React.Component {
                   width: "45%",
                 }}
               >
-                <label htmlFor="time">Select Time</label>
-                <input name="time" type="time" />
+                <h4>Select Time</h4>
+                <label htmlFor="time">
+                  <input
+                    style={{ width: "100%", borderRadius: "10px" }}
+                    name="time"
+                    type="time"
+                  />
+                </label>
               </div>
             </div>
             <div
               className="add__list"
-              style={{ display: "flex", flexDirection: "column" }}
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                padding: "10px 0",
+              }}
             >
-              <label htmlFor="list">Add Checklist for subtasks</label>
-              <input name="list" type="text" />
+              <h4>Add Checklist for subtasks</h4>
+              <label htmlFor="list">
+                <input
+                  style={{ width: "100%", borderRadius: "10px" }}
+                  name="list"
+                  type="text"
+                />
+              </label>
               <div className="add__list--display-list">
                 <ul>
                   <li>test1</li>
@@ -130,14 +194,28 @@ class App extends React.Component {
             </div>
             <div
               className="add__tags"
-              style={{ display: "flex", flexDirection: "column" }}
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                padding: "10px 0",
+              }}
             >
-              <label htmlFor="tags">Add Tags</label>
-              <input name="tags" type="text" />
+              <h4>Add Tags</h4>
+              <label htmlFor="tags">
+                <input
+                  style={{ width: "100%", borderRadius: "10px" }}
+                  name="tags"
+                  type="text"
+                />
+              </label>
             </div>
             <div
               className="add__button-wrapper"
-              style={{ display: "flex", justifyContent: "center" }}
+              style={{
+                display: "flex",
+                justifyContent: "center",
+                padding: "10px 0",
+              }}
             >
               <button className="add__button">Save Task</button>
             </div>
