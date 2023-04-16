@@ -52,7 +52,7 @@ class App extends React.Component {
               }}
               className="add__header-back"
             >
-              <ArrowIcon />
+              <ArrowIcon style={{width:"20px"}} />
             </div>
             <h1 className="add__header-title">Add New Task</h1>
           </div>
