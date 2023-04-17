@@ -1,7 +1,6 @@
 import React from "react";
 import { createGlobalStyle } from "styled-components";
-import { ArrowIcon, CalendarIcon } from "./components/IconComponent";
-
+import { ArrowIcon } from "./components/IconComponent";
 
 const GlobalStyle = createGlobalStyle`
   * {
@@ -18,7 +17,11 @@ const GlobalStyle = createGlobalStyle`
   }
 
   input[type="date"]::-webkit-calendar-picker-indicator {
-    // background-image: url(../../src/assets/calendar.svg);
+    background-image: url(../../src/assets/calendar.svg);
+  }
+
+  input[type="time"]::-webkit-calendar-picker-indicator {
+    background-image: url(../../src/assets/clock.svg);
   }
 
   body {
@@ -98,7 +101,18 @@ class App extends React.Component {
               }}
               className="add__header-back"
             >
-              <ArrowIcon style={{ width: "20px" }} />
+              <div
+                style={{
+                  backgroundColor: "#fff",
+                  width: "44px",
+                  height: "44px",
+                  borderRadius: "50%",
+                  display: "flex",
+                  justifyContent: "center",
+                }}
+              >
+                <ArrowIcon style={{ width: "20px" }} />
+              </div>
             </div>
             <h1 className="add__header-title">Add New Task</h1>
           </div>
@@ -151,6 +165,7 @@ class App extends React.Component {
                           width: "30px",
                           height: "30px",
                           transform: "translate(-15%, -15%)",
+                          cursor: "pointer",
                         }}
                         name="priority"
                         type="radio"
@@ -218,6 +233,7 @@ class App extends React.Component {
                           width: "30px",
                           height: "30px",
                           transform: "translate(-15%, -15%)",
+                          cursor: "pointer",
                         }}
                         name="complexity"
                         type="radio"
@@ -269,17 +285,6 @@ class App extends React.Component {
                 <h2>Select Due Date</h2>
                 <label htmlFor="date" style={{ position: "relative" }}>
                   <input name="date" type="date" />
-                  {/* <CalendarIcon
-                    style={{
-                      width: "20px",
-                      height: "20px",
-                      position: "absolute",
-                      top: "0%",
-                      left: "80%",
-                      transform: "translate(0%, 100%)",
-                      zIndex:"0"
-                    }}
-                  /> */}
                 </label>
               </div>
               <div
@@ -336,7 +341,18 @@ class App extends React.Component {
                 padding: "10px 0",
               }}
             >
-              <button className="add__button">
+              <button
+                style={{
+                  height: "60px",
+                  width: "192px",
+                  borderRadius: "30px",
+                  border: "none",
+                  backgroundColor: "#0d99ff",
+                  color: "#fff",
+                  cursor: "pointer",
+                }}
+                className="add__button"
+              >
                 <h2>Save Task</h2>
               </button>
             </div>
