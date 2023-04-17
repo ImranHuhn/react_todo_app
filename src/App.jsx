@@ -122,7 +122,7 @@ class App extends React.Component {
               style={{
                 display: "flex",
                 flexDirection: "column",
-                padding: "10px 0",
+                margin: "40px 0 25px",
               }}
             >
               <h2>Task Name</h2>
@@ -135,11 +135,12 @@ class App extends React.Component {
               style={{
                 display: "flex",
                 flexDirection: "column",
-                padding: "10px 0",
+                // padding: "10px 0",
                 height: "60px",
+                marginBottom: "35px"
               }}
             >
-              <h2>Select Priority Level</h2>
+              <h2 style={{ marginBottom: "15px" }}>Select Priority Level</h2>
               <label htmlFor="priority">
                 <div
                   className="add__priority-radio-list"
@@ -203,11 +204,12 @@ class App extends React.Component {
               style={{
                 display: "flex",
                 flexDirection: "column",
-                padding: "10px 0",
+                // padding: "10px 0",
                 height: "60px",
+                marginBottom: "45px"
               }}
             >
-              <h2>Select Complexity Level</h2>
+              <h2 style={{ marginBottom: "15px" }}>Select Complexity Level</h2>
               <label htmlFor="complexity">
                 <div
                   className="add__complexity-radio-list"
@@ -271,7 +273,8 @@ class App extends React.Component {
               style={{
                 display: "flex",
                 justifyContent: "space-between",
-                padding: "10px 0",
+                // padding: "10px 0",
+                marginBottom: "45px"
               }}
             >
               <div
@@ -282,7 +285,7 @@ class App extends React.Component {
                   width: "45%",
                 }}
               >
-                <h2>Select Due Date</h2>
+                <h2 style={{ marginBottom: "15px" }}>Select Due Date</h2>
                 <label htmlFor="date" style={{ position: "relative" }}>
                   <input name="date" type="date" />
                 </label>
@@ -295,7 +298,7 @@ class App extends React.Component {
                   width: "45%",
                 }}
               >
-                <h2>Select Time</h2>
+                <h2 style={{ marginBottom: "15px" }}>Select Time</h2>
                 <label htmlFor="time">
                   <input name="time" type="time" />
                 </label>
@@ -306,10 +309,11 @@ class App extends React.Component {
               style={{
                 display: "flex",
                 flexDirection: "column",
-                padding: "10px 0",
+                // padding: "10px 0",
+                marginBottom: "30px"
               }}
             >
-              <h2>Add Checklist for subtasks</h2>
+              <h2 style={{ marginBottom: "15px" }}>Add Checklist for subtasks</h2>
               <label htmlFor="list">
                 <input placeholder="Add item..." name="list" type="text" />
               </label>
@@ -325,10 +329,11 @@ class App extends React.Component {
               style={{
                 display: "flex",
                 flexDirection: "column",
-                padding: "10px 0",
+                // padding: "10px 0",
+                marginBottom: "45px"
               }}
             >
-              <h2>Add Tags</h2>
+              <h2 style={{ marginBottom: "15px" }}>Add Tags</h2>
               <label htmlFor="tags">
                 <input placeholder="Add tag..." name="tags" type="text" />
               </label>
@@ -338,7 +343,8 @@ class App extends React.Component {
               style={{
                 display: "flex",
                 justifyContent: "center",
-                padding: "10px 0",
+                // padding: "10px 0",
+                marginBottom: "45px"
               }}
             >
               <button
