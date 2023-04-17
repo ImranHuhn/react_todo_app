@@ -14,6 +14,10 @@ const GlobalStyle = createGlobalStyle`
   h1,h2,h3,h4,h5,h6 {
     margin: 0;
   }
+
+  .add__priority-radio1:checked + .add__priority-radio2 {
+    background-color: red;
+  }
 `;
 
 class App extends React.Component {
@@ -52,7 +56,7 @@ class App extends React.Component {
               }}
               className="add__header-back"
             >
-              <ArrowIcon style={{width:"20px"}} />
+              <ArrowIcon style={{ width: "20px" }} />
             </div>
             <h1 className="add__header-title">Add New Task</h1>
           </div>
@@ -89,14 +93,40 @@ class App extends React.Component {
                   style={{ display: "flex", justifyContent: "space-between" }}
                 >
                   {[...Array(10)].map((e, i) => (
-                    <div style={{position:"relative"}}>
+                    <div
+                      style={{ position: "relative" }}
+                      key={crypto.randomUUID()}
+                    >
                       <input
+                        className="add__priority-radio1"
+                        onClick={() => console.log(i + 1)}
+                        style={{
+                          position: "absolute",
+                          zIndex: "1",
+                          opacity: "0",
+                          width: "20px",
+                          height: "20px",
+                          top: "-2px",
+                          left: "-4px",
+                        }}
                         name="priority"
                         type="radio"
-                        key={crypto.randomUUID()}
                         value={i + 1}
                       />
-                      <span style={{position: "absolute"}}>{i + 1}</span>
+                      <span
+                      className="add__priority-radio2"
+                        style={{
+                          position: "absolute",
+                          zIndex: "0",
+                          border: "1px solid red",
+                          borderRadius: "100%",
+                          width: "20px",
+                          height: "20px",
+                          textAlign: "center",
+                        }}
+                      >
+                        {i + 1}
+                      </span>
                     </div>
                   ))}
                 </div>
