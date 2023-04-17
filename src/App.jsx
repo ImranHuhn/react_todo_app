@@ -37,7 +37,7 @@ const GlobalStyle = createGlobalStyle`
     border-radius: 30px;
     border: 1px solid lightgray;
     box-sizing: border-box;
-    padding-left: 25px;
+    padding: 25px;
   }
 
   .radio-text {
@@ -158,7 +158,6 @@ class App extends React.Component {
                       >
                         <h3
                           style={{
-                            // backgroundColor: "rgba(13,153,255,0.1)",
                             position: "absolute",
                             top: "7px",
                             left: i + 1 !== 10 ? "10.5px" : "7px",
@@ -223,7 +222,6 @@ class App extends React.Component {
                     >
                       <h3
                         style={{
-                          // backgroundColor: "rgba(13,153,255,0.1)",
                           position: "absolute",
                           top: "7px",
                           left: i + 1 !== 10 ? "10.5px" : "7px",
