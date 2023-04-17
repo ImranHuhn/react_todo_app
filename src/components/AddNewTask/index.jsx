@@ -1,6 +1,7 @@
 import React from "react";
-import {RadioButtons} from "../RadioButtons";
-import {DateTime} from "../DateTime";
+import { RadioButtons } from "../RadioButtons";
+import { DateTime } from "../DateTime";
+import { TextInput } from "../TextInput";
 import { ArrowIcon } from "../IconComponent";
 
 class AddNewTask extends React.Component {
@@ -49,7 +50,7 @@ class AddNewTask extends React.Component {
                   display: "flex",
                   justifyContent: "center",
                   alignItems: "center",
-                  cursor: "pointer"
+                  cursor: "pointer",
                 }}
               >
                 <ArrowIcon style={{ width: "20px" }} />
@@ -66,13 +67,14 @@ class AddNewTask extends React.Component {
                 margin: "40px 0 25px",
               }}
             >
-              <h2 style={{ marginBottom: "15px" }}>Task Name</h2>
-              <label htmlFor="task">
-                <input placeholder="Name of task..." name="task" type="text" />
-              </label>
+              <TextInput
+                title="Task Name"
+                placeholder="Name of task..."
+                inputType="task"
+              />
             </div>
-            <RadioButtons type="Priority"/>
-            <RadioButtons type="Complexity"/>
+            <RadioButtons type="Priority" />
+            <RadioButtons type="Complexity" />
             <div
               className="add__date-time"
               style={{
@@ -81,8 +83,8 @@ class AddNewTask extends React.Component {
                 marginBottom: "45px",
               }}
             >
-                <DateTime title="Due Date" type="date" />
-                <DateTime title="Time" type="time" />
+              <DateTime title="Due Date" type="date" />
+              <DateTime title="Time" type="time" />
             </div>
             <div
               className="add__list"
@@ -92,12 +94,11 @@ class AddNewTask extends React.Component {
                 marginBottom: "30px",
               }}
             >
-              <h2 style={{ marginBottom: "15px" }}>
-                Add Checklist for subtasks
-              </h2>
-              <label htmlFor="list">
-                <input placeholder="Add item..." name="list" type="text" />
-              </label>
+              <TextInput
+                title="Add Checklist for subtasks"
+                placeholder="Add item..."
+                inputType="list"
+              />
               <div className="add__list--display-list">
                 <ul>
                   <li>test1</li>
@@ -113,10 +114,11 @@ class AddNewTask extends React.Component {
                 marginBottom: "45px",
               }}
             >
-              <h2 style={{ marginBottom: "15px" }}>Add Tags</h2>
-              <label htmlFor="tags">
-                <input placeholder="Add tag..." name="tags" type="text" />
-              </label>
+              <TextInput
+                title="Add Tags"
+                placeholder="Add tag..."
+                inputType="tags"
+              />
             </div>
             <div
               className="add__button-wrapper"
