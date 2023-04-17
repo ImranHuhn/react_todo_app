@@ -62,6 +62,7 @@ const GlobalStyle = createGlobalStyle`
 
   .radio-input:checked + .radio-text {
     background-color: rgba(13,153,255,1);
+    color: #fff;
   }
 `;
 
