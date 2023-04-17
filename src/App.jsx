@@ -1,11 +1,24 @@
 import React from "react";
 import { createGlobalStyle } from "styled-components";
-import { ArrowIcon } from "./components/IconComponent";
+import { ArrowIcon, CalendarIcon } from "./components/IconComponent";
+
 
 const GlobalStyle = createGlobalStyle`
   * {
     font-family: sans-serif;
     box-sizing: border-box;
+  }
+
+  ::placeholder {
+    color: lightgray;
+  }
+
+  ::-webkit-datetime-edit {
+    color: gray;
+  }
+
+  input[type="date"]::-webkit-calendar-picker-indicator {
+    // background-image: url(../../src/assets/calendar.svg);
   }
 
   body {
@@ -30,7 +43,6 @@ const GlobalStyle = createGlobalStyle`
   }
 
   input[type="text"], input[type="date"], input[type="time"] {
-    font-weight: bold;
     font-size: 16px;
     height: 60px;
     width: 100%;
@@ -82,7 +94,7 @@ class App extends React.Component {
                 alignItems: "center",
                 position: "absolute",
                 left: "0",
-                backgroundColor: "#FFFFF"
+                backgroundColor: "#FFFFF",
               }}
               className="add__header-back"
             >
@@ -101,10 +113,7 @@ class App extends React.Component {
             >
               <h2>Task Name</h2>
               <label htmlFor="task">
-                <input
-                  name="task"
-                  type="text"
-                />
+                <input placeholder="Name of task..." name="task" type="text" />
               </label>
             </div>
             <div
@@ -113,14 +122,18 @@ class App extends React.Component {
                 display: "flex",
                 flexDirection: "column",
                 padding: "10px 0",
-                height: "60px"
+                height: "60px",
               }}
             >
               <h2>Select Priority Level</h2>
               <label htmlFor="priority">
                 <div
                   className="add__priority-radio-list"
-                  style={{ display: "flex", justifyContent: "space-between", width: "480px" }}
+                  style={{
+                    display: "flex",
+                    justifyContent: "space-between",
+                    width: "480px",
+                  }}
                 >
                   {[...Array(10)].map((e, i) => (
                     <div
@@ -137,8 +150,7 @@ class App extends React.Component {
                           opacity: "0",
                           width: "30px",
                           height: "30px",
-                          top: "-2px",
-                          left: "-4px",
+                          transform: "translate(-15%, -15%)",
                         }}
                         name="priority"
                         type="radio"
@@ -149,7 +161,6 @@ class App extends React.Component {
                         style={{
                           position: "absolute",
                           zIndex: "0",
-                          
                           borderRadius: "100%",
                           width: "30px",
                           height: "30px",
@@ -159,8 +170,9 @@ class App extends React.Component {
                         <h3
                           style={{
                             position: "absolute",
-                            top: "7px",
-                            left: i + 1 !== 10 ? "10.5px" : "7px",
+                            top: "50%",
+                            left: "50%",
+                            transform: "translate(-50%, -50%)",
                           }}
                         >
                           {i + 1}
@@ -177,60 +189,63 @@ class App extends React.Component {
                 display: "flex",
                 flexDirection: "column",
                 padding: "10px 0",
-                height: "60px"
+                height: "60px",
               }}
             >
               <h2>Select Complexity Level</h2>
               <label htmlFor="complexity">
                 <div
                   className="add__complexity-radio-list"
-                  style={{ display: "flex", justifyContent: "space-between", width: "480px" }}
+                  style={{
+                    display: "flex",
+                    justifyContent: "space-between",
+                    width: "480px",
+                  }}
                 >
                   {[...Array(10)].map((e, i) => (
                     <div
-                    className="add__complexity-radio-item"
-                    style={{ position: "relative" }}
-                    key={crypto.randomUUID()}
-                  >
-                    <input
-                      className="radio-input"
-                      onClick={() => console.log(i + 1)}
-                      style={{
-                        position: "absolute",
-                        zIndex: "1",
-                        opacity: "0",
-                        width: "30px",
-                        height: "30px",
-                        top: "-2px",
-                        left: "-4px",
-                      }}
-                      name="complexity"
-                      type="radio"
-                      value={i + 1}
-                    />
-                    <div
-                      className="radio-text"
-                      style={{
-                        position: "absolute",
-                        zIndex: "0",
-                        
-                        borderRadius: "100%",
-                        width: "30px",
-                        height: "30px",
-                        textAlign: "center",
-                      }}
+                      className="add__complexity-radio-item"
+                      style={{ position: "relative" }}
+                      key={crypto.randomUUID()}
                     >
-                      <h3
+                      <input
+                        className="radio-input"
+                        onClick={() => console.log(i + 1)}
                         style={{
                           position: "absolute",
-                          top: "7px",
-                          left: i + 1 !== 10 ? "10.5px" : "7px",
+                          zIndex: "1",
+                          opacity: "0",
+                          width: "30px",
+                          height: "30px",
+                          transform: "translate(-15%, -15%)",
+                        }}
+                        name="complexity"
+                        type="radio"
+                        value={i + 1}
+                      />
+                      <div
+                        className="radio-text"
+                        style={{
+                          position: "absolute",
+                          zIndex: "0",
+                          borderRadius: "100%",
+                          width: "30px",
+                          height: "30px",
+                          textAlign: "center",
                         }}
                       >
-                        {i + 1}
-                      </h3>
+                        <h3
+                          style={{
+                            position: "absolute",
+                            top: "50%",
+                            left: "50%",
+                            transform: "translate(-50%, -50%)",
+                          }}
+                        >
+                          {i + 1}
+                        </h3>
+                      </div>
                     </div>
-                  </div>
                   ))}
                 </div>
               </label>
@@ -252,11 +267,19 @@ class App extends React.Component {
                 }}
               >
                 <h2>Select Due Date</h2>
-                <label htmlFor="date">
-                  <input
-                    name="date"
-                    type="date"
-                  />
+                <label htmlFor="date" style={{ position: "relative" }}>
+                  <input name="date" type="date" />
+                  {/* <CalendarIcon
+                    style={{
+                      width: "20px",
+                      height: "20px",
+                      position: "absolute",
+                      top: "0%",
+                      left: "80%",
+                      transform: "translate(0%, 100%)",
+                      zIndex:"0"
+                    }}
+                  /> */}
                 </label>
               </div>
               <div
@@ -269,10 +292,7 @@ class App extends React.Component {
               >
                 <h2>Select Time</h2>
                 <label htmlFor="time">
-                  <input
-                    name="time"
-                    type="time"
-                  />
+                  <input name="time" type="time" />
                 </label>
               </div>
             </div>
@@ -286,10 +306,7 @@ class App extends React.Component {
             >
               <h2>Add Checklist for subtasks</h2>
               <label htmlFor="list">
-                <input
-                  name="list"
-                  type="text"
-                />
+                <input placeholder="Add item..." name="list" type="text" />
               </label>
               <div className="add__list--display-list">
                 <ul>
@@ -308,10 +325,7 @@ class App extends React.Component {
             >
               <h2>Add Tags</h2>
               <label htmlFor="tags">
-                <input
-                  name="tags"
-                  type="text"
-                />
+                <input placeholder="Add tag..." name="tags" type="text" />
               </label>
             </div>
             <div
@@ -322,7 +336,9 @@ class App extends React.Component {
                 padding: "10px 0",
               }}
             >
-              <button className="add__button"><h2>Save Task</h2></button>
+              <button className="add__button">
+                <h2>Save Task</h2>
+              </button>
             </div>
           </div>
         </div>
