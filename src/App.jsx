@@ -5,18 +5,47 @@ import { ArrowIcon } from "./components/IconComponent";
 const GlobalStyle = createGlobalStyle`
   * {
     font-family: sans-serif;
+    box-sizing: border-box;
   }
 
   body {
     margin: 0;
   }
 
-  h1,h2,h3,h4,h5,h6 {
+  h1,h2,h3,h4,h5,h6,p {
     margin: 0;
+    font-weight: normal
+  }
+
+  h1 {
+    font-size: 24px;
+  }
+
+  h2 {
+    font-size: 18px;
+  }
+
+  h3 {
+    font-size: 14px;
+  }
+
+  input[type="text"], input[type="date"], input[type="time"] {
+    font-weight: bold;
+    font-size: 16px;
+    height: 60px;
+    width: 100%;
+    border-radius: 30px;
+    border: 1px solid lightgray;
+    box-sizing: border-box;
+    padding-left: 25px;
+  }
+
+  .radio-text {
+    background-color: rgba(13,153,255,0.1);
   }
 
   .radio-input:checked + .radio-text {
-    background-color: red;
+    background-color: rgba(13,153,255,1);
   }
 `;
 
@@ -29,7 +58,7 @@ class App extends React.Component {
           display: "flex",
           justifyContent: "center",
           width: "100%",
-          backgroundColor: "lightblue",
+          backgroundColor: "#F5F5F5",
           margin: "0 auto",
         }}
       >
@@ -53,6 +82,7 @@ class App extends React.Component {
                 alignItems: "center",
                 position: "absolute",
                 left: "0",
+                backgroundColor: "#FFFFF"
               }}
               className="add__header-back"
             >
@@ -69,10 +99,9 @@ class App extends React.Component {
                 padding: "10px 0",
               }}
             >
-              <h4>Task Name</h4>
+              <h2>Task Name</h2>
               <label htmlFor="task">
                 <input
-                  style={{ width: "100%", borderRadius: "10px" }}
                   name="task"
                   type="text"
                 />
@@ -84,10 +113,10 @@ class App extends React.Component {
                 display: "flex",
                 flexDirection: "column",
                 padding: "10px 0",
-                height: "40px"
+                height: "60px"
               }}
             >
-              <h4>Select Priority Level</h4>
+              <h2>Select Priority Level</h2>
               <label htmlFor="priority">
                 <div
                   className="add__priority-radio-list"
@@ -106,8 +135,8 @@ class App extends React.Component {
                           position: "absolute",
                           zIndex: "1",
                           opacity: "0",
-                          width: "20px",
-                          height: "20px",
+                          width: "30px",
+                          height: "30px",
                           top: "-2px",
                           left: "-4px",
                         }}
@@ -120,24 +149,23 @@ class App extends React.Component {
                         style={{
                           position: "absolute",
                           zIndex: "0",
-                          border: "1px solid red",
+                          
                           borderRadius: "100%",
-                          width: "20px",
-                          height: "20px",
+                          width: "30px",
+                          height: "30px",
                           textAlign: "center",
                         }}
                       >
-                        <p
+                        <h3
                           style={{
-                            fontSize: "12px",
+                            // backgroundColor: "rgba(13,153,255,0.1)",
                             position: "absolute",
-                            top: "3px",
-                            margin: "0",
-                            left: i + 1 !== 10 ? "6px" : "3px",
+                            top: "7px",
+                            left: i + 1 !== 10 ? "10.5px" : "7px",
                           }}
                         >
                           {i + 1}
-                        </p>
+                        </h3>
                       </div>
                     </div>
                   ))}
@@ -150,10 +178,10 @@ class App extends React.Component {
                 display: "flex",
                 flexDirection: "column",
                 padding: "10px 0",
-                height: "40px"
+                height: "60px"
               }}
             >
-              <h4>Select Complexity Level</h4>
+              <h2>Select Complexity Level</h2>
               <label htmlFor="complexity">
                 <div
                   className="add__complexity-radio-list"
@@ -161,51 +189,50 @@ class App extends React.Component {
                 >
                   {[...Array(10)].map((e, i) => (
                     <div
-                      className="add__complexity-radio-item"
-                      style={{ position: "relative" }}
-                      key={crypto.randomUUID()}
+                    className="add__complexity-radio-item"
+                    style={{ position: "relative" }}
+                    key={crypto.randomUUID()}
+                  >
+                    <input
+                      className="radio-input"
+                      onClick={() => console.log(i + 1)}
+                      style={{
+                        position: "absolute",
+                        zIndex: "1",
+                        opacity: "0",
+                        width: "30px",
+                        height: "30px",
+                        top: "-2px",
+                        left: "-4px",
+                      }}
+                      name="complexity"
+                      type="radio"
+                      value={i + 1}
+                    />
+                    <div
+                      className="radio-text"
+                      style={{
+                        position: "absolute",
+                        zIndex: "0",
+                        
+                        borderRadius: "100%",
+                        width: "30px",
+                        height: "30px",
+                        textAlign: "center",
+                      }}
                     >
-                      <input
-                        className="radio-input"
-                        onClick={() => console.log(i + 1)}
+                      <h3
                         style={{
+                          // backgroundColor: "rgba(13,153,255,0.1)",
                           position: "absolute",
-                          zIndex: "1",
-                          opacity: "0",
-                          width: "20px",
-                          height: "20px",
-                          top: "-2px",
-                          left: "-4px",
-                        }}
-                        name="priority"
-                        type="radio"
-                        value={i + 1}
-                      />
-                      <div
-                        className="radio-text"
-                        style={{
-                          position: "absolute",
-                          zIndex: "0",
-                          border: "1px solid red",
-                          borderRadius: "100%",
-                          width: "20px",
-                          height: "20px",
-                          textAlign: "center",
+                          top: "7px",
+                          left: i + 1 !== 10 ? "10.5px" : "7px",
                         }}
                       >
-                        <p
-                          style={{
-                            fontSize: "12px",
-                            position: "absolute",
-                            top: "3px",
-                            margin: "0",
-                            left: i + 1 !== 10 ? "6px" : "3px",
-                          }}
-                        >
-                          {i + 1}
-                        </p>
-                      </div>
+                        {i + 1}
+                      </h3>
                     </div>
+                  </div>
                   ))}
                 </div>
               </label>
@@ -226,10 +253,9 @@ class App extends React.Component {
                   width: "45%",
                 }}
               >
-                <h4>Select Due Date</h4>
+                <h2>Select Due Date</h2>
                 <label htmlFor="date">
                   <input
-                    style={{ width: "100%", borderRadius: "10px" }}
                     name="date"
                     type="date"
                   />
@@ -243,10 +269,9 @@ class App extends React.Component {
                   width: "45%",
                 }}
               >
-                <h4>Select Time</h4>
+                <h2>Select Time</h2>
                 <label htmlFor="time">
                   <input
-                    style={{ width: "100%", borderRadius: "10px" }}
                     name="time"
                     type="time"
                   />
@@ -261,10 +286,9 @@ class App extends React.Component {
                 padding: "10px 0",
               }}
             >
-              <h4>Add Checklist for subtasks</h4>
+              <h2>Add Checklist for subtasks</h2>
               <label htmlFor="list">
                 <input
-                  style={{ width: "100%", borderRadius: "10px" }}
                   name="list"
                   type="text"
                 />
@@ -284,10 +308,9 @@ class App extends React.Component {
                 padding: "10px 0",
               }}
             >
-              <h4>Add Tags</h4>
+              <h2>Add Tags</h2>
               <label htmlFor="tags">
                 <input
-                  style={{ width: "100%", borderRadius: "10px" }}
                   name="tags"
                   type="text"
                 />
@@ -301,7 +324,7 @@ class App extends React.Component {
                 padding: "10px 0",
               }}
             >
-              <button className="add__button">Save Task</button>
+              <button className="add__button"><h2>Save Task</h2></button>
             </div>
           </div>
         </div>
