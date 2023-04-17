@@ -15,7 +15,7 @@ const GlobalStyle = createGlobalStyle`
     margin: 0;
   }
 
-  .add__priority-radio1:checked + .add__priority-radio2 {
+  .radio-input:checked + .radio-text {
     background-color: red;
   }
 `;
@@ -84,21 +84,23 @@ class App extends React.Component {
                 display: "flex",
                 flexDirection: "column",
                 padding: "10px 0",
+                height: "40px"
               }}
             >
               <h4>Select Priority Level</h4>
               <label htmlFor="priority">
                 <div
-                  className="add__priority-radio-wrapper"
-                  style={{ display: "flex", justifyContent: "space-between" }}
+                  className="add__priority-radio-list"
+                  style={{ display: "flex", justifyContent: "space-between", width: "480px" }}
                 >
                   {[...Array(10)].map((e, i) => (
                     <div
+                      className="add__priority-radio-item"
                       style={{ position: "relative" }}
                       key={crypto.randomUUID()}
                     >
                       <input
-                        className="add__priority-radio1"
+                        className="radio-input"
                         onClick={() => console.log(i + 1)}
                         style={{
                           position: "absolute",
@@ -113,8 +115,8 @@ class App extends React.Component {
                         type="radio"
                         value={i + 1}
                       />
-                      <span
-                      className="add__priority-radio2"
+                      <div
+                        className="radio-text"
                         style={{
                           position: "absolute",
                           zIndex: "0",
@@ -125,8 +127,18 @@ class App extends React.Component {
                           textAlign: "center",
                         }}
                       >
-                        {i + 1}
-                      </span>
+                        <p
+                          style={{
+                            fontSize: "12px",
+                            position: "absolute",
+                            top: "3px",
+                            margin: "0",
+                            left: i + 1 !== 10 ? "6px" : "3px",
+                          }}
+                        >
+                          {i + 1}
+                        </p>
+                      </div>
                     </div>
                   ))}
                 </div>
@@ -138,20 +150,62 @@ class App extends React.Component {
                 display: "flex",
                 flexDirection: "column",
                 padding: "10px 0",
+                height: "40px"
               }}
             >
               <h4>Select Complexity Level</h4>
               <label htmlFor="complexity">
                 <div
-                  className="add__complexity-radio-wrapper"
-                  style={{ display: "flex", justifyContent: "space-between" }}
+                  className="add__complexity-radio-list"
+                  style={{ display: "flex", justifyContent: "space-between", width: "480px" }}
                 >
                   {[...Array(10)].map((e, i) => (
-                    <input
-                      name="complexity"
-                      type="radio"
+                    <div
+                      className="add__complexity-radio-item"
+                      style={{ position: "relative" }}
                       key={crypto.randomUUID()}
-                    />
+                    >
+                      <input
+                        className="radio-input"
+                        onClick={() => console.log(i + 1)}
+                        style={{
+                          position: "absolute",
+                          zIndex: "1",
+                          opacity: "0",
+                          width: "20px",
+                          height: "20px",
+                          top: "-2px",
+                          left: "-4px",
+                        }}
+                        name="priority"
+                        type="radio"
+                        value={i + 1}
+                      />
+                      <div
+                        className="radio-text"
+                        style={{
+                          position: "absolute",
+                          zIndex: "0",
+                          border: "1px solid red",
+                          borderRadius: "100%",
+                          width: "20px",
+                          height: "20px",
+                          textAlign: "center",
+                        }}
+                      >
+                        <p
+                          style={{
+                            fontSize: "12px",
+                            position: "absolute",
+                            top: "3px",
+                            margin: "0",
+                            left: i + 1 !== 10 ? "6px" : "3px",
+                          }}
+                        >
+                          {i + 1}
+                        </p>
+                      </div>
+                    </div>
                   ))}
                 </div>
               </label>
