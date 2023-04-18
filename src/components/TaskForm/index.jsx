@@ -16,6 +16,11 @@ class TaskForm extends React.Component {
     tags: [],
   };
 
+  handleName = (name) => {
+    // console.log("name",name)
+    this.setState({taskName: name})
+  }
+
   handleSubmit = (e) => {
     e.preventDefault();
     console.log("submit");
@@ -88,6 +93,7 @@ class TaskForm extends React.Component {
                   title="Task Name"
                   placeholder="Name of task..."
                   inputType="task"
+                  handleText={this.handleName}
                 />
               </div>
               <RadioButtons inputType="Priority" />

@@ -6,11 +6,14 @@ class TextInput extends React.Component {
   }
 
   handleChange = (e) => {
-    console.log(e.target.value)
-    this.setState({value: e.target.value})
+    // console.log("e", e.target.value)
+    // console.log("state", this.state.value)
+    this.setState({value: e.target.value});
+    const value = this.state.value;
+    this.props.handleText(value);
   }
   render() {
-    console.log(this.state.value)
+    // console.log(this.state.value)
     return (
       <>
         <h2 style={{ marginBottom: "15px" }}>{this.props.title}</h2>
