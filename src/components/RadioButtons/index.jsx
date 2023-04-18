@@ -69,7 +69,7 @@ class RadioButtons extends React.Component {
                     borderRadius: "100%",
                     width: "30px",
                     height: "30px",
-                    textAlign: "center",
+                    textAlign: "center"
                   }}
                 >
                   <h3

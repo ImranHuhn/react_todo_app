@@ -1,6 +1,6 @@
 import React from "react";
 import RadioButtons from "../RadioButtons";
-import { DateTime } from "../DateTime";
+import DateTime from "../DateTime";
 import TextInput from "../TextInput";
 import { ArrowIcon } from "../IconComponent";
 
@@ -21,7 +21,6 @@ class TaskForm extends React.Component {
   };
 
   getPriority = (number) => {
-    console.log("priority", number);
     this.setState({ priority: number });
   };
 
@@ -29,9 +28,13 @@ class TaskForm extends React.Component {
     this.setState({ complexity: number });
   };
 
-  getDate = (date) => {};
+  getDate = (date) => {
+    this.setState({ dueDate: date });
+  };
 
-  getTime = (time) => {};
+  getTime = (time) => {
+    this.setState({ dueTime: time });
+  };
 
   handleSubmit = (e) => {
     e.preventDefault();
@@ -132,8 +135,8 @@ class TaskForm extends React.Component {
                   marginBottom: "45px",
                 }}
               >
-                <DateTime title="Due Date" type="date" />
-                <DateTime title="Time" type="time" />
+                <DateTime title="Due Date" type="date" getDateTime={this.getDate} />
+                <DateTime title="Time" type="time" getDateTime={this.getTime} />
               </div>
               <div
                 className="add__list"
