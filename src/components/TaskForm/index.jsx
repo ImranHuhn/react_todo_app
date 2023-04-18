@@ -49,6 +49,11 @@ class TaskForm extends React.Component {
     this.setState({ dueTime: time });
   };
 
+  getTags = (tags) => {
+    const newTags = tags.toLowerCase().split(",");
+    this.setState({ tags: newTags });
+  };
+
   handleSubmit = (e) => {
     e.preventDefault();
     const aTask = this.state;
@@ -129,6 +134,8 @@ class TaskForm extends React.Component {
                   title="Add Tags"
                   placeholder="Add tag..."
                   inputType="tags"
+                  getText={this.getTags}
+                  inputValue={this.state.tags}
                 />
               </TagsWrapper>
               <SaveButtonWrapper>
