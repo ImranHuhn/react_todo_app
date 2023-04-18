@@ -67,11 +67,18 @@ const GlobalStyle = createGlobalStyle`
 
 class App extends React.Component {
 
+  state = null
+
+  getTask = (task) => {
+    this.setState({ state: {...task}})
+  }
+
   render() {
+    console.log(this.state)
     return (
       <>
         <GlobalStyle />
-        <TaskForm title="Add New Task"/>
+        <TaskForm getTask={this.getTask} title="Add New Task"/>
         <TaskForm title="Edit Task"/>
       </>
     );

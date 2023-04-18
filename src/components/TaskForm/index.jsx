@@ -1,29 +1,52 @@
 import React from "react";
-import { RadioButtons } from "../RadioButtons";
+import RadioButtons from "../RadioButtons";
 import { DateTime } from "../DateTime";
-import  TextInput  from "../TextInput";
+import TextInput from "../TextInput";
 import { ArrowIcon } from "../IconComponent";
 
 class TaskForm extends React.Component {
   state = {
     id: crypto.randomUUID,
     taskName: "",
-    priority: 1,
-    complexity: 1,
+    priority: 0,
+    complexity: 0,
     dueDate: "",
     dueTime: "",
     checklist: [],
     tags: [],
   };
 
-  handleName = (name) => {
-    // console.log("name",name)
-    this.setState({taskName: name})
-  }
+  getName = (name) => {
+    this.setState({ taskName: name });
+  };
+
+  getPriority = (number) => {
+    console.log("priority", number);
+    this.setState({ priority: number });
+  };
+
+  getComplexity = (number) => {
+    this.setState({ complexity: number });
+  };
+
+  getDate = (date) => {};
+
+  getTime = (time) => {};
 
   handleSubmit = (e) => {
     e.preventDefault();
     console.log("submit");
+    const aTask = this.state;
+    this.props.getTask(aTask);
+    this.setState({
+      taskName: "",
+      priority: 0,
+      complexity: 0,
+      dueDate: "",
+      dueTime: "",
+      checklist: [],
+      tags: [],
+    });
   };
 
   render() {
@@ -93,11 +116,14 @@ class TaskForm extends React.Component {
                   title="Task Name"
                   placeholder="Name of task..."
                   inputType="task"
-                  handleText={this.handleName}
+                  getText={this.getName}
                 />
               </div>
-              <RadioButtons inputType="Priority" />
-              <RadioButtons inputType="Complexity" />
+              <RadioButtons inputType="Priority" getNumber={this.getPriority} />
+              <RadioButtons
+                inputType="Complexity"
+                getNumber={this.getComplexity}
+              />
               <div
                 className="add__date-time"
                 style={{
