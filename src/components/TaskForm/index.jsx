@@ -1,7 +1,7 @@
 import React from "react";
-import RadioButtons from "../RadioButtons";
-import DateTime from "../DateTime";
-import TextInput from "../TextInput";
+import { RadioButtons } from "../RadioButtons";
+import { DateTime } from "../DateTime";
+import { TextInput } from "../TextInput";
 import { ArrowIcon } from "../IconComponent";
 import {
   Container,
@@ -84,20 +84,32 @@ class TaskForm extends React.Component {
                   placeholder="Name of task..."
                   inputType="task"
                   getText={this.getName}
+                  inputValue={this.state.taskName}
                 />
               </TaskNameWrapper>
-              <RadioButtons inputType="Priority" getNumber={this.getPriority} />
+              <RadioButtons
+                inputType="Priority"
+                getNumber={this.getPriority}
+                inputValue={this.state.priority}
+              />
               <RadioButtons
                 inputType="Complexity"
                 getNumber={this.getComplexity}
+                inputValue={this.state.complexity}
               />
               <DateTimeWrapper>
                 <DateTime
                   title="Due Date"
                   type="date"
                   getDateTime={this.getDate}
+                  inputValue={this.state.dueDate}
                 />
-                <DateTime title="Time" type="time" getDateTime={this.getTime} />
+                <DateTime
+                  title="Time"
+                  type="time"
+                  getDateTime={this.getTime}
+                  inputValue={this.state.dueTime}
+                />
               </DateTimeWrapper>
               <CheckListWrapper>
                 <TextInput
