@@ -11,8 +11,8 @@ export const RadioButtons = (props) => {
         marginBottom: "35px",
       }}
     >
-      <h2 style={{ marginBottom: "15px" }}>Select {props.type} Level</h2>
-      <label htmlFor={props.type}>
+      <h2 style={{ marginBottom: "15px" }}>Select {props.inputType} Level</h2>
+      <label htmlFor={props.inputType}>
         <div
           className="add__radio-list"
           style={{
@@ -29,7 +29,6 @@ export const RadioButtons = (props) => {
             >
               <input
                 className="radio-input"
-                onClick={() => console.log(i + 1)}
                 style={{
                   position: "absolute",
                   zIndex: "1",
@@ -39,7 +38,7 @@ export const RadioButtons = (props) => {
                   transform: "translate(-15%, -15%)",
                   cursor: "pointer",
                 }}
-                name={props.type}
+                name={props.inputType}
                 type="radio"
                 value={i + 1}
               />

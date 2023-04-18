@@ -1,0 +1,14 @@
+data structure:
+
+[
+    {
+        id: crypto.randomUUID,
+        taskName: "",
+        priority: 1,
+        complexity: 1,
+        dueDate: "",
+        dueTime: "",
+        checklist: [],
+        tags: []
+    }
+]

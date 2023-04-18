@@ -1,7 +1,6 @@
 import React from "react";
 import { createGlobalStyle } from "styled-components";
-import AddNewTask from "./components/AddNewTask"
-// import { ArrowIcon } from "./components/IconComponent";
+import TaskForm from "./components/TaskForm"
 
 const GlobalStyle = createGlobalStyle`
   * {
@@ -67,11 +66,13 @@ const GlobalStyle = createGlobalStyle`
 `;
 
 class App extends React.Component {
+
   render() {
     return (
       <>
         <GlobalStyle />
-        <AddNewTask />
+        <TaskForm title="Add New Task"/>
+        <TaskForm title="Edit Task"/>
       </>
     );
   }
