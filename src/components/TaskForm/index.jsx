@@ -72,7 +72,7 @@ class TaskForm extends React.Component {
             <Header>
               <ArrowButtonWrapper>
                 <ArrowButton>
-                  <ArrowIcon style={{ width: "20px" }} />
+                  <ArrowIcon />
                 </ArrowButton>
               </ArrowButtonWrapper>
               <h1>{this.props.title}</h1>

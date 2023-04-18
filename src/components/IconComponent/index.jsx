@@ -2,6 +2,7 @@ export const ArrowIcon = (props) => {
   return (
     <svg
       {...props}
+      width="20px"
       xmlns="http://www.w3.org/2000/svg"
       fill="none"
       viewBox="0 0 24 24"
