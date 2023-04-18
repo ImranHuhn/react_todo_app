@@ -1,4 +1,5 @@
 import React from "react";
+import {Container, Title} from "./DateTime.styles";
 
 class DateTime extends React.Component {
   state = {
@@ -12,15 +13,8 @@ class DateTime extends React.Component {
   };
   render() {
     return (
-      <div
-        className="add__date-time-wrapper"
-        style={{
-          display: "flex",
-          flexDirection: "column",
-          width: "45%",
-        }}
-      >
-        <h2 style={{ marginBottom: "15px" }}>Select {this.props.title}</h2>
+      <Container>
+        <Title>Select {this.props.title}</Title>
         <label htmlFor={this.props.type}>
           <input
             value={this.state.value}
@@ -29,7 +23,7 @@ class DateTime extends React.Component {
             type={this.props.type}
           />
         </label>
-      </div>
+      </Container>
     );
   }
 }
