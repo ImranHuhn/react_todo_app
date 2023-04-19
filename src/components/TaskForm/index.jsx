@@ -132,7 +132,7 @@ class TaskForm extends React.Component {
               <TagsWrapper>
                 <TextInput
                   title="Add Tags"
-                  placeholder="Add tag..."
+                  placeholder="Tag1, Tag2, Tag3, ..."
                   inputType="tags"
                   getText={this.getTags}
                   inputValue={this.state.tags}
