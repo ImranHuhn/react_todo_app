@@ -4,7 +4,7 @@ import {
   Title,
   RadioWrapper,
   RadioItem,
-  Input,
+  RadioInput,
   Text,
   TextWrapper,
 } from "./RadioButtons.styles";
@@ -22,7 +22,7 @@ export const RadioButtons = (props) => {
         <RadioWrapper>
           {[...Array(10)].map((e, i) => (
             <RadioItem key={crypto.randomUUID()}>
-              <Input
+              <RadioInput
                 onChange={handleChange}
                 checked={props.inputValue === i + 1 ? "checked" : ""}
                 name={props.inputType}

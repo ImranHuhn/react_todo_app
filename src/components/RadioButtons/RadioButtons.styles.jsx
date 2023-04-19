@@ -21,7 +21,7 @@ export const RadioItem = styled.div`
   position: relative;
 `;
 
-export const Input = styled.input`
+export const RadioInput = styled.input`
   position: absolute;
   z-index: 1;
   opacity: 0;
@@ -31,7 +31,7 @@ export const Input = styled.input`
   cursor: pointer;
 `;
 
-export const Text = styled.h3`
+export const Text = styled.h4`
   position: absolute;
   top: 50%;
   left: 50%;

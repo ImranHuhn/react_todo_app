@@ -1,5 +1,6 @@
 import React from "react";
 import { GlobalStyle } from "./App.styles";
+import Home from "./components/Home";
 import TaskForm from "./components/TaskForm";
 
 class App extends React.Component {
@@ -14,7 +15,8 @@ class App extends React.Component {
     return (
       <>
         <GlobalStyle />
-        <TaskForm getTask={this.getTask} title="Add New Task" />
+        <Home />
+        {/* <TaskForm getTask={this.getTask} title="Add New Task" /> */}
         {/* <TaskForm title="Edit Task" /> */}
       </>
     );

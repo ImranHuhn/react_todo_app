@@ -40,7 +40,15 @@ export const GlobalStyle = createGlobalStyle`
   }
 
   h3 {
+    font-size: 16px;
+  }
+
+  h4 {
     font-size: 14px;
+  }
+
+  h5 {
+    font-size: 12px;
   }
 
   input[type="text"], input[type="date"], input[type="time"] {
