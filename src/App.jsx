@@ -8,6 +8,7 @@ class App extends React.Component {
   getTask = (task) => {
     const newTaskList = [...this.state.taskList, ...[task]]
     this.setState({ taskList: newTaskList });
+    localStorage.setItem("taskList", JSON.stringify(newTaskList))
   };
 
   render() {

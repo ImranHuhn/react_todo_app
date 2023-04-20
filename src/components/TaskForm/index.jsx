@@ -65,6 +65,7 @@ class TaskForm extends React.Component {
     const aTask = this.state;
     this.props.getTask(aTask);
     this.setState({
+      id: crypto.randomUUID(),
       taskName: "",
       priority: 0,
       complexity: 0,
