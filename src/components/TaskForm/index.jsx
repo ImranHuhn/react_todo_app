@@ -77,6 +77,7 @@ class TaskForm extends React.Component {
   };
 
   render() {
+    console.log(this.state.checklist)
     return (
       <Container>
         <form onSubmit={this.handleSubmit}>
