@@ -77,7 +77,6 @@ class TaskForm extends React.Component {
   };
 
   render() {
-    console.log(this.state.checklist)
     return (
       <Container>
         <form onSubmit={this.handleSubmit}>
@@ -124,7 +123,10 @@ class TaskForm extends React.Component {
                   inputValue={this.state.dueTime}
                 />
               </DateTimeWrapper>
-              <CheckList getList={this.getList} checklist={this.state.checklist} />
+              <CheckList
+                getList={this.getList}
+                checklist={this.state.checklist}
+              />
               <TagsWrapper>
                 <TextInput
                   title="Add Tags"

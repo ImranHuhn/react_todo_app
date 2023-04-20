@@ -13,9 +13,9 @@ class CheckList extends React.Component {
   };
 
   handleClick = () => {
-    const newValue = this.state.value
+    const newValue = this.state.value;
     this.setState({ value: "" });
-    this.props.getList(newValue)
+    this.props.getList(newValue);
   };
   render() {
     console.log("state", this.state.list);
