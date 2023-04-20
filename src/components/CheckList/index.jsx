@@ -6,7 +6,6 @@ import { PlusIcon, DeleteIcon } from "../IconComponent";
 class CheckList extends React.Component {
   state = {
     value: "",
-    list: [],
   };
 
   getItem = (item) => {
@@ -14,9 +13,9 @@ class CheckList extends React.Component {
   };
 
   handleClick = () => {
-    console.log(this.state.value);
-    const newList = [...this.state.list, ...[this.state.value]];
-    this.setState({ list: newList, value: "" });
+    const newValue = this.state.value;
+    this.setState({ value: "" });
+    this.props.getList(newValue);
   };
   render() {
     console.log("state", this.state.list);
@@ -50,7 +49,7 @@ class CheckList extends React.Component {
         </div>
         <div className="add__list--display-list">
           <ul style={{ padding: "0" }}>
-            {this.state.list.map((item) => {
+            {this.props.checklist.map((item) => {
               return (
                 <li
                   style={{
@@ -71,7 +70,7 @@ class CheckList extends React.Component {
                 >
                   {item}
                   <button
-                    onClick={()=>console.log("delete")}
+                    onClick={() => console.log("delete")}
                     type="button"
                     style={{
                       position: "absolute",

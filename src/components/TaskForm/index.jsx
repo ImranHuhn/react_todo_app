@@ -49,8 +49,10 @@ class TaskForm extends React.Component {
     this.setState({ dueTime: time });
   };
 
-  getListItem = (list) => {
+  getList = (list) => {
     console.log("taskformState");
+    const newList = [...this.state.checklist, ...[list]];
+    this.setState({ checklist: newList });
   };
 
   getTags = (tags) => {
@@ -120,7 +122,7 @@ class TaskForm extends React.Component {
                   inputValue={this.state.dueTime}
                 />
               </DateTimeWrapper>
-              <CheckList getListItem={this.getListItem} />
+              <CheckList getList={this.getList} checklist={this.state.checklist} />
               <TagsWrapper>
                 <TextInput
                   title="Add Tags"
