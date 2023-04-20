@@ -50,15 +50,20 @@ class TaskForm extends React.Component {
   };
 
   getList = (list) => {
-    // console.log("taskformList", list);
     const newList = [...this.state.checklist, list];
-    // console.log("taskformNewList", newList);
     this.setState({ checklist: newList });
   };
 
   getTags = (tags) => {
     const newTags = tags.toLowerCase().split(",");
     this.setState({ tags: newTags });
+  };
+
+  handleDelete = (item) => {
+    const newList = this.state.checklist.filter((el) => {
+      return el.id !== item.id;
+    });
+    this.setState({ checklist: newList });
   };
 
   handleSubmit = (e) => {
@@ -78,7 +83,7 @@ class TaskForm extends React.Component {
   };
 
   render() {
-    console.log("checklist",this.state.checklist)
+    console.log("checklist", this.state.checklist);
     return (
       <Container>
         <form onSubmit={this.handleSubmit}>
@@ -127,6 +132,7 @@ class TaskForm extends React.Component {
               </DateTimeWrapper>
               <CheckList
                 getList={this.getList}
+                handleDelete={this.handleDelete}
                 checklist={this.state.checklist}
               />
               <TagsWrapper>

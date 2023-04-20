@@ -12,16 +12,16 @@ class CheckList extends React.Component {
     this.setState({ value: item });
   };
 
-  handleClick = () => {
+  handleAdd = () => {
     const item = {
       value: this.state.value,
       id: crypto.randomUUID()
     }
-    // const newValue = this.state.value;
     this.setState({ value: "" });
-    // this.props.getList(newValue);
     this.props.getList(item)
   };
+
+
   render() {
     console.log("state", this.state.list);
     return (
@@ -35,7 +35,7 @@ class CheckList extends React.Component {
             inputValue={this.state.value}
           />
           <button
-            onClick={this.handleClick}
+            onClick={this.handleAdd}
             type="button"
             style={{
               position: "absolute",
@@ -75,7 +75,7 @@ class CheckList extends React.Component {
                 >
                   {item.value}
                   <button
-                    onClick={() => console.log("delete")}
+                    onClick={()=>this.props.handleDelete(item)}
                     type="button"
                     style={{
                       position: "absolute",
