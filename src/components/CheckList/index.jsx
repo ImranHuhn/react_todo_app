@@ -13,9 +13,14 @@ class CheckList extends React.Component {
   };
 
   handleClick = () => {
-    const newValue = this.state.value;
+    const item = {
+      value: this.state.value,
+      id: crypto.randomUUID()
+    }
+    // const newValue = this.state.value;
     this.setState({ value: "" });
-    this.props.getList(newValue);
+    // this.props.getList(newValue);
+    this.props.getList(item)
   };
   render() {
     console.log("state", this.state.list);
@@ -68,7 +73,7 @@ class CheckList extends React.Component {
                   }}
                   key={crypto.randomUUID()}
                 >
-                  {item}
+                  {item.value}
                   <button
                     onClick={() => console.log("delete")}
                     type="button"
