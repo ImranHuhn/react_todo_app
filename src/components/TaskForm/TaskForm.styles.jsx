@@ -52,11 +52,11 @@ export const DateTimeWrapper = styled.div`
   margin-bottom: 45px;
 `;
 
-export const CheckListWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  margin-bottom: 30px;
-`;
+// export const CheckListWrapper = styled.div`
+//   display: flex;
+//   flex-direction: column;
+//   margin-bottom: 30px;
+// `;
 
 export const TagsWrapper = styled.div`
   display: flex;

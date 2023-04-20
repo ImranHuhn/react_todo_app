@@ -1,4 +1,5 @@
 import React from "react";
+import CheckList from "../CheckList";
 import { RadioButtons } from "../RadioButtons";
 import { DateTime } from "../DateTime";
 import { TextInput } from "../TextInput";
@@ -11,7 +12,6 @@ import {
   ArrowButton,
   TaskNameWrapper,
   DateTimeWrapper,
-  CheckListWrapper,
   TagsWrapper,
   SaveButtonWrapper,
   SaveButton,
@@ -19,7 +19,7 @@ import {
 
 class TaskForm extends React.Component {
   state = {
-    id: crypto.randomUUID,
+    id: crypto.randomUUID(),
     taskName: "",
     priority: 0,
     complexity: 0,
@@ -47,6 +47,10 @@ class TaskForm extends React.Component {
 
   getTime = (time) => {
     this.setState({ dueTime: time });
+  };
+
+  getListItem = (list) => {
+    console.log("taskformState");
   };
 
   getTags = (tags) => {
@@ -116,23 +120,11 @@ class TaskForm extends React.Component {
                   inputValue={this.state.dueTime}
                 />
               </DateTimeWrapper>
-              <CheckListWrapper>
-                <TextInput
-                  title="Add Checklist for subtasks"
-                  placeholder="Add item..."
-                  inputType="list"
-                />
-                <div className="add__list--display-list">
-                  <ul>
-                    <li>test1</li>
-                    <li>test2</li>
-                  </ul>
-                </div>
-              </CheckListWrapper>
+              <CheckList getListItem={this.getListItem} />
               <TagsWrapper>
                 <TextInput
                   title="Add Tags"
-                  placeholder="Add tag..."
+                  placeholder="Tag1, Tag2, Tag3, ..."
                   inputType="tags"
                   getText={this.getTags}
                   inputValue={this.state.tags}
