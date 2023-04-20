@@ -4,10 +4,12 @@ import Home from "./components/Home";
 import TaskForm from "./components/TaskForm";
 
 class App extends React.Component {
-  state = null;
+  state = { taskList: [] };
 
   getTask = (task) => {
-    this.setState({ state: { ...task } });
+    const newTaskList = [...this.state.taskList, ...[task]]
+    this.setState({ taskList: newTaskList });
+    localStorage.setItem("taskList", JSON.stringify(newTaskList))
   };
 
   render() {

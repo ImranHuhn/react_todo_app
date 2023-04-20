@@ -1,4 +1,5 @@
 import React from "react";
+import CheckList from "../CheckList";
 import { RadioButtons } from "../RadioButtons";
 import { DateTime } from "../DateTime";
 import { TextInput } from "../TextInput";
@@ -11,7 +12,6 @@ import {
   ArrowButton,
   TaskNameWrapper,
   DateTimeWrapper,
-  CheckListWrapper,
   TagsWrapper,
   SaveButtonWrapper,
   SaveButton,
@@ -19,7 +19,7 @@ import {
 
 class TaskForm extends React.Component {
   state = {
-    id: crypto.randomUUID,
+    id: crypto.randomUUID(),
     taskName: "",
     priority: 0,
     complexity: 0,
@@ -49,6 +49,12 @@ class TaskForm extends React.Component {
     this.setState({ dueTime: time });
   };
 
+  getList = (list) => {
+    console.log("taskformState");
+    const newList = [...this.state.checklist, ...[list]];
+    this.setState({ checklist: newList });
+  };
+
   getTags = (tags) => {
     const newTags = tags.toLowerCase().split(",");
     this.setState({ tags: newTags });
@@ -59,6 +65,7 @@ class TaskForm extends React.Component {
     const aTask = this.state;
     this.props.getTask(aTask);
     this.setState({
+      id: crypto.randomUUID(),
       taskName: "",
       priority: 0,
       complexity: 0,
@@ -116,23 +123,14 @@ class TaskForm extends React.Component {
                   inputValue={this.state.dueTime}
                 />
               </DateTimeWrapper>
-              <CheckListWrapper>
-                <TextInput
-                  title="Add Checklist for subtasks"
-                  placeholder="Add item..."
-                  inputType="list"
-                />
-                <div className="add__list--display-list">
-                  <ul>
-                    <li>test1</li>
-                    <li>test2</li>
-                  </ul>
-                </div>
-              </CheckListWrapper>
+              <CheckList
+                getList={this.getList}
+                checklist={this.state.checklist}
+              />
               <TagsWrapper>
                 <TextInput
                   title="Add Tags"
-                  placeholder="Add tag..."
+                  placeholder="Tag1, Tag2, Tag3, ..."
                   inputType="tags"
                   getText={this.getTags}
                   inputValue={this.state.tags}
