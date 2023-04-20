@@ -5,7 +5,9 @@ import { PlusIcon, DeleteIcon } from "../IconComponent";
 
 class CheckList extends React.Component {
   state = {
+    // value: this.props.checklist.value,
     value: "",
+    showInput: false,
   };
 
   getItem = (item) => {
@@ -15,12 +17,22 @@ class CheckList extends React.Component {
   handleAdd = () => {
     const item = {
       value: this.state.value,
-      id: crypto.randomUUID()
-    }
+      id: crypto.randomUUID(),
+    };
     this.setState({ value: "" });
-    this.props.getList(item)
+    this.props.getList(item);
   };
 
+  handleEdit = () => {
+    console.log("edit");
+  };
+
+  showInput = () => {
+    console.log("handleEdit");
+    this.setState({ showInput: !this.state.showInput });
+  };
+
+  input = React.createRef();
 
   render() {
     console.log("state", this.state.list);
@@ -64,18 +76,34 @@ class CheckList extends React.Component {
                     height: "60px",
                     width: "100%",
                     borderRadius: "30px",
-                    border: "1px solid lightgray",
                     boxSizing: "border-box",
-                    padding: "25px",
-                    listStyle: "none",
                     backgroundColor: "#fff",
                     margin: "10px auto",
+                    cursor: "pointer",
                   }}
                   key={crypto.randomUUID()}
                 >
-                  {item.value}
+                  {this.state.showInput ? (
+                    <input
+                      ref={this.input}
+                      value={item.value}
+                      onBlur={this.showInput}
+                      name="list"
+                      type="text"
+                    />
+                  ) : (
+                    <h3
+                      onClick={this.showInput}
+                      style={{ padding: "25px", width: "100%" }}
+                    >
+                      {item.value}
+                    </h3>
+                  )}
                   <button
-                    onClick={()=>this.props.handleDelete(item)}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      this.props.handleDelete(item);
+                    }}
                     type="button"
                     style={{
                       position: "absolute",
