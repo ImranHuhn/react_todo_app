@@ -13,6 +13,7 @@ export const TextInput = (props) => {
         <input
           onBlur={props.handleBlur}
           value={props.value}
+          // onChange={handleChange}
           onChange={handleChange}
           placeholder={props.placeholder}
           name={props.name}

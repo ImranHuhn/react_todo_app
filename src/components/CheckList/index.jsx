@@ -35,6 +35,7 @@ class CheckList extends React.Component {
   };
 
   showInput = () => {
+    // console.log(this.props.checklist.map((el)=>{console.log("el",el.id)}))
     this.setState({ showInput: !this.state.showInput });
   };
 
@@ -43,6 +44,9 @@ class CheckList extends React.Component {
   };
   render() {
     console.log("state", this.state.list);
+    // const showInput = this.state.showInput;
+    // const id = this.props.checklist.map((el)=>el.id);
+    // console.log("id", id)
     return (
       <Container>
         <InputWrapper>
@@ -69,7 +73,7 @@ class CheckList extends React.Component {
                       handleBlur={this.handleBlur}
                     />
                   ) : (
-                    <ItemName onClick={this.showInput}>{item.value}</ItemName>
+                    <ItemName onClick={this.showInput}>{item.value} : {item.id}</ItemName>
                   )}
                   <DeleteButton
                     onClick={(e) => {
