@@ -15,8 +15,8 @@ class App extends React.Component {
     return (
       <>
         <GlobalStyle />
-        <Home />
-        {/* <TaskForm getTask={this.getTask} title="Add New Task" /> */}
+        {/* <Home /> */}
+        <TaskForm getTask={this.getTask} title="Add New Task" />
         {/* <TaskForm title="Edit Task" /> */}
       </>
     );
