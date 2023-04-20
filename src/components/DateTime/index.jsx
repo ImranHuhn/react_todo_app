@@ -10,7 +10,7 @@ export const DateTime = (props) => {
       <Title>Select {props.title}</Title>
       <label htmlFor={props.type}>
         <input
-          value={props.inputValue}
+          value={props.value}
           onChange={handleChange}
           name={props.type}
           type={props.type}

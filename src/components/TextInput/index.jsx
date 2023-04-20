@@ -1,5 +1,5 @@
 import React from "react";
-import { Title } from "./TextInput.styles";
+import { Title, Label } from "./TextInput.styles";
 
 export const TextInput = (props) => {
   const handleChange = (e) => {
@@ -9,15 +9,16 @@ export const TextInput = (props) => {
   return (
     <>
       <Title>{props.title}</Title>
-      <label htmlFor={props.inputType}>
+      <Label htmlFor={props.name}>
         <input
-          value={props.inputValue}
+          onBlur={props.handleBlur}
+          value={props.value}
           onChange={handleChange}
           placeholder={props.placeholder}
-          name={props.inputType}
+          name={props.name}
           type="text"
         />
-      </label>
+      </Label>
     </>
   );
 };

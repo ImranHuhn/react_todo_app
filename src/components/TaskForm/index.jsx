@@ -66,6 +66,10 @@ class TaskForm extends React.Component {
     this.setState({ checklist: newList });
   };
 
+  handleEdit = () => {
+    console.log("edit");
+  };
+
   handleSubmit = (e) => {
     e.preventDefault();
     const aTask = this.state;
@@ -101,47 +105,48 @@ class TaskForm extends React.Component {
                 <TextInput
                   title="Task Name"
                   placeholder="Name of task..."
-                  inputType="task"
+                  name="task"
                   getText={this.getName}
-                  inputValue={this.state.taskName}
+                  value={this.state.taskName}
                 />
               </TaskNameWrapper>
               <RadioButtons
-                inputType="Priority"
+                name="Priority"
                 getNumber={this.getPriority}
-                inputValue={this.state.priority}
+                value={this.state.priority}
               />
               <RadioButtons
-                inputType="Complexity"
+                name="Complexity"
                 getNumber={this.getComplexity}
-                inputValue={this.state.complexity}
+                value={this.state.complexity}
               />
               <DateTimeWrapper>
                 <DateTime
                   title="Due Date"
                   type="date"
                   getDateTime={this.getDate}
-                  inputValue={this.state.dueDate}
+                  value={this.state.dueDate}
                 />
                 <DateTime
                   title="Time"
                   type="time"
                   getDateTime={this.getTime}
-                  inputValue={this.state.dueTime}
+                  value={this.state.dueTime}
                 />
               </DateTimeWrapper>
               <CheckList
                 getList={this.getList}
                 handleDelete={this.handleDelete}
+                handleEdit={this.handleEdit}
                 checklist={this.state.checklist}
               />
               <TagsWrapper>
                 <TextInput
                   title="Add Tags"
                   placeholder="Tag1, Tag2, Tag3, ..."
-                  inputType="tags"
+                  name="tags"
                   getText={this.getTags}
-                  inputValue={this.state.tags}
+                  value={this.state.tags}
                 />
               </TagsWrapper>
               <SaveButtonWrapper>
