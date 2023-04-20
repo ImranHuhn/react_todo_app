@@ -3,10 +3,11 @@ import { GlobalStyle } from "./App.styles";
 import TaskForm from "./components/TaskForm";
 
 class App extends React.Component {
-  state = null;
+  state = { taskList: [] };
 
   getTask = (task) => {
-    this.setState({ state: { ...task } });
+    const newTaskList = [...this.state.taskList, ...[task]]
+    this.setState({ taskList: newTaskList });
   };
 
   render() {
