@@ -17,10 +17,17 @@ class CheckList extends React.Component {
     value: "",
     showInput: false,
     item: null,
+    editValue: "",
   };
 
-  getItem = (item) => {
-    this.setState({ value: item });
+  // getItem = (item) => {
+  //   this.setState({ value: item });
+  // };
+
+  handleItemChange = (e) => {
+    // props.getValue(e.target.value);
+    // console.log(e.target.value)
+    this.setState({ value: e.target.value });
   };
 
   handleAdd = () => {
@@ -38,18 +45,35 @@ class CheckList extends React.Component {
   };
 
   showInput = (item) => {
-    console.log(item);
-    this.setState({ showInput: !this.state.showInput, item });
+    // console.log(item);
+    this.setState({
+      showInput: !this.state.showInput,
+      item,
+      editValue: item.value,
+    });
   };
 
   handleBlur = () => {
-    this.showInput();
+    this.setState({ showInput: !this.state.showInput });
   };
-  getEdit = (item) => {
-    console.log(item);
+
+  // getEdit = (item) => {
+  //   console.log("changing", item);
+  //   this.setState({ editValue: item });
+  // };
+  handleEditChange = (e) => {
+    console.log("handleEditChange", e.target.value);
+    // return e.target.value;
+    // this.setState({ editValue: e.target.value });
+    // this.handleSubmit(e.target.value)
   };
+
+  handleSubmit = () => {
+    this.setState({ editValue: test });
+  };
+
   render() {
-    console.log("state", this.state.list);
+    console.log("editValue", this.state.editValue);
     return (
       <Container>
         <InputWrapper>
@@ -57,7 +81,8 @@ class CheckList extends React.Component {
             title="Add Checklist"
             placeholder="Add item..."
             name="list"
-            getText={this.getItem}
+            // getValue={this.getItem}
+            handleChange={this.handleItemChange}
             value={this.state.value}
           />
           <AddButton onClick={this.handleAdd} type="button">
@@ -70,11 +95,15 @@ class CheckList extends React.Component {
               return (
                 <Item key={crypto.randomUUID()}>
                   {this.state.showInput && this.state.item.id === item.id ? (
+                    //1.try settings input component as class
+                    //2.make item into seperate component
                     <TextInput
-                      name="list"
-                      value={item.value}
+                      name="item"
+                      focus={true}
+                      value={this.state.editValue}
+                      handleChange={this.handleEditChange}
+                      // getValue={this.getEdit}
                       handleBlur={this.handleBlur}
-                      getText={this.getEdit}
                     />
                   ) : (
                     <ItemName onClick={() => this.showInput(item)}>
@@ -82,7 +111,7 @@ class CheckList extends React.Component {
                     </ItemName>
                   )}
                   {this.state.showInput && this.state.item.id === item.id ? (
-                    <EnterButton type="button">
+                    <EnterButton onClick={this.handleSubmit} type="button">
                       <EnterIcon style={{ width: "44px", height: "44px" }} />
                     </EnterButton>
                   ) : (

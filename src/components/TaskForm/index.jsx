@@ -29,8 +29,11 @@ class TaskForm extends React.Component {
     tags: [],
   };
 
-  getName = (name) => {
-    this.setState({ taskName: name });
+  // getName = (name) => {
+  //   this.setState({ taskName: name });
+  // };
+  handleNameChange = (e) => {
+    this.setState({ taskName: e.target.value });
   };
 
   getPriority = (number) => {
@@ -54,8 +57,12 @@ class TaskForm extends React.Component {
     this.setState({ checklist: newList });
   };
 
-  getTags = (tags) => {
-    const newTags = tags.toLowerCase().split(",");
+  // getTags = (tags) => {
+  //   const newTags = tags.toLowerCase().split(",");
+  //   this.setState({ tags: newTags });
+  // };
+  handleTagChange = (e) => {
+    const newTags = e.target.value.toLowerCase().split(",");
     this.setState({ tags: newTags });
   };
 
@@ -66,9 +73,9 @@ class TaskForm extends React.Component {
     this.setState({ checklist: newList });
   };
 
-  handleEdit = () => {
-    console.log("edit");
-  };
+  // handleEdit = () => {
+  //   console.log("edit");
+  // };
 
   handleSubmit = (e) => {
     e.preventDefault();
@@ -106,7 +113,8 @@ class TaskForm extends React.Component {
                   title="Task Name"
                   placeholder="Name of task..."
                   name="task"
-                  getText={this.getName}
+                  // getValue={this.getName}
+                  handleChange={this.handleNameChange}
                   value={this.state.taskName}
                 />
               </TaskNameWrapper>
@@ -145,7 +153,8 @@ class TaskForm extends React.Component {
                   title="Add Tags"
                   placeholder="Tag1, Tag2, Tag3, ..."
                   name="tags"
-                  getText={this.getTags}
+                  // getValue={this.getTags}
+                  handleChange={this.handleTagChange}
                   value={this.state.tags}
                 />
               </TagsWrapper>
