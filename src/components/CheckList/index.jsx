@@ -15,14 +15,11 @@ class CheckList extends React.Component {
   state = {
     value: "",
     showInput: false,
+    item: null,
   };
 
   getItem = (item) => {
     this.setState({ value: item });
-  };
-
-  getValue = (item) => {
-    console.log("getValue", item);
   };
 
   handleAdd = () => {
@@ -34,19 +31,24 @@ class CheckList extends React.Component {
     this.props.getList(item);
   };
 
-  showInput = () => {
-    // console.log(this.props.checklist.map((el)=>{console.log("el",el.id)}))
-    this.setState({ showInput: !this.state.showInput });
+  handleDelete = (e, item) => {
+    e.stopPropagation();
+    this.props.handleDelete(item);
+  };
+
+  showInput = (item) => {
+    console.log(item);
+    this.setState({ showInput: !this.state.showInput, item });
   };
 
   handleBlur = () => {
     this.showInput();
   };
+  getEdit = (item) => {
+    console.log(item)
+  }
   render() {
     console.log("state", this.state.list);
-    // const showInput = this.state.showInput;
-    // const id = this.props.checklist.map((el)=>el.id);
-    // console.log("id", id)
     return (
       <Container>
         <InputWrapper>
@@ -66,20 +68,20 @@ class CheckList extends React.Component {
             {this.props.checklist.map((item) => {
               return (
                 <Item key={crypto.randomUUID()}>
-                  {this.state.showInput ? (
+                  {this.state.showInput && this.state.item.id === item.id ? (
                     <TextInput
                       name="list"
                       value={item.value}
                       handleBlur={this.handleBlur}
+                      getText={this.getEdit}
                     />
                   ) : (
-                    <ItemName onClick={this.showInput}>{item.value} : {item.id}</ItemName>
+                    <ItemName onClick={() => this.showInput(item)}>
+                      {item.value}
+                    </ItemName>
                   )}
                   <DeleteButton
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      this.props.handleDelete(item);
-                    }}
+                    onClick={(e) => this.handleDelete(e, item)}
                     type="button"
                   >
                     <DeleteIcon />
