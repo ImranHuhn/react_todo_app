@@ -8,8 +8,9 @@ import {
   Item,
   ItemName,
   DeleteButton,
+  EnterButton,
 } from "./CheckList.styles";
-import { PlusIcon, DeleteIcon } from "../IconComponent";
+import { PlusIcon, DeleteIcon, EnterIcon } from "../IconComponent";
 
 class CheckList extends React.Component {
   state = {
@@ -45,8 +46,8 @@ class CheckList extends React.Component {
     this.showInput();
   };
   getEdit = (item) => {
-    console.log(item)
-  }
+    console.log(item);
+  };
   render() {
     console.log("state", this.state.list);
     return (
@@ -80,12 +81,18 @@ class CheckList extends React.Component {
                       {item.value}
                     </ItemName>
                   )}
-                  <DeleteButton
-                    onClick={(e) => this.handleDelete(e, item)}
-                    type="button"
-                  >
-                    <DeleteIcon />
-                  </DeleteButton>
+                  {this.state.showInput && this.state.item.id === item.id ? (
+                    <EnterButton type="button">
+                      <EnterIcon style={{ width: "44px", height: "44px" }} />
+                    </EnterButton>
+                  ) : (
+                    <DeleteButton
+                      onClick={(e) => this.handleDelete(e, item)}
+                      type="button"
+                    >
+                      <DeleteIcon />
+                    </DeleteButton>
+                  )}
                 </Item>
               );
             })}

@@ -55,3 +55,17 @@ export const DeleteButton = styled.button`
   right: 0;
   margin-right: 10px;
 `;
+
+export const EnterButton = styled.button`
+  display: flex;
+  justify-content: center;
+  position: absolute;
+  background-color: rgba(254, 126, 8, 0.8);
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  right: 0;
+  margin-right: 10px;
+`;
