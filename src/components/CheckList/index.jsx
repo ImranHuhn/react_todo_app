@@ -95,12 +95,16 @@ class CheckList extends React.Component {
               return (
                 <Item key={crypto.randomUUID()}>
                   {this.state.showInput && this.state.item.id === item.id ? (
+                    //default value works in the input element
                     //1.try settings input component as class
-                    //2.make item into seperate component
+                    //2.make item into seperate component(ChecklistItem) and passing item as props
+                    //3.add key to input element
+                    //4.use index for keys
                     <TextInput
                       name="item"
                       focus={true}
                       value={this.state.editValue}
+                      // defaultValue={this.state.editValue}
                       handleChange={this.handleEditChange}
                       // getValue={this.getEdit}
                       handleBlur={this.handleBlur}

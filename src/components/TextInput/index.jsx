@@ -19,6 +19,7 @@ export const TextInput = (props) => {
           placeholder={props.placeholder}
           name={props.name}
           type="text"
+          defaultValue={props.defaultValue}
         />
       </Label>
     </>
