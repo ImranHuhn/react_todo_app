@@ -1,4 +1,5 @@
 import React from "react";
+import CheckList from "../CheckList";
 import { RadioButtons } from "../RadioButtons";
 import { DateTime } from "../DateTime";
 import { TextInput } from "../TextInput";
@@ -11,7 +12,6 @@ import {
   ArrowButton,
   TaskNameWrapper,
   DateTimeWrapper,
-  CheckListWrapper,
   TagsWrapper,
   SaveButtonWrapper,
   SaveButton,
@@ -19,7 +19,7 @@ import {
 
 class TaskForm extends React.Component {
   state = {
-    id: crypto.randomUUID,
+    id: crypto.randomUUID(),
     taskName: "",
     priority: 0,
     complexity: 0,
@@ -29,36 +29,59 @@ class TaskForm extends React.Component {
     tags: [],
   };
 
-  getName = (name) => {
-    this.setState({ taskName: name });
+  getName = (e) => {
+    this.setState({ taskName: e.target.value });
   };
 
-  getPriority = (number) => {
-    this.setState({ priority: number });
+  getPriority = (e) => {
+    this.setState({ priority: parseInt(e.target.value) });
   };
 
-  getComplexity = (number) => {
-    this.setState({ complexity: number });
+  getComplexity = (e) => {
+    this.setState({ complexity: parseInt(e.target.value) });
   };
 
-  getDate = (date) => {
-    this.setState({ dueDate: date });
+  getDate = (e) => {
+    this.setState({ dueDate: e.target.value });
   };
 
-  getTime = (time) => {
-    this.setState({ dueTime: time });
+  getTime = (e) => {
+    this.setState({ dueTime: e.target.value });
   };
 
-  getTags = (tags) => {
-    const newTags = tags.toLowerCase().split(",");
+  getList = (list) => {
+    const newList = [...this.state.checklist, list];
+    this.setState({ checklist: newList });
+  };
+
+  getTags = (e) => {
+    const newTags = e.target.value.toLowerCase().split(",");
     this.setState({ tags: newTags });
   };
+
+  deleteChecklistItem = (item) => {
+    const newList = this.state.checklist.filter((el) => {
+      return el.id !== item.id;
+    });
+    this.setState({ checklist: newList });
+  };
+
+  editChecklistItem = (id, newValue) => {
+    const newList = [...this.state.checklist].map((el) => {
+      if(el.id === id){
+        el.value = newValue;
+      }
+      return el
+    })
+    this.setState({checklist: newList})
+  }
 
   handleSubmit = (e) => {
     e.preventDefault();
     const aTask = this.state;
     this.props.getTask(aTask);
     this.setState({
+      id: crypto.randomUUID(),
       taskName: "",
       priority: 0,
       complexity: 0,
@@ -70,6 +93,7 @@ class TaskForm extends React.Component {
   };
 
   render() {
+    console.log("checklist", this.state.checklist);
     return (
       <Container>
         <form onSubmit={this.handleSubmit}>
@@ -87,55 +111,48 @@ class TaskForm extends React.Component {
                 <TextInput
                   title="Task Name"
                   placeholder="Name of task..."
-                  inputType="task"
-                  getText={this.getName}
-                  inputValue={this.state.taskName}
+                  name="task"
+                  handleChange={this.getName}
+                  value={this.state.taskName}
                 />
               </TaskNameWrapper>
               <RadioButtons
-                inputType="Priority"
-                getNumber={this.getPriority}
-                inputValue={this.state.priority}
+                name="Priority"
+                handleChange={this.getPriority}
+                value={this.state.priority}
               />
               <RadioButtons
-                inputType="Complexity"
-                getNumber={this.getComplexity}
-                inputValue={this.state.complexity}
+                name="Complexity"
+                handleChange={this.getComplexity}
+                value={this.state.complexity}
               />
               <DateTimeWrapper>
                 <DateTime
                   title="Due Date"
                   type="date"
-                  getDateTime={this.getDate}
-                  inputValue={this.state.dueDate}
+                  handleChange={this.getDate}
+                  value={this.state.dueDate}
                 />
                 <DateTime
                   title="Time"
                   type="time"
-                  getDateTime={this.getTime}
-                  inputValue={this.state.dueTime}
+                  handleChange={this.getTime}
+                  value={this.state.dueTime}
                 />
               </DateTimeWrapper>
-              <CheckListWrapper>
-                <TextInput
-                  title="Add Checklist for subtasks"
-                  placeholder="Add item..."
-                  inputType="list"
-                />
-                <div className="add__list--display-list">
-                  <ul>
-                    <li>test1</li>
-                    <li>test2</li>
-                  </ul>
-                </div>
-              </CheckListWrapper>
+              <CheckList
+                getList={this.getList}
+                deleteChecklistItem={this.deleteChecklistItem}
+                checklist={this.state.checklist}
+                editChecklistItem={this.editChecklistItem}
+              />
               <TagsWrapper>
                 <TextInput
                   title="Add Tags"
                   placeholder="Tag1, Tag2, Tag3, ..."
-                  inputType="tags"
-                  getText={this.getTags}
-                  inputValue={this.state.tags}
+                  name="tags"
+                  handleChange={this.getTags}
+                  value={this.state.tags}
                 />
               </TagsWrapper>
               <SaveButtonWrapper>

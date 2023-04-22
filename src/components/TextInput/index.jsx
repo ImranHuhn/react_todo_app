@@ -1,23 +1,22 @@
 import React from "react";
-import { Title } from "./TextInput.styles";
+import { Title, Label } from "./TextInput.styles";
 
 export const TextInput = (props) => {
-  const handleChange = (e) => {
-    props.getText(e.target.value);
-  };
-
   return (
     <>
       <Title>{props.title}</Title>
-      <label htmlFor={props.inputType}>
+      <Label htmlFor={props.name}>
         <input
-          value={props.inputValue}
-          onChange={handleChange}
+          autoFocus={props.focus}
+          onBlur={props.handleBlur}
+          onChange={props.handleChange}
+          value={props.value}
           placeholder={props.placeholder}
-          name={props.inputType}
+          name={props.name}
           type="text"
+          defaultValue={props.defaultValue}
         />
-      </label>
+      </Label>
     </>
   );
 };

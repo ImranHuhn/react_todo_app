@@ -10,26 +10,21 @@ import {
 } from "./RadioButtons.styles";
 
 export const RadioButtons = (props) => {
-  const handleChange = (e) => {
-    const value = parseInt(e.target.value);
-    props.getNumber(value);
-  };
-
   return (
     <Container>
-      <Title>Select {props.inputType} Level</Title>
-      <label htmlFor={props.inputType}>
+      <Title>Select {props.name} Level</Title>
+      <label htmlFor={props.name}>
         <RadioWrapper>
-          {[...Array(10)].map((e, i) => (
+          {[...Array(10)].map((el, i) => (
             <RadioItem key={crypto.randomUUID()}>
               <RadioInput
-                onChange={handleChange}
-                checked={props.inputValue === i + 1 ? "checked" : ""}
-                name={props.inputType}
+                onChange={props.handleChange}
+                checked={props.value === i + 1 ? "checked" : ""}
+                name={props.name}
                 type="radio"
                 value={i + 1}
               />
-              <TextWrapper radioColor={props.inputValue === i + 1}>
+              <TextWrapper radioColor={props.value === i + 1}>
                 <Text>{i + 1}</Text>
               </TextWrapper>
             </RadioItem>
