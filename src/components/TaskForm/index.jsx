@@ -29,27 +29,24 @@ class TaskForm extends React.Component {
     tags: [],
   };
 
-  // getName = (name) => {
-  //   this.setState({ taskName: name });
-  // };
-  handleNameChange = (e) => {
+  getName = (e) => {
     this.setState({ taskName: e.target.value });
   };
 
-  getPriority = (number) => {
-    this.setState({ priority: number });
+  getPriority = (e) => {
+    this.setState({ priority: parseInt(e.target.value) });
   };
 
-  getComplexity = (number) => {
-    this.setState({ complexity: number });
+  getComplexity = (e) => {
+    this.setState({ complexity: parseInt(e.target.value) });
   };
 
-  getDate = (date) => {
-    this.setState({ dueDate: date });
+  getDate = (e) => {
+    this.setState({ dueDate: e.target.value });
   };
 
-  getTime = (time) => {
-    this.setState({ dueTime: time });
+  getTime = (e) => {
+    this.setState({ dueTime: e.target.value });
   };
 
   getList = (list) => {
@@ -57,25 +54,27 @@ class TaskForm extends React.Component {
     this.setState({ checklist: newList });
   };
 
-  // getTags = (tags) => {
-  //   const newTags = tags.toLowerCase().split(",");
-  //   this.setState({ tags: newTags });
-  // };
-  handleTagChange = (e) => {
+  getTags = (e) => {
     const newTags = e.target.value.toLowerCase().split(",");
     this.setState({ tags: newTags });
   };
 
-  handleDelete = (item) => {
+  deleteChecklistItem = (item) => {
     const newList = this.state.checklist.filter((el) => {
       return el.id !== item.id;
     });
     this.setState({ checklist: newList });
   };
 
-  // handleEdit = () => {
-  //   console.log("edit");
-  // };
+  editChecklistItem = (id, newValue) => {
+    const newList = [...this.state.checklist].map((el) => {
+      if(el.id === id){
+        el.value = newValue;
+      }
+      return el
+    })
+    this.setState({checklist: newList})
+  }
 
   handleSubmit = (e) => {
     e.preventDefault();
@@ -113,48 +112,48 @@ class TaskForm extends React.Component {
                   title="Task Name"
                   placeholder="Name of task..."
                   name="task"
-                  // getValue={this.getName}
-                  handleChange={this.handleNameChange}
+                  handleChange={this.getName}
                   value={this.state.taskName}
                 />
               </TaskNameWrapper>
               <RadioButtons
                 name="Priority"
-                getNumber={this.getPriority}
+                handleChange={this.getPriority}
+                // getNumber={this.getPriority}
                 value={this.state.priority}
               />
               <RadioButtons
                 name="Complexity"
-                getNumber={this.getComplexity}
+                handleChange={this.getComplexity}
+                // getNumber={this.getComplexity}
                 value={this.state.complexity}
               />
               <DateTimeWrapper>
                 <DateTime
                   title="Due Date"
                   type="date"
-                  getDateTime={this.getDate}
+                  handleChange={this.getDate}
                   value={this.state.dueDate}
                 />
                 <DateTime
                   title="Time"
                   type="time"
-                  getDateTime={this.getTime}
+                  handleChange={this.getTime}
                   value={this.state.dueTime}
                 />
               </DateTimeWrapper>
               <CheckList
                 getList={this.getList}
-                handleDelete={this.handleDelete}
-                handleEdit={this.handleEdit}
+                deleteChecklistItem={this.deleteChecklistItem}
                 checklist={this.state.checklist}
+                editChecklistItem={this.editChecklistItem}
               />
               <TagsWrapper>
                 <TextInput
                   title="Add Tags"
                   placeholder="Tag1, Tag2, Tag3, ..."
                   name="tags"
-                  // getValue={this.getTags}
-                  handleChange={this.handleTagChange}
+                  handleChange={this.getTags}
                   value={this.state.tags}
                 />
               </TagsWrapper>

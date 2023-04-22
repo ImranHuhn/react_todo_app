@@ -10,20 +10,15 @@ import {
 } from "./RadioButtons.styles";
 
 export const RadioButtons = (props) => {
-  const handleChange = (e) => {
-    const value = parseInt(e.target.value);
-    props.getNumber(value);
-  };
-
   return (
     <Container>
       <Title>Select {props.name} Level</Title>
       <label htmlFor={props.name}>
         <RadioWrapper>
-          {[...Array(10)].map((e, i) => (
+          {[...Array(10)].map((el, i) => (
             <RadioItem key={crypto.randomUUID()}>
               <RadioInput
-                onChange={handleChange}
+                onChange={props.handleChange}
                 checked={props.value === i + 1 ? "checked" : ""}
                 name={props.name}
                 type="radio"
