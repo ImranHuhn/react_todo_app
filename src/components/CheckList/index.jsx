@@ -38,7 +38,7 @@ class CheckList extends React.Component {
             value={this.state.value}
           />
           <AddButton onClick={this.handleAdd} type="button">
-            <PlusIcon />
+            <PlusIcon width="24" height="24" />
           </AddButton>
         </InputWrapper>
         <div>

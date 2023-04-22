@@ -1,5 +1,6 @@
 import React from "react";
 import CheckList from "../CheckList";
+import { ButtonWide } from "../ButtonWide";
 import { RadioButtons } from "../RadioButtons";
 import { DateTime } from "../DateTime";
 import { TextInput } from "../TextInput";
@@ -14,7 +15,7 @@ import {
   DateTimeWrapper,
   TagsWrapper,
   SaveButtonWrapper,
-  SaveButton,
+  // SaveButton,
 } from "./TaskForm.styles";
 
 class TaskForm extends React.Component {
@@ -68,13 +69,13 @@ class TaskForm extends React.Component {
 
   editChecklistItem = (id, newValue) => {
     const newList = [...this.state.checklist].map((el) => {
-      if(el.id === id){
+      if (el.id === id) {
         el.value = newValue;
       }
-      return el
-    })
-    this.setState({checklist: newList})
-  }
+      return el;
+    });
+    this.setState({ checklist: newList });
+  };
 
   handleSubmit = (e) => {
     e.preventDefault();
@@ -93,7 +94,6 @@ class TaskForm extends React.Component {
   };
 
   render() {
-    console.log("checklist", this.state.checklist);
     return (
       <Container>
         <form onSubmit={this.handleSubmit}>
@@ -101,7 +101,7 @@ class TaskForm extends React.Component {
             <Header>
               <ArrowButtonWrapper>
                 <ArrowButton>
-                  <ArrowIcon />
+                  <ArrowIcon width="24" height="24" />
                 </ArrowButton>
               </ArrowButtonWrapper>
               <h1>{this.props.title}</h1>
@@ -156,9 +156,10 @@ class TaskForm extends React.Component {
                 />
               </TagsWrapper>
               <SaveButtonWrapper>
-                <SaveButton>
+                <ButtonWide text="Save Task" />
+                {/* <SaveButton>
                   <h2>Save Task</h2>
-                </SaveButton>
+                </SaveButton> */}
               </SaveButtonWrapper>
             </div>
           </HeaderWrapper>

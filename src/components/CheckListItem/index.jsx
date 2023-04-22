@@ -15,12 +15,11 @@ class CheckListItem extends React.Component {
   };
 
   handleSubmit = () => {
-    console.log("submitting");
     this.setState({
       value: this.state.value,
       showInput: !this.state.showInput,
     });
-    this.props.editChecklistItem(this.props.item.id, this.state.value)
+    this.props.editChecklistItem(this.props.item.id, this.state.value);
   };
 
   handleChange = (e) => {
@@ -67,7 +66,7 @@ class CheckListItem extends React.Component {
             </EnterButton>
           ) : (
             <DeleteButton onClick={this.deleteChecklistItem} type="button">
-              <DeleteIcon />
+              <DeleteIcon width="24" height="24" />
             </DeleteButton>
           )}
         </Item>

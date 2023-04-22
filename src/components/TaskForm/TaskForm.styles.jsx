@@ -52,12 +52,6 @@ export const DateTimeWrapper = styled.div`
   margin-bottom: 45px;
 `;
 
-// export const CheckListWrapper = styled.div`
-//   display: flex;
-//   flex-direction: column;
-//   margin-bottom: 30px;
-// `;
-
 export const TagsWrapper = styled.div`
   display: flex;
   flex-direction: column;
@@ -70,12 +64,12 @@ export const SaveButtonWrapper = styled.div`
   margin-bottom: 45px;
 `;
 
-export const SaveButton = styled.button`
-  height: 60px;
-  width: 192px;
-  border-radius: 30px;
-  border: none;
-  background-color: #0d99ff;
-  color: #fff;
-  cursor: pointer;
-`;
+// export const SaveButton = styled.button`
+//   height: 60px;
+//   width: 192px;
+//   border-radius: 30px;
+//   border: none;
+//   background-color: #0d99ff;
+//   color: #fff;
+//   cursor: pointer;
+// `;

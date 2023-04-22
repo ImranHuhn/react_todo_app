@@ -13,12 +13,11 @@ class App extends React.Component {
   };
 
   render() {
-    console.log(this.state);
     return (
       <>
         <GlobalStyle />
-        {/* <Home /> */}
         <TaskForm getTask={this.getTask} title="Add New Task" />
+        <Home />
         {/* <TaskForm title="Edit Task" /> */}
       </>
     );
