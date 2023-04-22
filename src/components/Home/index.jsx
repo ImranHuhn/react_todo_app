@@ -1,4 +1,6 @@
 import React from "react";
+import { CircularProgressbar } from "react-circular-progressbar";
+import "react-circular-progressbar/dist/styles.css";
 import { TextInput } from "../TextInput";
 import { ButtonWide } from "../ButtonWide";
 import {
@@ -13,6 +15,7 @@ import {
 
 class Home extends React.Component {
   render() {
+    const percentage = 77;
     return (
       <div
         style={{
@@ -123,7 +126,7 @@ class Home extends React.Component {
                 <div style={{ display: "flex", alignItems: "center" }}>
                   <div
                     style={{
-                      backgroundColor: "#FF0000",
+                      backgroundColor: "rgba(50, 205, 50,.8)",
                       borderRadius: "50%",
                       width: "20px",
                       height: "20px",
@@ -274,7 +277,22 @@ class Home extends React.Component {
                   </div>
                 </div>
                 <div style={{ display: "flex", alignItems: "center" }}>
-                  progress circle
+                  <div style={{ width: "44px", height: "44px" }}>
+                    <CircularProgressbar
+                      styles={{
+                        text: {
+                          fontSize: "50px",
+                        },
+                      }}
+                      // styles={buildStyles({
+                      //   pathColor: `rgba(50, 205, 50, ${percentage / 100})`,
+                      //   // textColor: "rgba(50, 205, 50)",
+                      //   trailColor: "#D1E2FE",
+                      // })}
+                      value={percentage}
+                      text={`${percentage}%`}
+                    />
+                  </div>
                 </div>
               </div>
             </div>
