@@ -119,13 +119,11 @@ class TaskForm extends React.Component {
               <RadioButtons
                 name="Priority"
                 handleChange={this.getPriority}
-                // getNumber={this.getPriority}
                 value={this.state.priority}
               />
               <RadioButtons
                 name="Complexity"
                 handleChange={this.getComplexity}
-                // getNumber={this.getComplexity}
                 value={this.state.complexity}
               />
               <DateTimeWrapper>
