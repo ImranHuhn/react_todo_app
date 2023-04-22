@@ -56,6 +56,7 @@ class CheckListItem extends React.Component {
               defaultValue={this.state.value}
               handleChange={this.handleChange}
               handleBlur={this.handleBlur}
+              type="text"
             />
           ) : (
             <ItemName onClick={this.handleClick}>{this.state.value}</ItemName>

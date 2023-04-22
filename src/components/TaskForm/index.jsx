@@ -2,7 +2,6 @@ import React from "react";
 import CheckList from "../CheckList";
 import { ButtonWide } from "../ButtonWide";
 import { RadioButtons } from "../RadioButtons";
-import { DateTime } from "../DateTime";
 import { TextInput } from "../TextInput";
 import { ArrowIcon } from "../IconComponent";
 import {
@@ -15,7 +14,6 @@ import {
   DateTimeWrapper,
   TagsWrapper,
   SaveButtonWrapper,
-  // SaveButton,
 } from "./TaskForm.styles";
 
 class TaskForm extends React.Component {
@@ -114,6 +112,7 @@ class TaskForm extends React.Component {
                   name="task"
                   handleChange={this.getName}
                   value={this.state.taskName}
+                  type="text"
                 />
               </TaskNameWrapper>
               <RadioButtons
@@ -127,18 +126,24 @@ class TaskForm extends React.Component {
                 value={this.state.complexity}
               />
               <DateTimeWrapper>
-                <DateTime
-                  title="Due Date"
-                  type="date"
-                  handleChange={this.getDate}
-                  value={this.state.dueDate}
-                />
-                <DateTime
-                  title="Time"
-                  type="time"
-                  handleChange={this.getTime}
-                  value={this.state.dueTime}
-                />
+                <div style={{ width: "45%" }}>
+                  <TextInput
+                    title="Select Due Date"
+                    name="date"
+                    type="date"
+                    handleChange={this.getDate}
+                    value={this.state.dueDate}
+                  />
+                </div>
+                <div style={{ width: "45%" }}>
+                  <TextInput
+                    title="Select Time"
+                    name="time"
+                    type="time"
+                    handleChange={this.getTime}
+                    value={this.state.dueTime}
+                  />
+                </div>
               </DateTimeWrapper>
               <CheckList
                 getList={this.getList}
@@ -153,6 +158,7 @@ class TaskForm extends React.Component {
                   name="tags"
                   handleChange={this.getTags}
                   value={this.state.tags}
+                  type="text"
                 />
               </TagsWrapper>
               <SaveButtonWrapper>

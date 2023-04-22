@@ -13,8 +13,9 @@ export const TextInput = (props) => {
           value={props.value}
           placeholder={props.placeholder}
           name={props.name}
-          type="text"
+          type={props.type}
           defaultValue={props.defaultValue}
+          style={props.style}
         />
       </Label>
     </>

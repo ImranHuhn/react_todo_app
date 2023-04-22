@@ -36,6 +36,7 @@ class CheckList extends React.Component {
             name="list"
             handleChange={this.handleChange}
             value={this.state.value}
+            type="text"
           />
           <AddButton onClick={this.handleAdd} type="button">
             <PlusIcon width="24" height="24" />
