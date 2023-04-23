@@ -26,6 +26,7 @@ class TaskForm extends React.Component {
     dueTime: "",
     checklist: [],
     tags: [],
+    isComplete: false,
   };
 
   getName = (e) => {
@@ -66,13 +67,13 @@ class TaskForm extends React.Component {
   };
 
   editChecklistItem = (id, newValue) => {
-    const newList = [...this.state.checklist].map((el) => {
+    const newChecklist = [...this.state.checklist].map((el) => {
       if (el.id === id) {
         el.value = newValue;
       }
       return el;
     });
-    this.setState({ checklist: newList });
+    this.setState({ checklist: newChecklist });
   };
 
   handleSubmit = (e) => {
@@ -88,6 +89,7 @@ class TaskForm extends React.Component {
       dueTime: "",
       checklist: [],
       tags: [],
+      isComplete: false,
     });
   };
 

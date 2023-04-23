@@ -17,6 +17,7 @@ class CheckList extends React.Component {
     const item = {
       value: this.state.value,
       id: crypto.randomUUID(),
+      isComplete: false,
     };
     this.setState({ value: "" });
     this.props.getList(item);
