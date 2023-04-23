@@ -29,11 +29,12 @@ export const CardItem = (props) => {
     console.log("clicked card and show task details");
     // show task details
   };
+
   const handleEditClick = (e) => {
     e.stopPropagation();
-    // console.log("clicked edit");
-    props.handleEditClick()
+    props.handleEditClick(props.item)
   };
+
   const handleCheckClick = (e) => {
     e.stopPropagation();
     props.handleCheckClick(props.item);

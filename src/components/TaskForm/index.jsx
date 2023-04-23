@@ -18,15 +18,15 @@ import {
 
 class TaskForm extends React.Component {
   state = {
-    id: crypto.randomUUID(),
-    taskName: "",
-    priority: 0,
-    complexity: 0,
-    dueDate: "",
-    dueTime: "",
-    checklist: [],
-    tags: [],
-    isComplete: false,
+    id: this.props.editFormData?.id || crypto.randomUUID(),
+    taskName: this.props.editFormData?.taskName || "",
+    priority: this.props.editFormData?.priority || 0,
+    complexity: this.props.editFormData?.complexity || 0,
+    dueDate: this.props.editFormData?.dueDate || "",
+    dueTime: this.props.editFormData?.dueTime || "",
+    checklist: this.props.editFormData?.checklist || [],
+    tags: this.props.editFormData?.tags || [],
+    isComplete: this.props.editFormData?.isComplete || false,
   };
 
   getName = (e) => {
@@ -67,7 +67,7 @@ class TaskForm extends React.Component {
   };
 
   editChecklistItem = (id, newValue) => {
-    const newChecklist = [...this.state.checklist].map((el) => {
+    const newChecklist = this.state.checklist.map((el) => {
       if (el.id === id) {
         el.value = newValue;
       }
@@ -77,8 +77,8 @@ class TaskForm extends React.Component {
   };
 
   handleBackClick = () => {
-    this.props.handleBackClick()
-  } 
+    this.props.handleBackClick();
+  };
 
   handleSubmit = (e) => {
     e.preventDefault();
@@ -95,7 +95,7 @@ class TaskForm extends React.Component {
       tags: [],
       isComplete: false,
     });
-    this.props.handleBackClick()
+    this.props.handleBackClick();
   };
 
   render() {
@@ -118,7 +118,7 @@ class TaskForm extends React.Component {
                   placeholder="Name of task..."
                   name="task"
                   handleChange={this.getName}
-                  value={this.state.taskName}
+                  defaultValue={this.state.taskName}
                   type="text"
                 />
               </TaskNameWrapper>

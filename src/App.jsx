@@ -3,18 +3,45 @@ import { GlobalStyle } from "./App.styles";
 import Home from "./components/Home";
 import TaskForm from "./components/TaskForm";
 
-import moment from "moment";
 class App extends React.Component {
-  state = { taskList: [], showHome: true, showAdd: false };
+  state = {
+    taskList: [],
+    editFormData: null,
+    showHome: true,
+    showAdd: false,
+    allTags: [],
+  };
+
+  addAllTags = (data) => {
+    let newAllTags = [];
+    data.map((el) => {
+      newAllTags = newAllTags.concat(el.tags);
+    });
+    newAllTags = newAllTags.filter(
+      (item, index) => newAllTags.indexOf(item) === index
+    );
+    this.setState({ allTags: newAllTags });
+  };
 
   getTask = (task) => {
     const newTaskList = [...this.state.taskList, ...[task]];
     this.setState({ taskList: newTaskList });
     localStorage.setItem("taskList", JSON.stringify(newTaskList));
+    this.addAllTags(newTaskList);
+  };
+
+  editTask = (task) => {
+    const newTaskList = this.state.taskList.map((el) => {
+      if (task.id === el.id) {
+        el = task;
+      }
+      return el;
+    });
+    this.setState({ taskList: newTaskList });
+    this.addAllTags(newTaskList);
   };
 
   handleCheckClick = (item) => {
-    console.log("clicked check");
     const newTaskList = this.state.taskList.map((el) => {
       if (item.id === el.id) {
         el.isComplete = !el.isComplete;
@@ -25,18 +52,13 @@ class App extends React.Component {
     localStorage.setItem("taskList", JSON.stringify(newTaskList));
   };
 
-  handleData = (data) => {
-    console.log("data", data);
-    this.setState({ taskList: data });
-  };
-
   componentDidMount = () => {
     const data = JSON.parse(localStorage.getItem("taskList")) || [];
-    this.handleData(data);
+    this.setState({ taskList: data });
+    this.addAllTags(data);
   };
 
   handleAddClick = () => {
-    console.log("show add");
     this.setState({ showHome: false, showAdd: true });
   };
 
@@ -44,13 +66,12 @@ class App extends React.Component {
     this.setState({ showHome: true, showAdd: false, showEdit: false });
   };
 
-  handleEditClick = () => {
-    console.log("handleEditClick");
-    this.setState({ showHome: false, showEdit: true });
+  handleEditClick = (item) => {
+    this.setState({ showHome: false, showEdit: true, editFormData: item });
   };
 
   render() {
-    console.log(this.state.taskList);
+    console.log("tags", this.state.allTags);
     return (
       <div style={{ position: "relative" }}>
         <GlobalStyle />
@@ -66,11 +87,13 @@ class App extends React.Component {
           <TaskForm
             title="Edit Task"
             handleBackClick={this.handleBackClick}
-            taskList={this.state.taskList}
+            editFormData={this.state.editFormData}
+            getTask={this.editTask}
           />
         )}
         {this.state.showHome && (
           <Home
+            allTags={this.state.allTags}
             taskList={this.state.taskList}
             handleCheckClick={this.handleCheckClick}
             handleAddClick={this.handleAddClick}

@@ -1,15 +1,38 @@
 import React from "react";
 import "react-circular-progressbar/dist/styles.css";
 import { CardItem } from "../CardItem";
-import { Dropdown } from "../Dropdown";
+import { DropdownButton } from "../DropdownButton";
 import { TextInput } from "../TextInput";
 import { ButtonWide } from "../ButtonWide";
 import { MagnifyIcon, ArrowIcon } from "../IconComponent";
 
 class Home extends React.Component {
+  state = {
+    showSort: false,
+    showFilter: false,
+    sort: [
+      "Default",
+      "Ascending Date",
+      "Descending Date",
+      "Ascending Complexity",
+      "Descending Complexity",
+      "Ascending Priority",
+      "Descending Priority",
+    ],
+  };
+
   handleAddClick = () => {
-    this.props.handleAddClick()
-  }
+    this.props.handleAddClick();
+  };
+
+  handleSortClick = () => {
+    this.setState({ showSort: !this.state.showSort });
+  };
+
+  handleFilterClick = () => {
+    this.setState({ showFilter: !this.state.showFilter });
+  };
+
   render() {
     return (
       <div
@@ -64,12 +87,20 @@ class Home extends React.Component {
             style={{
               display: "flex",
               justifyContent: "space-between",
-              margin: "20px auto",
-              height: "50px",
             }}
           >
-            <Dropdown text="Sort" />
-            <Dropdown text="Filter" />
+            <DropdownButton
+              text="Sort"
+              showDropdown={this.state.showSort}
+              handleClick={this.handleSortClick}
+              sort={this.state.sort}
+            />
+            <DropdownButton
+              text="Filter"
+              showDropdown={this.state.showFilter}
+              handleClick={this.handleFilterClick}
+              allTags={this.props.allTags}
+            />
           </div>
           {this.props.taskList.map((item) => {
             return (
@@ -82,7 +113,11 @@ class Home extends React.Component {
             );
           })}
           <div style={{ margin: "10px auto 20px" }}>
-            <ButtonWide text="Add New Task" icon="plus" handleClick={this.handleAddClick}/>
+            <ButtonWide
+              text="Add New Task"
+              icon="plus"
+              handleClick={this.handleAddClick}
+            />
           </div>
         </div>
       </div>
