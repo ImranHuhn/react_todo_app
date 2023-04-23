@@ -7,7 +7,7 @@ export const ButtonWide = (props) => {
     plus: <PlusIcon width="24" height="24" style={{marginRight:"15px"}} />,
   };
   return (
-    <Button>
+    <Button onClick={props.handleClick}>
       {iconObj[props.icon]}
       <h2>{props.text}</h2>
     </Button>

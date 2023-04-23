@@ -7,6 +7,9 @@ import { ButtonWide } from "../ButtonWide";
 import { MagnifyIcon, ArrowIcon } from "../IconComponent";
 
 class Home extends React.Component {
+  handleAddClick = () => {
+    this.props.handleAddClick()
+  }
   render() {
     return (
       <div
@@ -74,11 +77,12 @@ class Home extends React.Component {
                 item={item}
                 key={item.id}
                 handleCheckClick={this.props.handleCheckClick}
+                handleEditClick={this.props.handleEditClick}
               />
             );
           })}
           <div style={{ margin: "10px auto 20px" }}>
-            <ButtonWide text="Add New Task" icon="plus" />
+            <ButtonWide text="Add New Task" icon="plus" handleClick={this.handleAddClick}/>
           </div>
         </div>
       </div>

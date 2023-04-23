@@ -76,6 +76,10 @@ class TaskForm extends React.Component {
     this.setState({ checklist: newChecklist });
   };
 
+  handleBackClick = () => {
+    this.props.handleBackClick()
+  } 
+
   handleSubmit = (e) => {
     e.preventDefault();
     const aTask = this.state;
@@ -91,6 +95,7 @@ class TaskForm extends React.Component {
       tags: [],
       isComplete: false,
     });
+    this.props.handleBackClick()
   };
 
   render() {
@@ -100,7 +105,7 @@ class TaskForm extends React.Component {
           <HeaderWrapper>
             <Header>
               <ArrowButtonWrapper>
-                <ArrowButton>
+                <ArrowButton onClick={this.handleBackClick}>
                   <ArrowIcon width="24" height="24" />
                 </ArrowButton>
               </ArrowButtonWrapper>
@@ -165,9 +170,6 @@ class TaskForm extends React.Component {
               </TagsWrapper>
               <SaveButtonWrapper>
                 <ButtonWide text="Save Task" />
-                {/* <SaveButton>
-                  <h2>Save Task</h2>
-                </SaveButton> */}
               </SaveButtonWrapper>
             </div>
           </HeaderWrapper>

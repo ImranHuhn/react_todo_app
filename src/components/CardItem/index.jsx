@@ -26,11 +26,13 @@ export const CardItem = (props) => {
   }
 
   const handleCardClick = () => {
-    console.log("clicked card");
+    console.log("clicked card and show task details");
+    // show task details
   };
   const handleEditClick = (e) => {
     e.stopPropagation();
-    console.log("clicked edit");
+    // console.log("clicked edit");
+    props.handleEditClick()
   };
   const handleCheckClick = (e) => {
     e.stopPropagation();
@@ -141,9 +143,6 @@ export const CardItem = (props) => {
                       props.item.dueDate + " " + props.item.dueTime,
                       "YYYY-MM-DD HH:mm"
                     ).format("MMMM Do YYYY, h:mm A")}{" "}
-                  {props.item.dueDate &&
-                    props.item.dueTime &&
-                    "(" + moment(props.item.dueDate).fromNow() + ")"}
                 </span>
               </h4>
             </div>

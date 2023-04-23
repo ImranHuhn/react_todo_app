@@ -5,7 +5,7 @@ import TaskForm from "./components/TaskForm";
 
 import moment from "moment";
 class App extends React.Component {
-  state = { taskList: [] };
+  state = { taskList: [], showHome: true, showAdd: false };
 
   getTask = (task) => {
     const newTaskList = [...this.state.taskList, ...[task]];
@@ -26,27 +26,58 @@ class App extends React.Component {
   };
 
   handleData = (data) => {
-    console.log("data", data)
-    this.setState({taskList: data})
-  }
+    console.log("data", data);
+    this.setState({ taskList: data });
+  };
 
   componentDidMount = () => {
-    const data = JSON.parse(localStorage.getItem("taskList")) || []
-    this.handleData(data)
-  }
+    const data = JSON.parse(localStorage.getItem("taskList")) || [];
+    this.handleData(data);
+  };
+
+  handleAddClick = () => {
+    console.log("show add");
+    this.setState({ showHome: false, showAdd: true });
+  };
+
+  handleBackClick = () => {
+    this.setState({ showHome: true, showAdd: false, showEdit: false });
+  };
+
+  handleEditClick = () => {
+    console.log("handleEditClick");
+    this.setState({ showHome: false, showEdit: true });
+  };
 
   render() {
     console.log(this.state.taskList);
     return (
-      <>
+      <div style={{ position: "relative" }}>
         <GlobalStyle />
-        <TaskForm getTask={this.getTask} title="Add New Task" />
-        <Home
-          taskList={this.state.taskList}
-          handleCheckClick={this.handleCheckClick}
-        />
-        {/* <TaskForm title="Edit Task" /> */}
-      </>
+        {this.state.showAdd && (
+          <TaskForm
+            getTask={this.getTask}
+            title="Add New Task"
+            backToHome={this.backToHome}
+            handleBackClick={this.handleBackClick}
+          />
+        )}
+        {this.state.showEdit && (
+          <TaskForm
+            title="Edit Task"
+            handleBackClick={this.handleBackClick}
+            taskList={this.state.taskList}
+          />
+        )}
+        {this.state.showHome && (
+          <Home
+            taskList={this.state.taskList}
+            handleCheckClick={this.handleCheckClick}
+            handleAddClick={this.handleAddClick}
+            handleEditClick={this.handleEditClick}
+          />
+        )}
+      </div>
     );
   }
 }
