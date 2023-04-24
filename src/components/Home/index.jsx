@@ -109,6 +109,7 @@ class Home extends React.Component {
                 key={item.id}
                 handleCheckClick={this.props.handleCheckClick}
                 handleEditClick={this.props.handleEditClick}
+                handleDetailClick={this.props.handleDetailClick}
               />
             );
           })}

@@ -2,6 +2,7 @@ import React from "react";
 import { GlobalStyle } from "./App.styles";
 import Home from "./components/Home";
 import TaskForm from "./components/TaskForm";
+import TaskDetails from "./components/TaskDetails";
 
 class App extends React.Component {
   state = {
@@ -9,6 +10,7 @@ class App extends React.Component {
     editFormData: null,
     showHome: true,
     showAdd: false,
+    showDetails: false,
     allTags: [],
   };
 
@@ -17,9 +19,7 @@ class App extends React.Component {
     data.map((el) => {
       newAllTags = newAllTags.concat(el.tags);
     });
-    newAllTags = newAllTags.filter(
-      (item, index) => newAllTags.indexOf(item) === index
-    );
+    newAllTags = newAllTags.filter((el, i) => newAllTags.indexOf(el) === i);
     this.setState({ allTags: newAllTags });
   };
 
@@ -58,20 +58,29 @@ class App extends React.Component {
     this.addAllTags(data);
   };
 
-  handleAddClick = () => {
-    this.setState({ showHome: false, showAdd: true });
+  handleBackClick = () => {
+    this.setState({
+      showHome: true,
+      showAdd: false,
+      showEdit: false,
+      showDetails: false,
+    });
   };
 
-  handleBackClick = () => {
-    this.setState({ showHome: true, showAdd: false, showEdit: false });
+  handleAddClick = () => {
+    this.setState({ showHome: false, showAdd: true });
   };
 
   handleEditClick = (item) => {
     this.setState({ showHome: false, showEdit: true, editFormData: item });
   };
 
+  handleDetailClick = () => {
+    this.setState({ showHome: false, showDetails: true });
+  };
+
   render() {
-    console.log("tags", this.state.allTags);
+    console.log("$", this.state);
     return (
       <div style={{ position: "relative" }}>
         <GlobalStyle />
@@ -91,6 +100,12 @@ class App extends React.Component {
             getTask={this.editTask}
           />
         )}
+        {this.state.showDetails && (
+          <TaskDetails
+            taskList={this.state.taskList}
+            handleBackClick={this.handleBackClick}
+          />
+        )}
         {this.state.showHome && (
           <Home
             allTags={this.state.allTags}
@@ -98,6 +113,7 @@ class App extends React.Component {
             handleCheckClick={this.handleCheckClick}
             handleAddClick={this.handleAddClick}
             handleEditClick={this.handleEditClick}
+            handleDetailClick={this.handleDetailClick}
           />
         )}
       </div>

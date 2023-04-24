@@ -30,7 +30,9 @@ export const DropdownButton = (props) => {
         }}
       >
         <h3 style={{ fontWeight: "bold" }}>{props.text}</h3>
-        <Chevron />
+        <Chevron
+          style={{ transform: `${props.showDropdown ? "rotate(180deg)" : ""}` }}
+        />
       </button>
       {props.text === "Sort" && props.showDropdown && (
         <DropdownBox options={props.sort} />

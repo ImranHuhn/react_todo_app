@@ -1,15 +1,12 @@
 import React from "react";
 import CheckList from "../CheckList";
+import { HeaderText } from "../HeaderText";
 import { ButtonWide } from "../ButtonWide";
 import { RadioButtons } from "../RadioButtons";
 import { TextInput } from "../TextInput";
-import { ArrowIcon } from "../IconComponent";
 import {
   Container,
-  HeaderWrapper,
-  Header,
-  ArrowButtonWrapper,
-  ArrowButton,
+  Wrapper,
   TaskNameWrapper,
   DateTimeWrapper,
   TagsWrapper,
@@ -102,15 +99,12 @@ class TaskForm extends React.Component {
     return (
       <Container>
         <form onSubmit={this.handleSubmit}>
-          <HeaderWrapper>
-            <Header>
-              <ArrowButtonWrapper>
-                <ArrowButton onClick={this.handleBackClick}>
-                  <ArrowIcon width="24" height="24" />
-                </ArrowButton>
-              </ArrowButtonWrapper>
-              <h1>{this.props.title}</h1>
-            </Header>
+          <Wrapper>
+            <HeaderText
+              handleBackClick={this.handleBackClick}
+              title={this.props.title}
+              arrowButton="arrow"
+            />
             <div>
               <TaskNameWrapper>
                 <TextInput
@@ -172,7 +166,7 @@ class TaskForm extends React.Component {
                 <ButtonWide text="Save Task" />
               </SaveButtonWrapper>
             </div>
-          </HeaderWrapper>
+          </Wrapper>
         </form>
       </Container>
     );
