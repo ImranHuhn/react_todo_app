@@ -60,8 +60,7 @@ class App extends React.Component {
     this.addAllTags(data);
   };
 
-  // rename to "backToHome"
-  handleBackClick = () => {
+  backToHome = () => {
     this.setState({
       showHome: true,
       showAdd: false,
@@ -69,8 +68,6 @@ class App extends React.Component {
       showDetails: false,
     });
   };
-
-  // create function for "backToDetails"
 
   handleAddClick = () => {
     this.setState({ showHome: false, showAdd: true });
@@ -117,14 +114,13 @@ class App extends React.Component {
           <TaskForm
             getTask={this.getTask}
             title="Add New Task"
-            backToHome={this.backToHome}
-            handleBackClick={this.handleBackClick}
+            handleBackClick={this.backToHome}
           />
         )}
         {this.state.showEdit && (
           <TaskForm
             title="Edit Task"
-            handleBackClick={this.handleBackClick}
+            handleBackClick={this.backToHome}
             aTask={this.state.aTask}
             getTask={this.editTask}
           />
@@ -133,9 +129,10 @@ class App extends React.Component {
           <TaskDetails
             // taskList={this.state.taskList}
             aTask={this.state.aTask}
-            handleBackClick={this.handleBackClick}
+            handleBackClick={this.backToHome}
             daysLeft={this.state.daysLeft}
             handleEditClick={this.handleEditClick}
+            backToDetails={this.backToDetails}
           />
         )}
         {this.state.showHome && (
