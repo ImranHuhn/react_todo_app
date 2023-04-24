@@ -15,15 +15,15 @@ import {
 
 class TaskForm extends React.Component {
   state = {
-    id: this.props.editFormData?.id || crypto.randomUUID(),
-    taskName: this.props.editFormData?.taskName || "",
-    priority: this.props.editFormData?.priority || 0,
-    complexity: this.props.editFormData?.complexity || 0,
-    dueDate: this.props.editFormData?.dueDate || "",
-    dueTime: this.props.editFormData?.dueTime || "",
-    checklist: this.props.editFormData?.checklist || [],
-    tags: this.props.editFormData?.tags || [],
-    isComplete: this.props.editFormData?.isComplete || false,
+    id: this.props.aTask?.id || crypto.randomUUID(),
+    taskName: this.props.aTask?.taskName || "",
+    priority: this.props.aTask?.priority || 0,
+    complexity: this.props.aTask?.complexity || 0,
+    dueDate: this.props.aTask?.dueDate || "",
+    dueTime: this.props.aTask?.dueTime || "",
+    checklist: this.props.aTask?.checklist || [],
+    tags: this.props.aTask?.tags || [],
+    isComplete: this.props.aTask?.isComplete || false,
   };
 
   getName = (e) => {

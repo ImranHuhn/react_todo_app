@@ -10,11 +10,23 @@ export const RatingScale = (props) => {
     ratingScale = "Low";
   }
   return (
-    <h4 style={{ margin: "auto 5px", color: "#808080" }}>
-      {props.text}
-      <span style={{ color: "#000000" }}>
-        {ratingScale} ({props.radio}/10)
-      </span>
-    </h4>
+    <div>
+      {props.htmlTag === "h4" && (
+        <h4 style={{ margin: "auto 5px", color: "#808080" }}>
+          {props.text}
+          <span style={{ color: "#000000" }}>
+            {ratingScale} ({props.radio}/10)
+          </span>
+        </h4>
+      )}
+      {props.htmlTag === "h2" && (
+        <h2 style={{ margin: "auto 5px", color: "#808080" }}>
+          {props.text}
+          <span style={{ color: "#000000" }}>
+            {ratingScale} ({props.radio}/10)
+          </span>
+        </h2>
+      )}
+    </div>
   );
 };

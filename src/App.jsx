@@ -1,4 +1,5 @@
 import React from "react";
+import moment from "moment";
 import { GlobalStyle } from "./App.styles";
 import Home from "./components/Home";
 import TaskForm from "./components/TaskForm";
@@ -7,11 +8,12 @@ import TaskDetails from "./components/TaskDetails";
 class App extends React.Component {
   state = {
     taskList: [],
-    editFormData: null,
+    aTask: null,
     showHome: true,
     showAdd: false,
     showDetails: false,
     allTags: [],
+    daysLeft: "",
   };
 
   addAllTags = (data) => {
@@ -72,15 +74,33 @@ class App extends React.Component {
   };
 
   handleEditClick = (item) => {
-    this.setState({ showHome: false, showEdit: true, editFormData: item });
+    this.setState({ showHome: false, showEdit: true, aTask: item });
   };
 
-  handleDetailClick = () => {
-    this.setState({ showHome: false, showDetails: true });
+  handleDetailClick = (item) => {
+    this.setState({ showHome: false, showDetails: true, aTask: item });
+    this.daysLeft(item.dueDate);
+  };
+
+  colorManager = (days) => {
+    if (days < 1) {
+      this.setState({ daysLeft: "255, 64, 52" });
+    } else if (days < 4 && days > 0) {
+      this.setState({ daysLeft: "254, 126, 8" });
+    } else {
+      this.setState({ daysLeft: "13, 153, 255" });
+    }
+  };
+
+  daysLeft = (date) => {
+    const dueDate = moment(date);
+    const todaysDate = moment();
+    const days = dueDate.diff(todaysDate, "days");
+    this.colorManager(days);
   };
 
   render() {
-    console.log("$", this.state);
+    console.log("$", this.state.aTask);
     return (
       <div style={{ position: "relative" }}>
         <GlobalStyle />
@@ -96,14 +116,16 @@ class App extends React.Component {
           <TaskForm
             title="Edit Task"
             handleBackClick={this.handleBackClick}
-            editFormData={this.state.editFormData}
+            aTask={this.state.aTask}
             getTask={this.editTask}
           />
         )}
         {this.state.showDetails && (
           <TaskDetails
-            taskList={this.state.taskList}
+            // taskList={this.state.taskList}
+            aTask={this.state.aTask}
             handleBackClick={this.handleBackClick}
+            daysLeft={this.state.daysLeft}
           />
         )}
         {this.state.showHome && (

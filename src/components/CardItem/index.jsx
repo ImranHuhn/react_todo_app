@@ -26,7 +26,7 @@ export const CardItem = (props) => {
   }
 
   const handleCardClick = () => {
-    props.handleDetailClick();
+    props.handleDetailClick(props.item);
   };
 
   const handleEditClick = (e) => {
@@ -164,7 +164,11 @@ export const CardItem = (props) => {
                   }}
                 />
               </div>
-              <RatingScale text="Priority: " radio={props.item.priority} />
+              <RatingScale
+                text="Priority: "
+                radio={props.item.priority}
+                htmlTag="h4"
+              />
             </div>
             <div style={{ display: "flex", marginBottom: "5px" }}>
               <div
@@ -178,7 +182,11 @@ export const CardItem = (props) => {
               >
                 <DirectionalIcon style={{ width: "20px", height: "20px" }} />
               </div>
-              <RatingScale text="Complexity: " radio={props.item.complexity} />
+              <RatingScale
+                text="Complexity: "
+                radio={props.item.complexity}
+                htmlTag="h4"
+              />
             </div>
             <div style={{ display: "flex", marginTop: "10px" }}>
               <ul
