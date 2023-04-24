@@ -1,5 +1,5 @@
 import React from "react";
-import CheckList from "../CheckList";
+import CheckListSection from "../CheckListSection";
 import { HeaderText } from "../HeaderText";
 import { ButtonWide } from "../ButtonWide";
 import { RadioButtons } from "../RadioButtons";
@@ -146,7 +146,7 @@ class TaskForm extends React.Component {
                   />
                 </div>
               </DateTimeWrapper>
-              <CheckList
+              <CheckListSection
                 getList={this.getList}
                 deleteChecklistItem={this.deleteChecklistItem}
                 checklist={this.state.checklist}

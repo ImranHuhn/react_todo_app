@@ -127,7 +127,7 @@ class App extends React.Component {
         )}
         {this.state.showDetails && (
           <TaskDetails
-            // taskList={this.state.taskList}
+            taskList={this.state.taskList}
             aTask={this.state.aTask}
             handleBackClick={this.backToHome}
             daysLeft={this.state.daysLeft}

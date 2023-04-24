@@ -47,7 +47,8 @@ class CheckListItem extends React.Component {
 
   render() {
     return (
-      <>
+      <div>
+        {}
         <Item>
           {this.state.showInput ? (
             <TextInput
@@ -71,7 +72,7 @@ class CheckListItem extends React.Component {
             </DeleteButton>
           )}
         </Item>
-      </>
+      </div>
     );
   }
 }

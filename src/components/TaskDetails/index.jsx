@@ -1,6 +1,7 @@
 import React from "react";
 import moment from "moment";
 import { HeaderText } from "../HeaderText";
+import { CheckList } from "../CheckList";
 import { RatingScale } from "../RatingScale";
 import { ButtonWide } from "../ButtonWide";
 import { Calendar, ArrowIcon, DirectionalIcon } from "../IconComponent";
@@ -151,7 +152,11 @@ class TaskDetails extends React.Component {
                     />
                   </div>
                   <div
-                    style={{ display: "flex", justifyContent: "space-between", marginTop:"10px" }}
+                    style={{
+                      display: "flex",
+                      justifyContent: "space-between",
+                      marginTop: "10px",
+                    }}
                   >
                     <h2 style={{ fontWeight: "bold" }}>Task Complete</h2>
                     <h2
@@ -188,6 +193,11 @@ class TaskDetails extends React.Component {
               </div>
             </div>
           </div>
+          <CheckList
+            // getList={this.getList}
+            checklist={this.props.aTask.checklist}
+            // taskList={this.state.taskList}
+          />
           <div style={{ margin: "10px auto 20px" }}>
             <ButtonWide
               text="Repeat Tasks"
