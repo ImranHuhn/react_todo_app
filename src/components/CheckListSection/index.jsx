@@ -1,11 +1,7 @@
 import React from "react";
 import { TextInput } from "../TextInput";
 import { CheckList } from "../CheckList";
-import {
-  Container,
-  InputWrapper,
-  AddButton,
-} from "./CheckListSection.styles";
+import { Container, InputWrapper, AddButton } from "./CheckListSection.styles";
 import { PlusIcon } from "../IconComponent";
 
 class CheckListSection extends React.Component {
@@ -27,10 +23,6 @@ class CheckListSection extends React.Component {
     this.props.getList(item);
   };
 
-  // deleteChecklistItem = (item) => {
-  //   this.props.deleteChecklistItem(item);
-  // };
-
   render() {
     return (
       <Container>
@@ -49,24 +41,11 @@ class CheckListSection extends React.Component {
         </InputWrapper>
         <div>
           <CheckList
+            itemType="input"
             checklist={this.props.checklist}
             deleteChecklistItem={this.props.deleteChecklistItem}
-            // itemObj={this.state.item}
             editChecklistItem={this.props.editChecklistItem}
           />
-          {/* <List>
-            {this.props.checklist.map((item) => {
-              return (
-                <CheckListItem
-                  deleteChecklistItem={this.deleteChecklistItem}
-                  item={item}
-                  itemObj={this.state.item}
-                  key={crypto.randomUUID()}
-                  editChecklistItem={this.props.editChecklistItem}
-                />
-              );
-            })}
-          </List> */}
         </div>
       </Container>
     );

@@ -44,3 +44,16 @@ export const EnterButton = styled.button`
   right: 0;
   margin-right: 10px;
 `;
+
+// ${(props) => {props.item.isComplete ? "rgb(13, 153, 255)" : "rgba(13, 153, 255, 0.1)"}}
+// export const CheckButton = styled.button`
+// // background-color: rgb(13, 153, 255);
+//   position: absolute;
+//   width: 44px;
+//   height: 44px;
+//   border-radius: 50%;
+//   border: none;
+//   cursor: pointer;
+//   right: 0;
+//   margin-right: 10px;
+// `;

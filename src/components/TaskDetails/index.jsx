@@ -8,7 +8,6 @@ import { Calendar, ArrowIcon, DirectionalIcon } from "../IconComponent";
 
 class TaskDetails extends React.Component {
   render() {
-    console.log("$$$", this.props.daysLeft);
     return (
       <div
         style={{
@@ -194,9 +193,9 @@ class TaskDetails extends React.Component {
             </div>
           </div>
           <CheckList
-            // getList={this.getList}
+            itemType="noninput"
             checklist={this.props.aTask.checklist}
-            // taskList={this.state.taskList}
+            completedChecklist={this.props.completedChecklist}
           />
           <div style={{ margin: "10px auto 20px" }}>
             <ButtonWide

@@ -46,10 +46,12 @@ class TaskForm extends React.Component {
     this.setState({ dueTime: e.target.value });
   };
 
+  //////////////////////
   getList = (list) => {
-    const newList = [...this.state.checklist, list];
-    this.setState({ checklist: newList });
+    const newChecklist = [...this.state.checklist, list];
+    this.setState({ checklist: newChecklist });
   };
+  ////////////////////////
 
   getTags = (e) => {
     const newTags = e.target.value.toLowerCase().split(",");
@@ -57,10 +59,10 @@ class TaskForm extends React.Component {
   };
 
   deleteChecklistItem = (item) => {
-    const newList = this.state.checklist.filter((el) => {
+    const newChecklist = this.state.checklist.filter((el) => {
       return el.id !== item.id;
     });
-    this.setState({ checklist: newList });
+    this.setState({ checklist: newChecklist });
   };
 
   editChecklistItem = (id, newValue) => {

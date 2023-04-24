@@ -8,11 +8,11 @@ import TaskDetails from "./components/TaskDetails";
 class App extends React.Component {
   state = {
     taskList: [],
+    allTags: [],
     aTask: null,
     showHome: true,
     showAdd: false,
     showDetails: false,
-    allTags: [],
     daysLeft: "",
   };
 
@@ -41,6 +41,7 @@ class App extends React.Component {
     });
     this.setState({ taskList: newTaskList });
     this.addAllTags(newTaskList);
+    localStorage.setItem("taskList", JSON.stringify(newTaskList));
   };
 
   handleCheckClick = (item) => {
@@ -52,6 +53,18 @@ class App extends React.Component {
     });
     this.setState({ taskList: newTaskList });
     localStorage.setItem("taskList", JSON.stringify(newTaskList));
+  };
+
+  completedChecklist = (item) => {
+    const checklist = this.state.aTask.checklist.map((el) => {
+      if (el.id === item.id) {
+        el.isComplete = !item.isComplete;
+      }
+      return el;
+    });
+    const newTask = { ...this.state.aTask, checklist };
+    this.setState({ aTask: newTask });
+    this.editTask(newTask);
   };
 
   componentDidMount = () => {
@@ -106,7 +119,7 @@ class App extends React.Component {
   };
 
   render() {
-    console.log("$", this.state.aTask);
+    console.log("$", this.state);
     return (
       <div style={{ position: "relative" }}>
         <GlobalStyle />
@@ -133,6 +146,7 @@ class App extends React.Component {
             daysLeft={this.state.daysLeft}
             handleEditClick={this.handleEditClick}
             backToDetails={this.backToDetails}
+            completedChecklist={this.completedChecklist}
           />
         )}
         {this.state.showHome && (

@@ -8,10 +8,12 @@ export const CheckList = (props) => {
       {props.checklist.map((item) => {
         return (
           <CheckListItem
+            itemType={props.itemType}
             deleteChecklistItem={props.deleteChecklistItem}
             item={item}
             key={crypto.randomUUID()}
             editChecklistItem={props.editChecklistItem}
+            completedChecklist={props.completedChecklist}
           />
         );
       })}
