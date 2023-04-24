@@ -25,17 +25,17 @@ class App extends React.Component {
     this.setState({ allTags: newAllTags });
   };
 
-  getTask = (task) => {
-    const newTaskList = [...this.state.taskList, ...[task]];
+  getTask = (item) => {
+    const newTaskList = [...this.state.taskList, ...[item]];
     this.setState({ taskList: newTaskList });
     localStorage.setItem("taskList", JSON.stringify(newTaskList));
     this.addAllTags(newTaskList);
   };
 
-  editTask = (task) => {
+  editTask = (item) => {
     const newTaskList = this.state.taskList.map((el) => {
-      if (task.id === el.id) {
-        el = task;
+      if (item.id === el.id) {
+        el = item;
       }
       return el;
     });
@@ -60,6 +60,7 @@ class App extends React.Component {
     this.addAllTags(data);
   };
 
+  // rename to "backToHome"
   handleBackClick = () => {
     this.setState({
       showHome: true,
@@ -69,12 +70,20 @@ class App extends React.Component {
     });
   };
 
+  // create function for "backToDetails"
+
   handleAddClick = () => {
     this.setState({ showHome: false, showAdd: true });
   };
 
   handleEditClick = (item) => {
-    this.setState({ showHome: false, showEdit: true, aTask: item });
+    this.setState({
+      showHome: false,
+      showEdit: true,
+      showDetails: false,
+      aTask: item,
+    });
+    this.editTask(item);
   };
 
   handleDetailClick = (item) => {
@@ -126,6 +135,7 @@ class App extends React.Component {
             aTask={this.state.aTask}
             handleBackClick={this.handleBackClick}
             daysLeft={this.state.daysLeft}
+            handleEditClick={this.handleEditClick}
           />
         )}
         {this.state.showHome && (

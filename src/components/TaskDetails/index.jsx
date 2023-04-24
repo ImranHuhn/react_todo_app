@@ -27,6 +27,8 @@ class TaskDetails extends React.Component {
             arrowButton="arrow"
             editButton="edit"
             handleBackClick={this.props.handleBackClick}
+            handleEditClick={this.props.handleEditClick}
+            aTask={this.props.aTask}
           />
           <div style={{ marginTop: "30px" }}>
             <div
@@ -149,7 +151,7 @@ class TaskDetails extends React.Component {
                     />
                   </div>
                   <div
-                    style={{ display: "flex", justifyContent: "space-between" }}
+                    style={{ display: "flex", justifyContent: "space-between", marginTop:"10px" }}
                   >
                     <h2 style={{ fontWeight: "bold" }}>Task Complete</h2>
                     <h2
@@ -167,7 +169,7 @@ class TaskDetails extends React.Component {
                       borderRadius: "10px",
                       height: "15px",
                       width: "100%",
-                      margin: "5px auto",
+                      margin: "5px auto 10px",
                       position: "relative",
                     }}
                   >

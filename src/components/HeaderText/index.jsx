@@ -3,6 +3,9 @@ import { ArrowIcon, EditIcon } from "../IconComponent";
 import { Header, ArrowButtonWrapper, ArrowButton } from "./HeaderText.styles";
 
 export const HeaderText = (props) => {
+  const handleEditClick = () => {
+    props.handleEditClick(props.aTask);
+  };
   const button = {
     arrow: (
       <ArrowButton onClick={props.handleBackClick}>
@@ -11,6 +14,7 @@ export const HeaderText = (props) => {
     ),
     edit: (
       <button
+        onClick={handleEditClick}
         style={{
           display: "flex",
           justifyContent: "center",
@@ -27,11 +31,14 @@ export const HeaderText = (props) => {
       </button>
     ),
   };
+
   return (
     <Header>
       <ArrowButtonWrapper>{button[props.arrowButton]}</ArrowButtonWrapper>
       <h1>{props.title}</h1>
-      <div style={{position:"absolute", right:"0"}}>{button[props.editButton]}</div>
+      <div style={{ position: "absolute", right: "0" }}>
+        {button[props.editButton]}
+      </div>
     </Header>
   );
 };
