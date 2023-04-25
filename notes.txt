@@ -1,8 +1,12 @@
--card has edit button but not really needed because edit button exist in task details
+suggestions:
+-check and edit button in card at the home page is not needed
+    -check button: completed task card should be automatically be completed when the checklist are all completed instead of manually toggling
+    -edit button: card has edit button but not really needed because edit button exist in task details when you click on the card
 -forms for the checklist needs an add button
     -when creating an item for checklist, there should be an enter button and remove button
-        -enter button to accept the edited item
-        -remove button to delete the entered/added item 
+        -enter button: accept the edited item that was added
+        -remove button: delete the item item that was added
+
 
 
 

@@ -158,7 +158,7 @@ class App extends React.Component {
   };
 
   searchTasks = () => {
-    
+    console.log("searching")
   }
 
   sortTasks = () => {
