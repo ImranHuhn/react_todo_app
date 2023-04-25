@@ -14,7 +14,6 @@ class App extends React.Component {
     showAdd: false,
     showDetails: false,
     daysLeft: "",
-    percentage: 0,
   };
 
   addAllTags = (data) => {
@@ -158,16 +157,16 @@ class App extends React.Component {
   };
 
   searchTasks = () => {
-    console.log("searching")
-  }
+    console.log("searching");
+  };
 
   sortTasks = () => {
-    console.log("sorting")
-  }
+    console.log("sorting");
+  };
 
   filterTasks = () => {
-    console.log("filtering")
-  }
+    console.log("filtering");
+  };
 
   render() {
     console.log("$", this.state);
