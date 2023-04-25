@@ -4,6 +4,7 @@ export const DropdownItem = (props) => {
   const handleClick = () => {
     props.dropdownSelection(props.item);
   };
+
   return (
     <div
       onClick={handleClick}

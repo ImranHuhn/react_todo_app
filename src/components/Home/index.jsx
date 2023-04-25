@@ -50,6 +50,10 @@ class Home extends React.Component {
     this.setState({ search: submitSearch });
   };
 
+  // handlePrioritySort = () => {
+
+  // }
+
   dropdownSelection = (option) => {
     console.log("option= ", option);
   };
