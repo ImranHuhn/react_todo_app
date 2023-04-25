@@ -1,4 +1,5 @@
 import React from "react";
+import { DropdownItem } from "../DropdownItem";
 
 export const DropdownBox = (props) => {
   return (
@@ -17,35 +18,16 @@ export const DropdownBox = (props) => {
         zIndex: "2",
       }}
     >
-      {props.options.map((el) => {
+      {props.options.map((item) => {
         return (
-          <div
-          key={crypto.randomUUID()}
-            style={{
-              display: "flex",
-              justifyContent: "space-between",
-              alignItems: "center",
-              borderBottom: "1px solid #d3d3d3",
-              padding: "10px 0",
-            }}
-          >
-            <h5>{el}</h5>
-            <input type="radio" />
-          </div>
+          <DropdownItem
+            key={crypto.randomUUID()}
+            item={item}
+            dropdownSelection={props.dropdownSelection}
+            name={props.name}
+          />
         );
       })}
-      {/* <div
-        style={{
-          display: "flex",
-          justifyContent: "space-between",
-          alignItems: "center",
-          borderBottom: "1px solid #d3d3d3",
-          padding: "10px 0",
-        }}
-      >
-        <h5>box</h5>
-        <input type="radio" />
-      </div> */}
     </div>
   );
 };

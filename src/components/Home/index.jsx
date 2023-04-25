@@ -8,9 +8,11 @@ import { MagnifyIcon, ArrowIcon } from "../IconComponent";
 
 class Home extends React.Component {
   state = {
+    value: "",
+    search: "",
     showSort: false,
     showFilter: false,
-    sort: [
+    sortOptions: [
       "Default",
       "Ascending Date",
       "Descending Date",
@@ -19,6 +21,7 @@ class Home extends React.Component {
       "Ascending Priority",
       "Descending Priority",
     ],
+    sort: null,
   };
 
   handleAddClick = () => {
@@ -26,14 +29,46 @@ class Home extends React.Component {
   };
 
   handleSortClick = () => {
-    this.setState({ showSort: !this.state.showSort });
+    this.setState({ showSort: !this.state.showSort, showFilter: false });
   };
 
   handleFilterClick = () => {
-    this.setState({ showFilter: !this.state.showFilter });
+    this.setState({ showFilter: !this.state.showFilter, showSort: false });
+  };
+
+  handleBlur = () => {
+    this.setState({ showFilter: false, showSort: false });
+  };
+
+  searchChange = (e) => {
+    this.setState({ value: e.target.value });
+  };
+
+  searchSubmit = (e) => {
+    e.preventDefault();
+    const submitSearch = this.state.value;
+    this.setState({ search: submitSearch });
+  };
+
+  dropdownSelection = (option) => {
+    console.log("option= ", option);
   };
 
   render() {
+    const searchTaskName = this.props.taskList.filter((item) => {
+      return item.taskName.includes(this.state.search);
+    });
+
+    const sortPriorityDescending = searchTaskName
+      .map((item) => item.priority)
+      .sort((a, b) => a - b);
+    const sortPriorityAscending = searchTaskName
+      .map((item) => item.priority)
+      .sort((a, b) => b - a);
+
+    console.log("sortPriorityDescending", sortPriorityDescending);
+    console.log("sortPriorityAscending", sortPriorityAscending);
+
     return (
       <div
         style={{
@@ -46,43 +81,51 @@ class Home extends React.Component {
         }}
       >
         <div style={{ width: "500px", padding: "50px 0" }}>
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-              position: "relative",
-            }}
-          >
-            <MagnifyIcon
-              width="24"
-              height="24"
-              style={{ position: "absolute", left: "0", margin: "auto 18px" }}
-            />
-            <TextInput
-              type="text"
-              style={{ paddingLeft: "50px" }}
-              placeholder="Search..."
-            />
-            <button
+          <form action="submit" onSubmit={this.searchSubmit}>
+            <div
               style={{
                 display: "flex",
                 justifyContent: "center",
                 alignItems: "center",
-                position: "absolute",
-                right: "0",
-                backgroundColor: "rgba(13, 153, 255, 0.1)",
-                borderRadius: "50%",
-                width: "36px",
-                height: "36px",
-                margin: "auto 10px",
-                border: "none",
-                cursor: "pointer",
+                position: "relative",
               }}
             >
-              <ArrowIcon width="24" height="24" style={{ rotate: "180deg" }} />
-            </button>
-          </div>
+              <MagnifyIcon
+                width="24"
+                height="24"
+                style={{ position: "absolute", left: "0", margin: "auto 18px" }}
+              />
+              <TextInput
+                handleChange={this.searchChange}
+                value={this.state.value}
+                type="text"
+                style={{ paddingLeft: "50px" }}
+                placeholder="Search..."
+              />
+              <button
+                style={{
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  position: "absolute",
+                  right: "0",
+                  backgroundColor: "rgba(13, 153, 255, 0.1)",
+                  borderRadius: "50%",
+                  width: "36px",
+                  height: "36px",
+                  margin: "auto 10px",
+                  border: "none",
+                  cursor: "pointer",
+                }}
+              >
+                <ArrowIcon
+                  width="24"
+                  height="24"
+                  style={{ rotate: "180deg" }}
+                />
+              </button>
+            </div>
+          </form>
           <div
             style={{
               display: "flex",
@@ -91,18 +134,21 @@ class Home extends React.Component {
           >
             <DropdownButton
               text="Sort"
+              name="sort"
               showDropdown={this.state.showSort}
               handleClick={this.handleSortClick}
-              sort={this.state.sort}
+              sortOptions={this.state.sortOptions}
+              dropdownSelection={this.dropdownSelection}
             />
             <DropdownButton
               text="Filter"
               showDropdown={this.state.showFilter}
               handleClick={this.handleFilterClick}
               allTags={this.props.allTags}
+              dropdownSelection={this.dropdownSelection}
             />
           </div>
-          {this.props.taskList.map((item) => {
+          {searchTaskName.map((item) => {
             return (
               <CardItem
                 item={item}
@@ -113,6 +159,17 @@ class Home extends React.Component {
               />
             );
           })}
+          {/* {this.props.taskList.map((item) => {
+            return (
+              <CardItem
+                item={item}
+                key={item.id}
+                handleCheckClick={this.props.handleCheckClick}
+                handleEditClick={this.props.handleEditClick}
+                handleDetailClick={this.props.handleDetailClick}
+              />
+            );
+          })} */}
           <div style={{ margin: "10px auto 20px", width: "192px" }}>
             <ButtonWide
               text="Add New Task"

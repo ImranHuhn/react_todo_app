@@ -156,20 +156,9 @@ class App extends React.Component {
     this.colorManager(days);
   };
 
-  searchTasks = () => {
-    console.log("searching");
-  };
-
-  sortTasks = () => {
-    console.log("sorting");
-  };
-
-  filterTasks = () => {
-    console.log("filtering");
-  };
-
   render() {
     console.log("$", this.state);
+
     return (
       <div style={{ position: "relative" }}>
         <GlobalStyle />

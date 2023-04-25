@@ -35,10 +35,18 @@ export const DropdownButton = (props) => {
         />
       </button>
       {props.text === "Sort" && props.showDropdown && (
-        <DropdownBox options={props.sort} />
+        <DropdownBox
+          name={props.name}
+          options={props.sortOptions}
+          dropdownSelection={props.dropdownSelection}
+        />
       )}
       {props.text === "Filter" && props.showDropdown && (
-        <DropdownBox options={props.allTags} />
+        <DropdownBox
+          name={props.name}
+          options={props.allTags}
+          dropdownSelection={props.dropdownSelection}
+        />
       )}
     </div>
   );
