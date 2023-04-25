@@ -108,7 +108,6 @@ class App extends React.Component {
     const data = JSON.parse(localStorage.getItem("taskList")) || [];
     this.setState({ taskList: data });
     this.addAllTags(data);
-    // this.percentage();
   };
 
   backToHome = () => {
@@ -157,6 +156,18 @@ class App extends React.Component {
     const days = dueDate.diff(todaysDate, "days");
     this.colorManager(days);
   };
+
+  searchTasks = () => {
+    
+  }
+
+  sortTasks = () => {
+    console.log("sorting")
+  }
+
+  filterTasks = () => {
+    console.log("filtering")
+  }
 
   render() {
     console.log("$", this.state);

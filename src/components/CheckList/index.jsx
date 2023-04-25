@@ -14,6 +14,7 @@ export const CheckList = (props) => {
               item={item}
               editChecklistItem={props.editChecklistItem}
               completedChecklist={props.completedChecklist}
+              clickable={props.clickable}
             />
           </div>
         );

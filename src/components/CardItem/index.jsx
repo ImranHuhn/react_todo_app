@@ -15,7 +15,6 @@ export const CardItem = (props) => {
   const todaysDate = moment();
   const daysLeft = dueDate.diff(todaysDate, "days");
   let cardColor = "";
-  let percent = 77;
 
   if (daysLeft < 1) {
     cardColor = "255, 64, 52";
@@ -38,18 +37,7 @@ export const CardItem = (props) => {
     e.stopPropagation();
     props.handleCheckClick(props.item);
   };
-  ////////////////////////////////////////////////////
-  // const percentage = () => {
-  //   const checkedItem = props.item.checklist
-  //     .map((item) => item.isComplete)
-  //     .filter((el) => {
-  //       return el === true;
-  //     }).length;
-  //   const totalItems = props.item.checklist.length;
-  //   percent = (checkedItem / totalItems) * 100;
-  //   console.log("percent", percent);
-  // };
-  ////////////////////////////////////////////////////
+
   return (
     <div
       onClick={handleCardClick}
@@ -235,7 +223,7 @@ export const CardItem = (props) => {
                     fill: "#002055",
                   },
                   path: {
-                    stroke: `rgba(${cardColor}, ${props.item.percent / 100})`,
+                    stroke: `rgba(${cardColor}, 1)`,
                     strokeLinecap: "round",
                     transition: "stroke-dashoffset 0.5s ease 0s",
                     transformOrigin: "center center",

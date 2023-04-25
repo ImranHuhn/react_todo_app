@@ -66,7 +66,6 @@ class TaskDetails extends React.Component {
                 borderRadius: "15px",
                 padding: "15px",
                 marginBottom: "20px",
-                cursor: "pointer",
                 border: "none",
               }}
             >
