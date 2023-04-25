@@ -20,7 +20,7 @@ class CheckListSection extends React.Component {
       isComplete: false,
     };
     this.setState({ value: "" });
-    this.props.getList(item);
+    this.props.getChecklist(item);
   };
 
   render() {

@@ -187,7 +187,7 @@ class TaskDetails extends React.Component {
                         color: `rgb(${this.props.daysLeft})`,
                       }}
                     >
-                      77%
+                      {this.props.aTask.percent}%
                     </h2>
                   </div>
                   <div
@@ -203,7 +203,7 @@ class TaskDetails extends React.Component {
                     <div
                       style={{
                         backgroundColor: `rgb(${this.props.daysLeft})`,
-                        width: "77%",
+                        width: `${this.props.aTask.percent}%`,
                         height: "100%",
                         position: "absolute",
                         left: "0",
@@ -228,16 +228,16 @@ class TaskDetails extends React.Component {
           <div style={{ marginTop: "30px" }}>
             <div style={{ margin: "10px auto 20px", width: "80%" }}>
               <ButtonWide
-                text="Repeat Tasks"
+                text="Repeat Task"
                 icon="repeat"
                 handleClick={this.handleRepeatClick}
               />
             </div>
             <div style={{ margin: "10px auto 20px", width: "60%" }}>
               <ButtonWide
-                text="Delete Tasks"
+                text="Delete Task"
                 icon="trash"
-                handleClick={this.handleDeleteClick} // click event
+                handleClick={this.handleDeleteClick}
                 redButton
               />
             </div>

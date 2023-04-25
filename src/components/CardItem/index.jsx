@@ -39,16 +39,16 @@ export const CardItem = (props) => {
     props.handleCheckClick(props.item);
   };
   ////////////////////////////////////////////////////
-  const percentage = () => {
-    const checkedItem = props.item.checklist
-      .map((item) => item.isComplete)
-      .filter((el) => {
-        return el === true;
-      }).length;
-    const totalItems = props.item.checklist.length;
-    percent = (checkedItem / totalItems) * 100;
-    console.log("percent", percent);
-  };
+  // const percentage = () => {
+  //   const checkedItem = props.item.checklist
+  //     .map((item) => item.isComplete)
+  //     .filter((el) => {
+  //       return el === true;
+  //     }).length;
+  //   const totalItems = props.item.checklist.length;
+  //   percent = (checkedItem / totalItems) * 100;
+  //   console.log("percent", percent);
+  // };
   ////////////////////////////////////////////////////
   return (
     <div
@@ -66,11 +66,6 @@ export const CardItem = (props) => {
         border: "none",
       }}
     >
-      {/* //////////////////////////////// */}
-      {/* //////////////////////////////// */}
-      {/* <button onClick={percent}></button> */}
-      {/* //////////////////////////////// */}
-      {/* //////////////////////////////// */}
       <div style={{ width: "500px" }}>
         <div
           style={{
@@ -218,7 +213,7 @@ export const CardItem = (props) => {
                     <li
                       key={crypto.randomUUID()}
                       style={{
-                        backgroundColor: `rgba(${cardColor},.2)`,
+                        backgroundColor: `rgba(${cardColor},.1)`,
                         padding: "6px 8px",
                         borderRadius: "15px",
                         marginRight: "5px",
@@ -240,17 +235,17 @@ export const CardItem = (props) => {
                     fill: "#002055",
                   },
                   path: {
-                    stroke: `rgba(${cardColor}, ${percent / 100})`,
+                    stroke: `rgba(${cardColor}, ${props.item.percent / 100})`,
                     strokeLinecap: "round",
                     transition: "stroke-dashoffset 0.5s ease 0s",
                     transformOrigin: "center center",
                   },
                   trail: {
-                    stroke: "#D1E2FE",
+                    stroke: `rgba(${cardColor}, .2)`,
                     strokeLinecap: "round",
                   },
                 }}
-                value={percent}
+                value={props.item.percent}
               >
                 <div>
                   <h5
@@ -259,7 +254,7 @@ export const CardItem = (props) => {
                       color: "#002055",
                       fontWeight: "bold",
                     }}
-                  >{`${percent}%`}</h5>
+                  >{`${props.item.percent}%`}</h5>
                 </div>
               </CircularProgressbarWithChildren>
             </div>

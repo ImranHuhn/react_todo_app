@@ -24,6 +24,7 @@ class TaskForm extends React.Component {
     checklist: this.props.aTask?.checklist || [],
     tags: this.props.aTask?.tags || [],
     isComplete: this.props.aTask?.isComplete || false,
+    percent: 0,
   };
 
   getName = (e) => {
@@ -47,7 +48,7 @@ class TaskForm extends React.Component {
   };
 
   //////////////////////
-  getList = (list) => {
+  getChecklist = (list) => {
     const newChecklist = [...this.state.checklist, list];
     this.setState({ checklist: newChecklist });
   };
@@ -149,7 +150,7 @@ class TaskForm extends React.Component {
                 </div>
               </DateTimeWrapper>
               <CheckListSection
-                getList={this.getList}
+                getChecklist={this.getChecklist}
                 deleteChecklistItem={this.deleteChecklistItem}
                 checklist={this.state.checklist}
                 editChecklistItem={this.editChecklistItem}

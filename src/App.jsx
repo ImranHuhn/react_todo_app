@@ -45,17 +45,7 @@ class App extends React.Component {
     localStorage.setItem("taskList", JSON.stringify(newTaskList));
   };
 
-  percentage = () => {
-    // const checkedItem = this.props.aTask.checklist
-    //   .map((item) => item.isComplete)
-    //   .filter((el) => {
-    //     return el === true;
-    //   }).length;
-    // const totalItems = this.props.aTask.checklist.length;
-    //   const percent = (checkedItem / totalItems) * 100
-    // console.log("percent", percent);
-  };
-
+  // toggles card/task
   handleCheckClick = (item) => {
     const newTaskList = this.state.taskList.map((el) => {
       if (item.id === el.id) {
@@ -67,6 +57,7 @@ class App extends React.Component {
     localStorage.setItem("taskList", JSON.stringify(newTaskList));
   };
 
+  // checks/unchecks item in checklist that is in a task
   completedChecklist = (item) => {
     const checklist = this.state.aTask.checklist.map((el) => {
       if (el.id === item.id) {
@@ -77,8 +68,23 @@ class App extends React.Component {
     const newTask = { ...this.state.aTask, checklist };
     this.setState({ aTask: newTask });
     this.editTask(newTask);
+    this.percentage(checklist);
   };
 
+  percentage = (items) => {
+    const checkedItem = items
+      .map((item) => item.isComplete)
+      .filter((el) => {
+        return el === true;
+      }).length;
+    const totalItems = items.length;
+    const percent = Math.trunc((checkedItem / totalItems) * 100);
+    const newTask = { ...this.state.aTask, percent };
+    this.setState({ aTask: newTask });
+    this.editTask(newTask);
+  };
+
+  // unchecks all items in checklist that is in a task
   clearChecklist = () => {
     const checklist = this.state.aTask.checklist.map((el) => {
       el.isComplete = false;
@@ -89,6 +95,7 @@ class App extends React.Component {
     this.editTask(newTask);
   };
 
+  // deletes an entire task
   deleteTask = (item) => {
     const newTaskList = this.state.taskList.filter((el) => el.id !== item.id);
     this.setState({ taskList: newTaskList });
@@ -112,10 +119,12 @@ class App extends React.Component {
     });
   };
 
+  // click on add button in home page and add-task page appears
   handleAddClick = () => {
     this.setState({ showHome: false, showAdd: true });
   };
 
+  // edit form appears, takes unedited data to state and sent to edit function
   handleEditClick = (item) => {
     this.setState({
       showHome: false,
