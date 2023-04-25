@@ -7,6 +7,29 @@ import { ButtonWide } from "../ButtonWide";
 import { Calendar, ArrowIcon, DirectionalIcon } from "../IconComponent";
 
 class TaskDetails extends React.Component {
+  handleRepeatClick = () => {
+    this.props.clearChecklist();
+  };
+
+  handleDeleteClick = () => {
+    this.props.deleteTask(this.props.aTask);
+  };
+
+  // componentDidMount = () => {
+  //   this.percentage();
+  // };
+
+  // percentage = () => {
+  //   const checkedItem = this.props.aTask.checklist
+  //     .map((item) => item.isComplete)
+  //     .filter((el) => {
+  //       return el === true;
+  //     }).length;
+  //   const totalItems = this.props.aTask.checklist.length;
+  //     const percent = (checkedItem / totalItems) * 100
+  //   console.log("percent", percent);
+  // };
+
   render() {
     return (
       <div
@@ -192,24 +215,32 @@ class TaskDetails extends React.Component {
               </div>
             </div>
           </div>
-          <CheckList
-            itemType="noninput"
-            checklist={this.props.aTask.checklist}
-            completedChecklist={this.props.completedChecklist}
-          />
-          <div style={{ margin: "10px auto 20px" }}>
-            <ButtonWide
-              text="Repeat Tasks"
-              icon="repeat"
-              handleClick={this.handleRepeatClick}
+          <div style={{ marginTop: "30px" }}>
+            {this.props.aTask.checklist.length !== 0 && (
+              <h2>Checklist for subtasks</h2>
+            )}
+            <CheckList
+              itemType="noninput"
+              checklist={this.props.aTask.checklist}
+              completedChecklist={this.props.completedChecklist}
             />
           </div>
-          <div style={{ margin: "10px auto 20px" }}>
-            <ButtonWide
-              text="Delete Tasks"
-              icon="delete"
-              handleClick={this.handleDeleteClick}
-            />
+          <div style={{ marginTop: "30px" }}>
+            <div style={{ margin: "10px auto 20px", width: "80%" }}>
+              <ButtonWide
+                text="Repeat Tasks"
+                icon="repeat"
+                handleClick={this.handleRepeatClick}
+              />
+            </div>
+            <div style={{ margin: "10px auto 20px", width: "60%" }}>
+              <ButtonWide
+                text="Delete Tasks"
+                icon="trash"
+                handleClick={this.handleDeleteClick} // click event
+                redButton
+              />
+            </div>
           </div>
         </div>
       </div>

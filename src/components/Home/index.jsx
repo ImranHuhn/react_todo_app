@@ -113,7 +113,7 @@ class Home extends React.Component {
               />
             );
           })}
-          <div style={{ margin: "10px auto 20px" }}>
+          <div style={{ margin: "10px auto 20px", width: "192px" }}>
             <ButtonWide
               text="Add New Task"
               icon="plus"

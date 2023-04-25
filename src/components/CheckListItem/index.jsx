@@ -51,7 +51,6 @@ class CheckListItem extends React.Component {
   };
 
   render() {
-    console.log(this.props.item.isComplete, "*****************");
     return (
       <div>
         {this.props.itemType === "input" && (

@@ -165,7 +165,9 @@ class TaskForm extends React.Component {
                 />
               </TagsWrapper>
               <SaveButtonWrapper>
-                <ButtonWide text="Save Task" />
+                <div style={{ width: "192px" }}>
+                  <ButtonWide text="Save Task" />
+                </div>
               </SaveButtonWrapper>
             </div>
           </Wrapper>

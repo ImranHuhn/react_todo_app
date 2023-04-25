@@ -11,11 +11,11 @@ import {
 } from "../IconComponent";
 
 export const CardItem = (props) => {
-  const percentage = 77;
   const dueDate = moment(props.item.dueDate);
   const todaysDate = moment();
   const daysLeft = dueDate.diff(todaysDate, "days");
   let cardColor = "";
+  let percent = 77;
 
   if (daysLeft < 1) {
     cardColor = "255, 64, 52";
@@ -38,7 +38,18 @@ export const CardItem = (props) => {
     e.stopPropagation();
     props.handleCheckClick(props.item);
   };
-
+  ////////////////////////////////////////////////////
+  const percentage = () => {
+    const checkedItem = props.item.checklist
+      .map((item) => item.isComplete)
+      .filter((el) => {
+        return el === true;
+      }).length;
+    const totalItems = props.item.checklist.length;
+    percent = (checkedItem / totalItems) * 100;
+    console.log("percent", percent);
+  };
+  ////////////////////////////////////////////////////
   return (
     <div
       onClick={handleCardClick}
@@ -55,6 +66,11 @@ export const CardItem = (props) => {
         border: "none",
       }}
     >
+      {/* //////////////////////////////// */}
+      {/* //////////////////////////////// */}
+      {/* <button onClick={percent}></button> */}
+      {/* //////////////////////////////// */}
+      {/* //////////////////////////////// */}
       <div style={{ width: "500px" }}>
         <div
           style={{
@@ -224,7 +240,7 @@ export const CardItem = (props) => {
                     fill: "#002055",
                   },
                   path: {
-                    stroke: `rgba(${cardColor}, ${percentage / 100})`,
+                    stroke: `rgba(${cardColor}, ${percent / 100})`,
                     strokeLinecap: "round",
                     transition: "stroke-dashoffset 0.5s ease 0s",
                     transformOrigin: "center center",
@@ -234,7 +250,7 @@ export const CardItem = (props) => {
                     strokeLinecap: "round",
                   },
                 }}
-                value={percentage}
+                value={percent}
               >
                 <div>
                   <h5
@@ -243,7 +259,7 @@ export const CardItem = (props) => {
                       color: "#002055",
                       fontWeight: "bold",
                     }}
-                  >{`${percentage}%`}</h5>
+                  >{`${percent}%`}</h5>
                 </div>
               </CircularProgressbarWithChildren>
             </div>

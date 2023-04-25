@@ -14,6 +14,7 @@ class App extends React.Component {
     showAdd: false,
     showDetails: false,
     daysLeft: "",
+    percentage: 0,
   };
 
   addAllTags = (data) => {
@@ -44,6 +45,17 @@ class App extends React.Component {
     localStorage.setItem("taskList", JSON.stringify(newTaskList));
   };
 
+  percentage = () => {
+    // const checkedItem = this.props.aTask.checklist
+    //   .map((item) => item.isComplete)
+    //   .filter((el) => {
+    //     return el === true;
+    //   }).length;
+    // const totalItems = this.props.aTask.checklist.length;
+    //   const percent = (checkedItem / totalItems) * 100
+    // console.log("percent", percent);
+  };
+
   handleCheckClick = (item) => {
     const newTaskList = this.state.taskList.map((el) => {
       if (item.id === el.id) {
@@ -67,10 +79,28 @@ class App extends React.Component {
     this.editTask(newTask);
   };
 
+  clearChecklist = () => {
+    const checklist = this.state.aTask.checklist.map((el) => {
+      el.isComplete = false;
+      return el;
+    });
+    const newTask = { ...this.state.aTask, checklist };
+    this.setState({ aTask: newTask });
+    this.editTask(newTask);
+  };
+
+  deleteTask = (item) => {
+    const newTaskList = this.state.taskList.filter((el) => el.id !== item.id);
+    this.setState({ taskList: newTaskList });
+    localStorage.setItem("taskList", JSON.stringify(newTaskList));
+    this.backToHome();
+  };
+
   componentDidMount = () => {
     const data = JSON.parse(localStorage.getItem("taskList")) || [];
     this.setState({ taskList: data });
     this.addAllTags(data);
+    // this.percentage();
   };
 
   backToHome = () => {
@@ -147,6 +177,8 @@ class App extends React.Component {
             handleEditClick={this.handleEditClick}
             backToDetails={this.backToDetails}
             completedChecklist={this.completedChecklist}
+            clearChecklist={this.clearChecklist}
+            deleteTask={this.deleteTask}
           />
         )}
         {this.state.showHome && (
