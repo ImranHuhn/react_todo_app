@@ -71,6 +71,18 @@ class App extends React.Component {
     this.percentage(checklist);
   };
 
+  // unchecks all items in checklist that is in a task
+  clearChecklist = () => {
+    const checklist = this.state.aTask.checklist.map((el) => {
+      el.isComplete = false;
+      return el;
+    });
+    const newTask = { ...this.state.aTask, checklist };
+    this.setState({ aTask: newTask });
+    this.editTask(newTask);
+    this.percentage(checklist);
+  };
+
   percentage = (items) => {
     const checkedItem = items
       .map((item) => item.isComplete)
@@ -80,17 +92,6 @@ class App extends React.Component {
     const totalItems = items.length;
     const percent = Math.trunc((checkedItem / totalItems) * 100);
     const newTask = { ...this.state.aTask, percent };
-    this.setState({ aTask: newTask });
-    this.editTask(newTask);
-  };
-
-  // unchecks all items in checklist that is in a task
-  clearChecklist = () => {
-    const checklist = this.state.aTask.checklist.map((el) => {
-      el.isComplete = false;
-      return el;
-    });
-    const newTask = { ...this.state.aTask, checklist };
     this.setState({ aTask: newTask });
     this.editTask(newTask);
   };
