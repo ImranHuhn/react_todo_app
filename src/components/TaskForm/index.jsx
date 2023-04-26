@@ -20,7 +20,7 @@ class TaskForm extends React.Component {
     priority: this.props.aTask?.priority || 0,
     complexity: this.props.aTask?.complexity || 0,
     dueDate: this.props.aTask?.dueDate || "",
-    dueTime: this.props.aTask?.dueTime || "",
+    dueTime: this.props.aTask?.dueTime || "00:00",
     checklist: this.props.aTask?.checklist || [],
     tags: this.props.aTask?.tags || [],
     isComplete: this.props.aTask?.isComplete || false,
@@ -41,6 +41,7 @@ class TaskForm extends React.Component {
 
   getDate = (e) => {
     this.setState({ dueDate: e.target.value });
+    // this.setState({ dueDate: Date.parse(e.target.value) });
   };
 
   getTime = (e) => {

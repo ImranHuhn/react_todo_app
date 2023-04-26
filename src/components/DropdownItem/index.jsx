@@ -18,7 +18,7 @@ export const DropdownItem = (props) => {
       }}
     >
       <h5>{props.item}</h5>
-      <input type="radio" name={props.name} value={props.item.value} />
+      <input type="radio" name={props.name} value={props.item} />
     </div>
   );
 };

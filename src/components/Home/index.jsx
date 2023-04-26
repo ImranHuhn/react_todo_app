@@ -21,7 +21,7 @@ class Home extends React.Component {
       "Ascending Priority",
       "Descending Priority",
     ],
-    sort: null,
+    sort: "",
   };
 
   handleAddClick = () => {
@@ -36,9 +36,9 @@ class Home extends React.Component {
     this.setState({ showFilter: !this.state.showFilter, showSort: false });
   };
 
-  handleBlur = () => {
-    this.setState({ showFilter: false, showSort: false });
-  };
+  // handleBlur = () => {
+  //   this.setState({ showFilter: false, showSort: false });
+  // };
 
   searchChange = (e) => {
     this.setState({ value: e.target.value });
@@ -50,12 +50,15 @@ class Home extends React.Component {
     this.setState({ search: submitSearch });
   };
 
-  // handlePrioritySort = () => {
+  // filterSelection = () => {
 
   // }
 
-  dropdownSelection = (option) => {
-    console.log("option= ", option);
+  handleSort = () => {};
+
+  dropdownSelection = (selection) => {
+    console.log("option= ", selection);
+    this.setState({ sort: selection, showFilter: false, showSort: false });
   };
 
   render() {
@@ -63,15 +66,30 @@ class Home extends React.Component {
       return item.taskName.includes(this.state.search);
     });
 
-    const sortPriorityDescending = searchTaskName
-      .map((item) => item.priority)
-      .sort((a, b) => a - b);
-    const sortPriorityAscending = searchTaskName
-      .map((item) => item.priority)
-      .sort((a, b) => b - a);
-
-    console.log("sortPriorityDescending", sortPriorityDescending);
-    console.log("sortPriorityAscending", sortPriorityAscending);
+    searchTaskName.sort((a, b) => {
+      const priorityA = a.priority;
+      const priorityB = b.priority;
+      const complexityA = a.complexity;
+      const complexityB = b.complexity;
+      const dateA = Date.parse(a.dueDate);
+      const dateB = Date.parse(b.dueDate);
+      switch (this.state.sort) {
+        case "Ascending Date":
+          return dateA - dateB;
+        case "Descending Date":
+          return dateB - dateA;
+        case "Ascending Complexity":
+          return complexityA - complexityB;
+        case "Descending Complexity":
+          return complexityB - complexityA;
+        case "Ascending Priority":
+          return priorityA - priorityB;
+        case "Descending Priority":
+          return priorityB - priorityA;
+        default:
+          return searchTaskName;
+      }
+    });
 
     return (
       <div
@@ -163,17 +181,6 @@ class Home extends React.Component {
               />
             );
           })}
-          {/* {this.props.taskList.map((item) => {
-            return (
-              <CardItem
-                item={item}
-                key={item.id}
-                handleCheckClick={this.props.handleCheckClick}
-                handleEditClick={this.props.handleEditClick}
-                handleDetailClick={this.props.handleDetailClick}
-              />
-            );
-          })} */}
           <div style={{ margin: "10px auto 20px", width: "192px" }}>
             <ButtonWide
               text="Add New Task"
