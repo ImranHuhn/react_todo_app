@@ -22,7 +22,7 @@ class Home extends React.Component {
       "Descending Priority",
     ],
     sort: "",
-    filter: [],
+    filter: [1],
   };
 
   handleAddClick = () => {
@@ -49,17 +49,25 @@ class Home extends React.Component {
 
   filterSelection = (selection) => {
     const filter = this.props.allTags.filter((el) => {
-        return selection === el;
+      return selection === el;
     });
     const newFilter = this.state.filter.concat(filter);
     this.setState({ filter: newFilter });
   };
 
-  dropdownSelection = (selection) => {
-    console.log("option= ", selection);
-    this.setState({ sort: selection, showFilter: false, showSort: false });
-    this.filterSelection(selection);
+  dropdownSelection = (item) => {
+    console.log("option= ", item);
+    this.setState({ sort: item });
+    // this.setState({ sort: selection, showFilter: false, showSort: false });
+    this.filterSelection(item);
   };
+
+  // getFilter = (e) => {
+  //   console.log("filter= ", e.target.value);
+  //   const filter = { text: e.target.value, isChecked: false };
+  //   const newFilter = this.state.filter.concat(filter);
+  //   this.setState({ filter: newFilter });
+  // };
 
   render() {
     // filter selected "allTags" array
@@ -67,6 +75,10 @@ class Home extends React.Component {
 
     const searchTaskName = this.props.taskList.filter((item) => {
       return item.taskName.includes(this.state.search);
+    });
+
+    searchTaskName.filter((item) => {
+      return this.state.filter.indexOf(item.tags) > -1;
     });
 
     searchTaskName.sort((a, b) => {
@@ -171,6 +183,8 @@ class Home extends React.Component {
               handleClick={this.handleFilterClick}
               allTags={this.props.allTags}
               dropdownSelection={this.dropdownSelection}
+              getFilter={this.getFilter}
+              filters={this.state.filter}
             />
           </div>
           {searchTaskName.map((item) => {

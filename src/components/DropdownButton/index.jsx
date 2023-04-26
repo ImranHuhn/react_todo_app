@@ -46,6 +46,8 @@ export const DropdownButton = (props) => {
           name={props.name}
           options={props.allTags}
           dropdownSelection={props.dropdownSelection}
+          // getFilter={props.getFilter}
+          // filters={props.filters}
         />
       )}
     </div>

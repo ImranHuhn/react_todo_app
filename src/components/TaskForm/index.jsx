@@ -41,19 +41,16 @@ class TaskForm extends React.Component {
 
   getDate = (e) => {
     this.setState({ dueDate: e.target.value });
-    // this.setState({ dueDate: Date.parse(e.target.value) });
   };
 
   getTime = (e) => {
     this.setState({ dueTime: e.target.value });
   };
 
-  //////////////////////
   getChecklist = (list) => {
     const newChecklist = [...this.state.checklist, list];
     this.setState({ checklist: newChecklist });
   };
-  ////////////////////////
 
   getTags = (e) => {
     const newTags = e.target.value.toLowerCase().split(",");

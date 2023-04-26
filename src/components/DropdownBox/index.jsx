@@ -25,6 +25,8 @@ export const DropdownBox = (props) => {
             item={item}
             dropdownSelection={props.dropdownSelection}
             name={props.name}
+            // getFilter={props.getFilter}
+            // filters={props.filters}
           />
         );
       })}

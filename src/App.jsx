@@ -21,7 +21,8 @@ class App extends React.Component {
     data.map((el) => {
       newAllTags = newAllTags.concat(el.tags);
     });
-    newAllTags = newAllTags.filter((el, i) => newAllTags.indexOf(el) === i);
+    newAllTags = newAllTags.filter((el, i) => newAllTags.indexOf(el) === i); 
+    // newAllTags = newAllTags.map((el) => ({tagName: el, isChecked: false}))
     this.setState({ allTags: newAllTags });
   };
 
