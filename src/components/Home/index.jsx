@@ -22,6 +22,7 @@ class Home extends React.Component {
       "Descending Priority",
     ],
     sort: "",
+    filter: [],
   };
 
   handleAddClick = () => {
@@ -36,10 +37,6 @@ class Home extends React.Component {
     this.setState({ showFilter: !this.state.showFilter, showSort: false });
   };
 
-  // handleBlur = () => {
-  //   this.setState({ showFilter: false, showSort: false });
-  // };
-
   searchChange = (e) => {
     this.setState({ value: e.target.value });
   };
@@ -50,18 +47,24 @@ class Home extends React.Component {
     this.setState({ search: submitSearch });
   };
 
-  // filterSelection = () => {
-
-  // }
-
-  handleSort = () => {};
+  filterSelection = (selection) => {
+    const filter = this.props.allTags.filter((el) => {
+        return selection === el;
+    });
+    const newFilter = this.state.filter.concat(filter);
+    this.setState({ filter: newFilter });
+  };
 
   dropdownSelection = (selection) => {
     console.log("option= ", selection);
     this.setState({ sort: selection, showFilter: false, showSort: false });
+    this.filterSelection(selection);
   };
 
   render() {
+    // filter selected "allTags" array
+    console.log("filter= ", this.state.filter);
+
     const searchTaskName = this.props.taskList.filter((item) => {
       return item.taskName.includes(this.state.search);
     });
