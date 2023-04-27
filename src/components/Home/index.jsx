@@ -22,7 +22,7 @@ class Home extends React.Component {
       "Descending Priority",
     ],
     sort: "",
-    filter: [],
+    filters: [],
   };
 
   handleAddClick = () => {
@@ -51,33 +51,30 @@ class Home extends React.Component {
     const filter = this.props.allTags.filter((el) => {
       return selection === el;
     });
-    const newFilter = this.state.filter.concat(filter);
-    this.setState({ filter: newFilter });
+
+    if (!this.state.filters.includes(selection)) {
+      const newFilter = this.state.filters.concat(filter);
+      this.setState({ filters: newFilter });
+    }
   };
 
   dropdownSelection = (item) => {
     console.log("option= ", item);
-    this.setState({ sort: item, showFilter: false, showSort: false });
+    this.setState({ sort: item });
     this.filterSelection(item);
   };
 
-  getFilter = (e) => {
-    console.log("filter= ", e.target.value);
-    const filter = { text: e.target.value, isChecked: false };
-    const newFilter = this.state.filter.concat(filter);
-    this.setState({ filter: newFilter });
-  };
-
   render() {
+    console.log("filter= ", this.state.filters);
+
     let searchTaskName;
     searchTaskName = this.props.taskList.filter((item) => {
       return item.taskName.includes(this.state.search);
     });
 
-    let result;
-    if (this.state.filter.length > 0) {
+    if (this.state.filters.length > 0) {
       searchTaskName = searchTaskName.filter((el) =>
-        el.tags.some((tags) => this.state.filter.includes(tags))
+        el.tags.some((tags) => this.state.filters.includes(tags))
       );
     }
 
@@ -176,6 +173,7 @@ class Home extends React.Component {
               handleClick={this.handleSortClick}
               sortOptions={this.state.sortOptions}
               dropdownSelection={this.dropdownSelection}
+              sort={this.state.sort}
             />
             <DropdownButton
               text="Filter"
@@ -183,8 +181,7 @@ class Home extends React.Component {
               handleClick={this.handleFilterClick}
               allTags={this.props.allTags}
               dropdownSelection={this.dropdownSelection}
-              getFilter={this.getFilter}
-              filters={this.state.filter}
+              filters={this.state.filters}
             />
           </div>
           {searchTaskName.map((item) => {

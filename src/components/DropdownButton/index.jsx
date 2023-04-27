@@ -39,6 +39,7 @@ export const DropdownButton = (props) => {
           name={props.name}
           options={props.sortOptions}
           dropdownSelection={props.dropdownSelection}
+          sort={props.sort}
         />
       )}
       {props.text === "Filter" && props.showDropdown && (
@@ -46,8 +47,7 @@ export const DropdownButton = (props) => {
           name={props.name}
           options={props.allTags}
           dropdownSelection={props.dropdownSelection}
-          // getFilter={props.getFilter}
-          // filters={props.filters}
+          filters={props.filters}
         />
       )}
     </div>

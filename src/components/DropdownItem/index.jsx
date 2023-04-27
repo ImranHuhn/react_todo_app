@@ -19,13 +19,23 @@ export const DropdownItem = (props) => {
     >
       <h5>{props.item}</h5>
       {props.name ? (
-        <input type="radio" name={props.name} value={props.item} />
+        <input
+          type="radio"
+          name={props.name}
+          value={props.item}
+          checked={props.item === props.sort ? "checked" : ""}
+          readOnly
+        />
       ) : (
         <input
           type="checkbox"
-          // checked={props.filter.isChecked ? "checked" : ""}
+          checked={
+            props.filters.length > 0 && props.filters.includes(props.item)
+              ? "checked"
+              : ""
+          }
           value={props.item}
-          // onChange={props.getFilter}
+          readOnly
         />
       )}
     </div>
