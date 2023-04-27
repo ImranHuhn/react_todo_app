@@ -57,8 +57,7 @@ class Home extends React.Component {
 
   dropdownSelection = (item) => {
     console.log("option= ", item);
-    this.setState({ sort: item });
-    // this.setState({ sort: selection, showFilter: false, showSort: false });
+    this.setState({ sort: item, showFilter: false, showSort: false });
     this.filterSelection(item);
   };
 
@@ -70,41 +69,17 @@ class Home extends React.Component {
   };
 
   render() {
-    // console.log("filter= ", this.state.filter);
-
     let searchTaskName;
     searchTaskName = this.props.taskList.filter((item) => {
       return item.taskName.includes(this.state.search);
     });
 
-    // WORKING
-    // const filter = this.props.allTags.filter((x) => {
-    //   return this.state.filter.indexOf(x) > -1;
-    // });
-
-    // WORKING
-    // searchTaskName = this.props.allTags.filter((x) => {
-    //   return this.state.filter.includes(x);
-    // });
-
-    const foo = ["1", "2"];
-    let searchTaskName1 = this.props.taskList.map((x) => {
-      if(x.tags.includes(foo)){
-        console.log(x)
-      }
-    });
-    // let searchTaskName1 = this.props.taskList.filter((y) => {
-    //   console.log("###", y.tags);
-    //   return foo.includes(y.tags);
-    // });
-
-    // searchTaskName1.filter((x) => {
-    //   console.log("---",x)
-    // })
-
-    console.log("test", searchTaskName1);
-
-    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    let result;
+    if (this.state.filter.length > 0) {
+      searchTaskName = searchTaskName.filter((el) =>
+        el.tags.some((tags) => this.state.filter.includes(tags))
+      );
+    }
 
     searchTaskName.sort((a, b) => {
       const priorityA = a.priority;
