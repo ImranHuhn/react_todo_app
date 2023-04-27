@@ -22,7 +22,7 @@ class Home extends React.Component {
       "Descending Priority",
     ],
     sort: "",
-    filter: [1],
+    filter: [],
   };
 
   handleAddClick = () => {
@@ -62,24 +62,49 @@ class Home extends React.Component {
     this.filterSelection(item);
   };
 
-  // getFilter = (e) => {
-  //   console.log("filter= ", e.target.value);
-  //   const filter = { text: e.target.value, isChecked: false };
-  //   const newFilter = this.state.filter.concat(filter);
-  //   this.setState({ filter: newFilter });
-  // };
+  getFilter = (e) => {
+    console.log("filter= ", e.target.value);
+    const filter = { text: e.target.value, isChecked: false };
+    const newFilter = this.state.filter.concat(filter);
+    this.setState({ filter: newFilter });
+  };
 
   render() {
-    // filter selected "allTags" array
-    console.log("filter= ", this.state.filter);
+    // console.log("filter= ", this.state.filter);
 
-    const searchTaskName = this.props.taskList.filter((item) => {
+    let searchTaskName;
+    searchTaskName = this.props.taskList.filter((item) => {
       return item.taskName.includes(this.state.search);
     });
 
-    searchTaskName.filter((item) => {
-      return this.state.filter.indexOf(item.tags) > -1;
+    // WORKING
+    // const filter = this.props.allTags.filter((x) => {
+    //   return this.state.filter.indexOf(x) > -1;
+    // });
+
+    // WORKING
+    // searchTaskName = this.props.allTags.filter((x) => {
+    //   return this.state.filter.includes(x);
+    // });
+
+    const foo = ["1", "2"];
+    let searchTaskName1 = this.props.taskList.map((x) => {
+      if(x.tags.includes(foo)){
+        console.log(x)
+      }
     });
+    // let searchTaskName1 = this.props.taskList.filter((y) => {
+    //   console.log("###", y.tags);
+    //   return foo.includes(y.tags);
+    // });
+
+    // searchTaskName1.filter((x) => {
+    //   console.log("---",x)
+    // })
+
+    console.log("test", searchTaskName1);
+
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     searchTaskName.sort((a, b) => {
       const priorityA = a.priority;
