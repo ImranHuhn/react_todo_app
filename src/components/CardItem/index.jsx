@@ -9,6 +9,7 @@ import {
   EditIcon,
   CheckIcon,
 } from "../IconComponent";
+import { Container, Wrapper, Card, CardTitle, Dot } from "./CardItem.styles";
 
 export const CardItem = (props) => {
   const dueDate = moment(props.item.dueDate);
@@ -39,42 +40,15 @@ export const CardItem = (props) => {
   };
 
   return (
-    <div
-      onClick={handleCardClick}
-      style={{
-        display: "flex",
-        justifyContent: "center",
-        backgroundColor: `${
-          props.item.isComplete ? "rgba(13, 153, 255, 0.1)" : "#fff"
-        }`,
-        borderRadius: "15px",
-        padding: "15px",
-        marginBottom: "20px",
-        cursor: "pointer",
-        border: "none",
-      }}
-    >
-      <div style={{ width: "500px" }}>
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "space-between",
-            marginBottom: "5px",
-          }}
-        >
-          <div style={{ display: "flex", alignItems: "center" }}>
-            <div
-              style={{
-                backgroundColor: `rgba(${cardColor},.8)`,
-                borderRadius: "50%",
-                width: "20px",
-                height: "20px",
-              }}
-            ></div>
+    <Container item={props.item} onClick={handleCardClick}>
+      <Wrapper>
+        <Card>
+          <CardTitle>
+            <Dot cardColor={cardColor}></Dot>
             <h3 style={{ fontWeight: "bold", margin: "5px" }}>
               {props.item.taskName}
             </h3>
-          </div>
+          </CardTitle>
           <div style={{ display: "flex" }}>
             <button
               onClick={handleEditClick}
@@ -110,7 +84,7 @@ export const CardItem = (props) => {
               <CheckIcon style={{ width: "20px", height: "20px" }} />
             </button>
           </div>
-        </div>
+        </Card>
         <div style={{ display: "flex", justifyContent: "space-between" }}>
           <div>
             <div style={{ display: "flex", marginBottom: "5px" }}>
@@ -248,7 +222,7 @@ export const CardItem = (props) => {
             </div>
           </div>
         </div>
-      </div>
-    </div>
+      </Wrapper>
+    </Container>
   );
 };

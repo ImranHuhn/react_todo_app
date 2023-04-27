@@ -1,6 +1,6 @@
 import React from "react";
 import moment from "moment";
-import { GlobalStyle } from "./App.styles";
+import { GlobalStyle, Container } from "./App.styles";
 import Home from "./components/Home";
 import TaskForm from "./components/TaskForm";
 import TaskDetails from "./components/TaskDetails";
@@ -21,7 +21,7 @@ class App extends React.Component {
     data.map((el) => {
       newAllTags = newAllTags.concat(el.tags);
     });
-    newAllTags = newAllTags.filter((el, i) => newAllTags.indexOf(el) === i); 
+    newAllTags = newAllTags.filter((el, i) => newAllTags.indexOf(el) === i);
     this.setState({ allTags: newAllTags });
   };
 
@@ -160,7 +160,7 @@ class App extends React.Component {
     console.log("$", this.state);
 
     return (
-      <div style={{ position: "relative" }}>
+      <Container>
         <GlobalStyle />
         {this.state.showAdd && (
           <TaskForm
@@ -200,7 +200,7 @@ class App extends React.Component {
             handleDetailClick={this.handleDetailClick}
           />
         )}
-      </div>
+      </Container>
     );
   }
 }
