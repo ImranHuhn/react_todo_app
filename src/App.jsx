@@ -34,10 +34,7 @@ class App extends React.Component {
 
   editTask = (item) => {
     const newTaskList = this.state.taskList.map((el) => {
-      if (item.id === el.id) {
-        el = item;
-      }
-      return el;
+      return item.id === el.id ? item : el;
     });
     this.setState({ taskList: newTaskList });
     this.addAllTags(newTaskList);
@@ -83,11 +80,7 @@ class App extends React.Component {
   };
 
   percentage = (items) => {
-    const checkedItem = items
-      .map((item) => item.isComplete)
-      .filter((el) => {
-        return el === true;
-      }).length;
+    const checkedItem = items.filter((el) => el.isComplete).length;
     const totalItems = items.length;
     const percent = Math.trunc((checkedItem / totalItems) * 100);
     const newTask = { ...this.state.aTask, percent };
