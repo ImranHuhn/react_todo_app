@@ -1,5 +1,13 @@
 import React from "react";
 import "react-circular-progressbar/dist/styles.css";
+import {
+  Container,
+  Wrapper,
+  SearchBarWapper,
+  ArrowButton,
+  DropdownWrapper,
+  ButtonWideWrapper,
+} from "./Home.styles";
 import { CardItem } from "../CardItem";
 import { DropdownButton } from "../DropdownButton";
 import { TextInput } from "../TextInput";
@@ -104,26 +112,10 @@ class Home extends React.Component {
     });
 
     return (
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "center",
-          width: "100%",
-          backgroundColor: "rgb(245, 245, 245)",
-          margin: "0 auto",
-          minHeight: "100vh",
-        }}
-      >
-        <div style={{ width: "500px", padding: "50px 0" }}>
+      <Container>
+        <Wrapper>
           <form action="submit" onSubmit={this.searchSubmit}>
-            <div
-              style={{
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-                position: "relative",
-              }}
-            >
+            <SearchBarWapper>
               <MagnifyIcon
                 width="24"
                 height="24"
@@ -136,36 +128,16 @@ class Home extends React.Component {
                 style={{ paddingLeft: "50px" }}
                 placeholder="Search..."
               />
-              <button
-                style={{
-                  display: "flex",
-                  justifyContent: "center",
-                  alignItems: "center",
-                  position: "absolute",
-                  right: "0",
-                  backgroundColor: "rgba(13, 153, 255, 0.1)",
-                  borderRadius: "50%",
-                  width: "36px",
-                  height: "36px",
-                  margin: "auto 10px",
-                  border: "none",
-                  cursor: "pointer",
-                }}
-              >
+              <ArrowButton>
                 <ArrowIcon
                   width="24"
                   height="24"
                   style={{ rotate: "180deg" }}
                 />
-              </button>
-            </div>
+              </ArrowButton>
+            </SearchBarWapper>
           </form>
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "space-between",
-            }}
-          >
+          <DropdownWrapper>
             <DropdownButton
               text="Sort"
               name="sort"
@@ -183,7 +155,7 @@ class Home extends React.Component {
               dropdownSelection={this.dropdownSelection}
               filters={this.state.filters}
             />
-          </div>
+          </DropdownWrapper>
           {searchTaskName.map((item) => {
             return (
               <CardItem
@@ -195,15 +167,15 @@ class Home extends React.Component {
               />
             );
           })}
-          <div style={{ margin: "10px auto 20px", width: "192px" }}>
+          <ButtonWideWrapper>
             <ButtonWide
               text="Add New Task"
               icon="plus"
               handleClick={this.handleAddClick}
             />
-          </div>
-        </div>
-      </div>
+          </ButtonWideWrapper>
+        </Wrapper>
+      </Container>
     );
   }
 }

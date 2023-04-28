@@ -39,12 +39,10 @@ export const SaveButtonWrapper = styled.div`
   margin-bottom: 45px;
 `;
 
-// export const SaveButton = styled.button`
-//   height: 60px;
-//   width: 192px;
-//   border-radius: 30px;
-//   border: none;
-//   background-color: #0d99ff;
-//   color: #fff;
-//   cursor: pointer;
-// `;
+export const DateTimeWidth = styled.div`
+  width: 45%;
+`;
+
+export const ButtonWidth = styled.div`
+  width: 192px;
+`;

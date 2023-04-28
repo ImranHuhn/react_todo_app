@@ -1,34 +1,15 @@
-// import styled from "styled-components";
+import styled from "styled-components";
 
-// export const Text = styled.h4`
-//   // position: absolute;
-//   top: 50%;
-//   left: 50%;
-//   transform: translate(-50%, -50%);
-// `;
-
-// export const TextWrapper = styled.div`
-//   // position: absolute;
-//   z-index: 0;
-//   border-radius: 100%;
-//   width: 30px;
-//   height: 30px;
-//   text-align: center;
-//   background-color: ${(props) =>
-//     props.radioColor ? "rgba(13,153,255,1)" : "rgba(13,153,255,0.1)"};
-//   color: ${(props) => (props.radioColor ? "#fff" : "#000")};
-// `;
-
-// export const RadioItem = styled.div`
-//   position: relative;
-// `;
-
-// export const RadioInput = styled.input`
-//   position: absolute;
-//   z-index: 1;
-//   opacity: 0;
-//   width: 30px;
-//   height: 30px;
-//   transform: translate(-15%, -15%);
-//   cursor: pointer;
-// `;
+export const DropdownItemWrapper = styled.div`
+  bottom: 0;
+  background-color: #fff;
+  width: 100%;
+  padding: 0 15px;
+  borderbottom: 1px solid #d3d3d3;
+  border-radius: 14px;
+  -webkit-box-shadow: 0px 8px 30px -15px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 0px 8px 30px -15px rgba(0, 0, 0, 0.75);
+  box-shadow: 0px 8px 30px -15px rgba(0, 0, 0, 0.75);
+  position: relative;
+  z-index: 2;
+`;

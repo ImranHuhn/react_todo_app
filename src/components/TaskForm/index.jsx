@@ -11,6 +11,8 @@ import {
   DateTimeWrapper,
   TagsWrapper,
   SaveButtonWrapper,
+  DateTimeWidth,
+  ButtonWidth,
 } from "./TaskForm.styles";
 
 class TaskForm extends React.Component {
@@ -128,7 +130,7 @@ class TaskForm extends React.Component {
                 value={this.state.complexity}
               />
               <DateTimeWrapper>
-                <div style={{ width: "45%" }}>
+                <DateTimeWidth>
                   <TextInput
                     title="Select Due Date"
                     name="date"
@@ -136,8 +138,8 @@ class TaskForm extends React.Component {
                     handleChange={this.getDate}
                     value={this.state.dueDate}
                   />
-                </div>
-                <div style={{ width: "45%" }}>
+                </DateTimeWidth>
+                <DateTimeWidth>
                   <TextInput
                     title="Select Time"
                     name="time"
@@ -145,7 +147,7 @@ class TaskForm extends React.Component {
                     handleChange={this.getTime}
                     value={this.state.dueTime}
                   />
-                </div>
+                </DateTimeWidth>
               </DateTimeWrapper>
               <CheckListSection
                 getChecklist={this.getChecklist}
@@ -164,9 +166,9 @@ class TaskForm extends React.Component {
                 />
               </TagsWrapper>
               <SaveButtonWrapper>
-                <div style={{ width: "192px" }}>
+                <ButtonWidth>
                   <ButtonWide text="Save Task" />
-                </div>
+                </ButtonWidth>
               </SaveButtonWrapper>
             </div>
           </Wrapper>

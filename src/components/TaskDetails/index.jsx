@@ -1,5 +1,32 @@
 import React from "react";
 import moment from "moment";
+import {
+  Container,
+  Wrapper,
+  CardWrapper,
+  Card,
+  CardWidth,
+  TaskNameWrapper,
+  TaskNameFlex,
+  TaskNameColor,
+  TaskNameText,
+  CardDetails,
+  DateWapper,
+  CalendarIconWrapper,
+  DateText,
+  DateColor,
+  PriorityWrapper,
+  ArrowIconWrapper,
+  ComplexityWrapper,
+  DirectionalIconWrapper,
+  ProgressBarWrapper,
+  ProgressBarTitle,
+  ProgressBarPercent,
+  BarBackground,
+  BarFill,
+  TopMarginSpace,
+  ButtonWideWrapper,
+} from "./TaskDetails.styles";
 import { HeaderText } from "../HeaderText";
 import { CheckList } from "../CheckList";
 import { RatingScale } from "../RatingScale";
@@ -15,36 +42,10 @@ class TaskDetails extends React.Component {
     this.props.deleteTask(this.props.aTask);
   };
 
-  // componentDidMount = () => {
-  //   this.percentage();
-  // };
-
-  // percentage = () => {
-  //   const checkedItem = this.props.aTask.checklist
-  //     .map((item) => item.isComplete)
-  //     .filter((el) => {
-  //       return el === true;
-  //     }).length;
-  //   const totalItems = this.props.aTask.checklist.length;
-  //     const percent = (checkedItem / totalItems) * 100
-  //   console.log("percent", percent);
-  // };
-
   render() {
     return (
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "center",
-          width: "100%",
-          backgroundColor: "rgb(245, 245, 245)",
-          margin: "0 auto",
-          minHeight: "100vh",
-        }}
-      >
-        <div
-          style={{ width: "500px", padding: "50px 0", position: "relative" }}
-        >
+      <Container>
+        <Wrapper>
           <HeaderText
             title="Task Details"
             arrowButton="arrow"
@@ -53,55 +54,20 @@ class TaskDetails extends React.Component {
             handleEditClick={this.props.handleEditClick}
             aTask={this.props.aTask}
           />
-          <div style={{ marginTop: "30px" }}>
-            <div
-              style={{
-                display: "flex",
-                justifyContent: "center",
-                backgroundColor: `${
-                  this.props.aTask.isComplete
-                    ? "rgba(13, 153, 255, 0.1)"
-                    : "#fff"
-                }`,
-                borderRadius: "15px",
-                padding: "15px",
-                marginBottom: "20px",
-                border: "none",
-              }}
-            >
-              <div style={{ width: "100%" }}>
-                <div
-                  style={{
-                    display: "flex",
-                    justifyContent: "space-between",
-                    marginBottom: "20px",
-                  }}
-                >
-                  <div style={{ display: "flex", alignItems: "center" }}>
-                    <div
-                      style={{
-                        backgroundColor: `rgba(${this.props.daysLeft},.8)`,
-                        borderRadius: "50%",
-                        width: "20px",
-                        height: "20px",
-                      }}
-                    ></div>
-                    <h1 style={{ fontWeight: "bold", margin: "5px" }}>
-                      {this.props.aTask.taskName}
-                    </h1>
-                  </div>
-                </div>
-                <div style={{ display: "flex", flexDirection: "column" }}>
-                  <div style={{ display: "flex", marginBottom: "20px" }}>
-                    <div
-                      style={{
-                        display: "flex",
-                        justifyContent: "center",
-                        alignItems: "center",
-                        width: "20px",
-                        height: "20px",
-                      }}
-                    >
+          <CardWrapper>
+            <Card aTask={this.props.aTask}>
+              <CardWidth>
+                <TaskNameWrapper>
+                  <TaskNameFlex>
+                    <TaskNameColor
+                      daysLeft={this.props.daysLeft}
+                    ></TaskNameColor>
+                    <TaskNameText>{this.props.aTask.taskName}</TaskNameText>
+                  </TaskNameFlex>
+                </TaskNameWrapper>
+                <CardDetails>
+                  <DateWapper>
+                    <CalendarIconWrapper>
                       <Calendar
                         style={{
                           width: "15px",
@@ -109,14 +75,10 @@ class TaskDetails extends React.Component {
                           display: "flex",
                         }}
                       />
-                    </div>
-                    <h2 style={{ margin: "auto 5px", color: "#808080" }}>
+                    </CalendarIconWrapper>
+                    <DateText>
                       Due Date:{" "}
-                      <span
-                        style={{
-                          color: `rgba(${this.props.daysLeft})`,
-                        }}
-                      >
+                      <DateColor daysLeft={this.props.daysLeft}>
                         {this.props.aTask.dueDate &&
                           this.props.aTask.dueTime &&
                           moment(
@@ -125,19 +87,11 @@ class TaskDetails extends React.Component {
                               this.props.aTask.dueTime,
                             "YYYY-MM-DD HH:mm"
                           ).format("MMMM Do YYYY, h:mm A")}{" "}
-                      </span>
-                    </h2>
-                  </div>
-                  <div style={{ display: "flex", marginBottom: "20px" }}>
-                    <div
-                      style={{
-                        display: "flex",
-                        justifyContent: "center",
-                        alignItems: "center",
-                        width: "20px",
-                        height: "20px",
-                      }}
-                    >
+                      </DateColor>
+                    </DateText>
+                  </DateWapper>
+                  <PriorityWrapper>
+                    <ArrowIconWrapper>
                       <ArrowIcon
                         style={{
                           width: "20px",
@@ -145,76 +99,42 @@ class TaskDetails extends React.Component {
                           rotate: "90deg",
                         }}
                       />
-                    </div>
+                    </ArrowIconWrapper>
                     <RatingScale
-                      htmlTag="h2"
+                      htmlTag="large-card"
                       text="Priority: "
                       radio={this.props.aTask.priority}
                     />
-                  </div>
-                  <div style={{ display: "flex", marginBottom: "20px" }}>
-                    <div
-                      style={{
-                        display: "flex",
-                        justifyContent: "center",
-                        alignItems: "center",
-                        width: "20px",
-                        height: "20px",
-                      }}
-                    >
+                  </PriorityWrapper>
+                  <ComplexityWrapper>
+                    <DirectionalIconWrapper>
                       <DirectionalIcon
                         style={{ width: "20px", height: "20px" }}
                       />
-                    </div>
+                    </DirectionalIconWrapper>
                     <RatingScale
-                      htmlTag="h2"
+                      htmlTag="large-card"
                       text="Complexity: "
                       radio={this.props.aTask.complexity}
                     />
-                  </div>
-                  <div
-                    style={{
-                      display: "flex",
-                      justifyContent: "space-between",
-                      marginTop: "10px",
-                    }}
-                  >
-                    <h2 style={{ fontWeight: "bold" }}>Task Complete</h2>
-                    <h2
-                      style={{
-                        fontWeight: "bold",
-                        color: `rgb(${this.props.daysLeft})`,
-                      }}
-                    >
+                  </ComplexityWrapper>
+                  <ProgressBarWrapper>
+                    <ProgressBarTitle>Task Complete</ProgressBarTitle>
+                    <ProgressBarPercent daysLeft={this.props.daysLeft}>
                       {this.props.aTask.percent}%
-                    </h2>
-                  </div>
-                  <div
-                    style={{
-                      backgroundColor: "#f5f5f5",
-                      borderRadius: "10px",
-                      height: "15px",
-                      width: "100%",
-                      margin: "5px auto 10px",
-                      position: "relative",
-                    }}
-                  >
-                    <div
-                      style={{
-                        backgroundColor: `rgb(${this.props.daysLeft})`,
-                        width: `${this.props.aTask.percent}%`,
-                        height: "100%",
-                        position: "absolute",
-                        left: "0",
-                        borderRadius: "10px",
-                      }}
-                    ></div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div style={{ marginTop: "30px" }}>
+                    </ProgressBarPercent>
+                  </ProgressBarWrapper>
+                  <BarBackground>
+                    <BarFill
+                      daysLeft={this.props.daysLeft}
+                      percent={this.props.aTask.percent}
+                    ></BarFill>
+                  </BarBackground>
+                </CardDetails>
+              </CardWidth>
+            </Card>
+          </CardWrapper>
+          <TopMarginSpace>
             {this.props.aTask.checklist.length !== 0 && (
               <h2>Checklist for subtasks</h2>
             )}
@@ -223,26 +143,26 @@ class TaskDetails extends React.Component {
               checklist={this.props.aTask.checklist}
               completedChecklist={this.props.completedChecklist}
             />
-          </div>
-          <div style={{ marginTop: "30px" }}>
-            <div style={{ margin: "10px auto 20px", width: "80%" }}>
+          </TopMarginSpace>
+          <TopMarginSpace>
+            <ButtonWideWrapper>
               <ButtonWide
                 text="Repeat Task"
                 icon="repeat"
                 handleClick={this.handleRepeatClick}
               />
-            </div>
-            <div style={{ margin: "10px auto 20px", width: "60%" }}>
+            </ButtonWideWrapper>
+            <ButtonWideWrapper>
               <ButtonWide
                 text="Delete Task"
                 icon="trash"
                 handleClick={this.handleDeleteClick}
                 redButton
               />
-            </div>
-          </div>
-        </div>
-      </div>
+            </ButtonWideWrapper>
+          </TopMarginSpace>
+        </Wrapper>
+      </Container>
     );
   }
 }

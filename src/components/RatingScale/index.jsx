@@ -1,4 +1,5 @@
 import React from "react";
+import { SmallCard, LargeCard, Color } from "./RatingScale.styles";
 
 export const RatingScale = (props) => {
   let ratingScale = "";
@@ -11,21 +12,21 @@ export const RatingScale = (props) => {
   }
   return (
     <div>
-      {props.htmlTag === "h4" && (
-        <h4 style={{ margin: "auto 5px", color: "#808080" }}>
+      {props.htmlTag === "small-card" && (
+        <SmallCard>
           {props.text}
-          <span style={{ color: "#000000" }}>
+          <Color>
             {ratingScale} ({props.radio}/10)
-          </span>
-        </h4>
+          </Color>
+        </SmallCard>
       )}
-      {props.htmlTag === "h2" && (
-        <h2 style={{ margin: "auto 5px", color: "#808080" }}>
+      {props.htmlTag === "large-card" && (
+        <LargeCard>
           {props.text}
-          <span style={{ color: "#000000" }}>
+          <Color>
             {ratingScale} ({props.radio}/10)
-          </span>
-        </h2>
+          </Color>
+        </LargeCard>
       )}
     </div>
   );

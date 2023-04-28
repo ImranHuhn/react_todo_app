@@ -9,7 +9,31 @@ import {
   EditIcon,
   CheckIcon,
 } from "../IconComponent";
-import { Container, Wrapper, Card, CardTitle, Dot } from "./CardItem.styles";
+import {
+  Container,
+  Wrapper,
+  Card,
+  CardTitle,
+  Dot,
+  TaskNameH3,
+  ButtonWrapper,
+  Button,
+  CardDetails,
+  DateWrapper,
+  CalendarIconWrapper,
+  DateTextWrapper,
+  DateText,
+  PriorityWrapper,
+  ArrowIconWrapper,
+  ComplexityWrapper,
+  DirectionalIconWrapper,
+  TagsWrapper,
+  TagsList,
+  TagsItem,
+  ProgressCircleWrapper,
+  ProgressCircle,
+  ProgressPercent,
+} from "./CardItem.styles";
 
 export const CardItem = (props) => {
   const dueDate = moment(props.item.dueDate);
@@ -45,58 +69,21 @@ export const CardItem = (props) => {
         <Card>
           <CardTitle>
             <Dot cardColor={cardColor}></Dot>
-            <h3 style={{ fontWeight: "bold", margin: "5px" }}>
-              {props.item.taskName}
-            </h3>
+            <TaskNameH3>{props.item.taskName}</TaskNameH3>
           </CardTitle>
-          <div style={{ display: "flex" }}>
-            <button
-              onClick={handleEditClick}
-              style={{
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-                borderRadius: "50%",
-                width: "30px",
-                height: "30px",
-                border: "none",
-                margin: "auto 20px",
-                cursor: "pointer",
-                backgroundColor: "rgba(13, 153, 255, 0.1)",
-              }}
-            >
+          <ButtonWrapper>
+            <Button onClick={handleEditClick}>
               <EditIcon style={{ width: "20px", height: "20px" }} />
-            </button>
-            <button
-              onClick={handleCheckClick}
-              style={{
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-                borderRadius: "50%",
-                width: "30px",
-                height: "30px",
-                border: "none",
-                cursor: "pointer",
-                backgroundColor: "rgba(13, 153, 255, 0.1)",
-              }}
-            >
+            </Button>
+            <Button onClick={handleCheckClick}>
               <CheckIcon style={{ width: "20px", height: "20px" }} />
-            </button>
-          </div>
+            </Button>
+          </ButtonWrapper>
         </Card>
-        <div style={{ display: "flex", justifyContent: "space-between" }}>
+        <CardDetails>
           <div>
-            <div style={{ display: "flex", marginBottom: "5px" }}>
-              <div
-                style={{
-                  display: "flex",
-                  justifyContent: "center",
-                  alignItems: "center",
-                  width: "20px",
-                  height: "20px",
-                }}
-              >
+            <DateWrapper>
+              <CalendarIconWrapper>
                 <Calendar
                   style={{
                     width: "15px",
@@ -104,31 +91,21 @@ export const CardItem = (props) => {
                     display: "flex",
                   }}
                 />
-              </div>
-              <h4 style={{ margin: "auto 5px", color: "#808080" }}>
+              </CalendarIconWrapper>
+              <DateTextWrapper>
                 Due Date:{" "}
-                <span
-                  style={{ fontWeight: "bold", color: `rgba(${cardColor})` }}
-                >
+                <DateText cardColor={cardColor}>
                   {props.item.dueDate &&
                     props.item.dueTime &&
                     moment(
                       props.item.dueDate + " " + props.item.dueTime,
                       "YYYY-MM-DD HH:mm"
                     ).format("MMMM Do YYYY, h:mm A")}{" "}
-                </span>
-              </h4>
-            </div>
-            <div style={{ display: "flex", marginBottom: "5px" }}>
-              <div
-                style={{
-                  display: "flex",
-                  justifyContent: "center",
-                  alignItems: "center",
-                  width: "20px",
-                  height: "20px",
-                }}
-              >
+                </DateText>
+              </DateTextWrapper>
+            </DateWrapper>
+            <PriorityWrapper>
+              <ArrowIconWrapper>
                 <ArrowIcon
                   style={{
                     width: "20px",
@@ -136,60 +113,37 @@ export const CardItem = (props) => {
                     rotate: "90deg",
                   }}
                 />
-              </div>
+              </ArrowIconWrapper>
               <RatingScale
                 text="Priority: "
                 radio={props.item.priority}
-                htmlTag="h4"
+                htmlTag="small-card"
               />
-            </div>
-            <div style={{ display: "flex", marginBottom: "5px" }}>
-              <div
-                style={{
-                  display: "flex",
-                  justifyContent: "center",
-                  alignItems: "center",
-                  width: "20px",
-                  height: "20px",
-                }}
-              >
+            </PriorityWrapper>
+            <ComplexityWrapper>
+              <DirectionalIconWrapper>
                 <DirectionalIcon style={{ width: "20px", height: "20px" }} />
-              </div>
+              </DirectionalIconWrapper>
               <RatingScale
                 text="Complexity: "
                 radio={props.item.complexity}
-                htmlTag="h4"
+                htmlTag="small-card"
               />
-            </div>
-            <div style={{ display: "flex", marginTop: "10px" }}>
-              <ul
-                style={{
-                  margin: "0",
-                  padding: "0",
-                  listStyle: "none",
-                  display: "flex",
-                }}
-              >
+            </ComplexityWrapper>
+            <TagsWrapper>
+              <TagsList>
                 {props.item.tags.map((tag) => {
                   return (
-                    <li
-                      key={crypto.randomUUID()}
-                      style={{
-                        backgroundColor: `rgba(${cardColor},.1)`,
-                        padding: "6px 8px",
-                        borderRadius: "15px",
-                        marginRight: "5px",
-                      }}
-                    >
+                    <TagsItem cardColor={cardColor} key={crypto.randomUUID()}>
                       <h5>{tag}</h5>
-                    </li>
+                    </TagsItem>
                   );
                 })}
-              </ul>
-            </div>
+              </TagsList>
+            </TagsWrapper>
           </div>
-          <div style={{ display: "flex", alignItems: "center" }}>
-            <div style={{ width: "44px", height: "44px" }}>
+          <ProgressCircleWrapper>
+            <ProgressCircle>
               <CircularProgressbarWithChildren
                 styles={{
                   text: {
@@ -210,18 +164,12 @@ export const CardItem = (props) => {
                 value={props.item.percent}
               >
                 <div>
-                  <h5
-                    style={{
-                      fontSize: 12,
-                      color: "#002055",
-                      fontWeight: "bold",
-                    }}
-                  >{`${props.item.percent}%`}</h5>
+                  <ProgressPercent>{`${props.item.percent}%`}</ProgressPercent>
                 </div>
               </CircularProgressbarWithChildren>
-            </div>
-          </div>
-        </div>
+            </ProgressCircle>
+          </ProgressCircleWrapper>
+        </CardDetails>
       </Wrapper>
     </Container>
   );

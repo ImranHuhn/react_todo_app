@@ -1,4 +1,5 @@
 import React from "react";
+import { Container } from "./DropdownItem.styles";
 
 export const DropdownItem = (props) => {
   const handleClick = () => {
@@ -6,17 +7,7 @@ export const DropdownItem = (props) => {
   };
 
   return (
-    <div
-      onClick={handleClick}
-      style={{
-        display: "flex",
-        justifyContent: "space-between",
-        alignItems: "center",
-        borderBottom: "1px solid #d3d3d3",
-        padding: "10px 0",
-        cursor: "pointer",
-      }}
-    >
+    <Container onClick={handleClick}>
       <h5>{props.item}</h5>
       {props.name ? (
         <input
@@ -38,6 +29,6 @@ export const DropdownItem = (props) => {
           readOnly
         />
       )}
-    </div>
+    </Container>
   );
 };

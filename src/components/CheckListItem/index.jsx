@@ -5,7 +5,7 @@ import {
   ItemName,
   DeleteButton,
   EnterButton,
-  // CheckButton,
+  CheckButton,
 } from "./CheckListItem.styles";
 import { DeleteIcon, EnterIcon, CheckIcon } from "../IconComponent";
 
@@ -83,19 +83,7 @@ class CheckListItem extends React.Component {
         {this.props.itemType === "noninput" && (
           <Item onClick={this.handleCheckClick}>
             <ItemName>{this.state.value}</ItemName>
-            <button
-              style={{
-                backgroundColor: `${this.props.item.isComplete ? "rgba(13, 153, 255, 1)" : "rgba(13, 153, 255, 0.1)"}`,
-                position: "absolute",
-                width: "44px",
-                height: "44px",
-                borderRadius: "50%",
-                border: "none",
-                cursor: "pointer",
-                right: "0",
-                marginRight: "10px",
-              }}
-            >
+            <CheckButton item={this.props.item}>
               <CheckIcon
                 style={{
                   stroke: `${this.props.item.isComplete ? "#fff" : "#000"}`,
@@ -103,7 +91,7 @@ class CheckListItem extends React.Component {
                   height: "24px",
                 }}
               />
-            </button>
+            </CheckButton>
           </Item>
         )}
       </div>

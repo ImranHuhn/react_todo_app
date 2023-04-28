@@ -26,3 +26,20 @@ export const ArrowButton = styled.button`
   align-items: center;
   cursor: pointer;
 `;
+
+export const EditButton = styled.button`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  width: 44px;
+  height: 44px;
+  border: none;
+  cursor: pointer;
+  background-color: rgba(13, 153, 255, 0.1);
+`;
+
+export const EditButtonWrapper = styled.div`
+  position: absolute;
+  right: 0;
+`;

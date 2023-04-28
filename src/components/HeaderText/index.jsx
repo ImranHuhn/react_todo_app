@@ -1,6 +1,12 @@
 import React from "react";
 import { ArrowIcon, EditIcon } from "../IconComponent";
-import { Header, ArrowButtonWrapper, ArrowButton } from "./HeaderText.styles";
+import {
+  Header,
+  ArrowButtonWrapper,
+  ArrowButton,
+  EditButton,
+  EditButtonWrapper,
+} from "./HeaderText.styles";
 
 export const HeaderText = (props) => {
   const handleEditClick = () => {
@@ -13,22 +19,9 @@ export const HeaderText = (props) => {
       </ArrowButton>
     ),
     edit: (
-      <button
-        onClick={handleEditClick}
-        style={{
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          borderRadius: "50%",
-          width: "44px",
-          height: "44px",
-          border: "none",
-          cursor: "pointer",
-          backgroundColor: "rgba(13, 153, 255, 0.1)",
-        }}
-      >
+      <EditButton onClick={handleEditClick}>
         <EditIcon style={{ width: "20px", height: "20px" }} />
-      </button>
+      </EditButton>
     ),
   };
 
@@ -36,9 +29,7 @@ export const HeaderText = (props) => {
     <Header>
       <ArrowButtonWrapper>{button[props.arrowButton]}</ArrowButtonWrapper>
       <h1>{props.title}</h1>
-      <div style={{ position: "absolute", right: "0" }}>
-        {button[props.editButton]}
-      </div>
+      <EditButtonWrapper>{button[props.editButton]}</EditButtonWrapper>
     </Header>
   );
 };
