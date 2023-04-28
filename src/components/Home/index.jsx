@@ -56,12 +56,19 @@ class Home extends React.Component {
   };
 
   filterSelection = (selection) => {
-    const filter = this.props.allTags.filter((el) => {
-      return selection === el;
-    });
+    // to prevent effecting "sort" values. filters items that only exists in tags and turns into an array
+    const filterValue = this.props.allTags.filter((el) => selection === el);
 
-    if (!this.state.filters.includes(selection)) {
-      const newFilter = this.state.filters.concat(filter);
+    if (this.state.filters.includes(filterValue.toString())) {
+      // to unchecks/removes items that exists in array
+      const newFilter = this.state.filters.filter(
+        (el) => el !== filterValue.toString()
+      );
+      console.log("newFilter", newFilter);
+      this.setState({ filters: newFilter });
+    } else {
+      // to checks/add items that don't exist in array
+      const newFilter = this.state.filters.concat(filterValue);
       this.setState({ filters: newFilter });
     }
   };
