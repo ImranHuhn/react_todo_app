@@ -67,14 +67,11 @@ class Home extends React.Component {
   };
 
   dropdownSelection = (item) => {
-    console.log("option= ", item);
-    this.setState({ sort: item });
+    this.setState({ sort: item, showSort: false, showFilter: false });
     this.filterSelection(item);
   };
 
   render() {
-    console.log("filter= ", this.state.filters);
-
     let searchTaskName;
     searchTaskName = this.props.taskList.filter((item) => {
       return item.taskName.includes(this.state.search);

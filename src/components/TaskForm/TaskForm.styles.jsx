@@ -6,8 +6,6 @@ export const Container = styled.div`
   width: 100%;
   background-color: #f5f5f5;
   margin: 0 auto;
-  // position: absolute;
-  // z-index: 2;
 `;
 
 export const Wrapper = styled.div`
